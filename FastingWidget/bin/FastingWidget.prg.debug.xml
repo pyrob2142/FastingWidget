@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+<pcToLineNum>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetView.mc" id="3" lineNum="5" pc="268435456" symbol="initialize"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetView.mc" id="3" lineNum="6" pc="268435460" symbol="initialize"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetView.mc" id="4" lineNum="10" pc="268435479" symbol="onLayout"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetView.mc" id="4" lineNum="11" pc="268435483" symbol="onLayout"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetView.mc" id="5" lineNum="17" pc="268435521" symbol="onShow"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetView.mc" id="6" lineNum="21" pc="268435526" symbol="onUpdate"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetView.mc" id="6" lineNum="23" pc="268435530" symbol="onUpdate"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetView.mc" id="7" lineNum="29" pc="268435551" symbol="onHide"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetApp.mc" id="9" lineNum="5" pc="268435556" symbol="initialize"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetApp.mc" id="9" lineNum="6" pc="268435560" symbol="initialize"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetApp.mc" id="10" lineNum="10" pc="268435579" symbol="onStart"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetApp.mc" id="11" lineNum="14" pc="268435584" symbol="onStop"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetApp.mc" id="12" lineNum="18" pc="268435589" symbol="getInitialView"/>
+<entry filename="G:\\Development\\ConnectIQ\\FastingWidget\\FastingWidget\\source\\FastingWidgetApp.mc" id="12" lineNum="19" pc="268435593" symbol="getInitialView"/>
+<entry filename="Rez" id="18" lineNum="16" pc="268435631" symbol="MainLayout"/>
+<entry filename="Rez" id="18" lineNum="19" pc="268435643" symbol="MainLayout"/>
+<entry filename="Rez" id="18" lineNum="20" pc="268435762" symbol="MainLayout"/>
+<entry filename="Rez" id="18" lineNum="22" pc="268435826" symbol="MainLayout"/>
+</pcToLineNum>
+<symbolTable>
+<entry id="8389124" method="true" symbol="onUpdate"/>
+<entry field="true" id="8388611" module="true" symbol="Toybox"/>
+<entry id="8388770" module="true" object="true" symbol="Strings"/>
+<entry id="8389280" method="true" symbol="getInitialView"/>
+<entry id="8388639" module="true" symbol="Graphics"/>
+<entry id="15" method="true" symbol="MainLayout"/>
+<entry id="8388769" module="true" object="true" symbol="Rez"/>
+<entry id="8389123" method="true" symbol="onShow"/>
+<entry id="10" object="true" symbol="FastingWidgetApp"/>
+<entry id="8388702" method="true" symbol="initialize"/>
+<entry field="true" id="16" symbol="AppName"/>
+<entry id="9" object="true" symbol="FastingWidgetView"/>
+<entry field="true" id="14" symbol="LauncherIcon"/>
+<entry id="8388648" module="true" symbol="WatchUi"/>
+<entry id="8389281" method="true" symbol="onStop"/>
+<entry field="true" id="8389065" symbol="locY"/>
+<entry field="true" id="8389064" symbol="locX"/>
+<entry id="8388771" module="true" object="true" symbol="Drawables"/>
+<entry id="8389122" method="true" symbol="onLayout"/>
+<entry id="8389279" method="true" symbol="onStart"/>
+<entry field="true" id="13" symbol="id_monkey"/>
+<entry id="11" module="true" symbol="Layouts"/>
+<entry id="8389125" method="true" symbol="onHide"/>
+<entry id="8389345" symbol="rezId"/>
+<entry id="8390088" module="true" object="true" symbol="JsonData"/>
+<entry field="true" id="8389063" symbol="identifier"/>
+<entry id="12" module="true" symbol="Menus"/>
+<entry id="8388772" module="true" object="true" symbol="Fonts"/>
+<entry id="8388635" module="true" symbol="Application"/>
+</symbolTable>
+<localVars>
+<entry endPc="268435521" name="dc" stackId="1" startPc="268435479"/>
+<entry endPc="268435551" name="dc" stackId="1" startPc="268435526"/>
+<entry endPc="268435584" name="state" stackId="1" startPc="268435579"/>
+<entry endPc="268435589" name="state" stackId="1" startPc="268435584"/>
+<entry endPc="268435843" name="rez_cmp_local_bitmap_id_monkey" stackId="2" startPc="268435643"/>
+<entry endPc="268435844" name="dc" stackId="1" startPc="268435631"/>
+</localVars>
+<annotations/>
+<dataEntryOffsetMappings>
+<dataEntry offset="87" parentId="" symbolId="globals" type="module"/>
+<dataEntry offset="150" parentId="globals" symbolId="FastingWidgetView" type="class"/>
+<dataEntry offset="229" parentId="globals" symbolId="Rez" type="module"/>
+<dataEntry offset="308" parentId="Rez" symbolId="Drawables" type="module"/>
+<dataEntry offset="355" parentId="Rez" symbolId="Menus" type="module"/>
+<dataEntry offset="386" parentId="Rez" symbolId="Fonts" type="module"/>
+<dataEntry offset="417" parentId="Rez" symbolId="Layouts" type="module"/>
+<dataEntry offset="456" parentId="Rez" symbolId="JsonData" type="module"/>
+<dataEntry offset="487" parentId="Rez" symbolId="Strings" type="module"/>
+<dataEntry offset="526" parentId="globals" symbolId="FastingWidgetApp" type="class"/>
+</dataEntryOffsetMappings>
+<functions>
+<functionEntry accessMode="public" name="initialize" parent="FastingWidgetView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onLayout" parent="FastingWidgetView">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onShow" parent="FastingWidgetView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onUpdate" parent="FastingWidgetView">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onHide" parent="FastingWidgetView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="FastingWidgetApp">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onStart" parent="FastingWidgetApp">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onStop" parent="FastingWidgetApp">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="getInitialView" parent="FastingWidgetApp">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="MainLayout" parent="Layouts">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+</functions>
+</debugInfo>
