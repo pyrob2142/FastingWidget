@@ -16,7 +16,7 @@ class FastingWidgetApp extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() {
-        return [ new FastingWidgetView() ];
+        return [ new FastingView() ];
     }
 
 }
