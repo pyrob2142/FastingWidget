@@ -4,6 +4,7 @@
 	<property id="longpress_threshold" type="number">2000</property>
 	<property id="default_goal" type="number">36</property> 
 	<property id="activity_level" type="number">0</property>
+	<property id="birthday" type="number">0</property>
 </properties>
 
 <strings>
@@ -15,6 +16,7 @@
 	<string id="activity_level_2">Moderately Active (moderate exercise 3-5 days per week)</string>
 	<string id="activity_level_3">Very Active (hard exercise 6-7 days per week)</string>
 	<string id="activity_level_4">Extra Active (very hard exercise/training or a physical job)</string>
+	<string id="birthday_title">Birthday</string>
 </strings>
 
 <settings>
@@ -34,6 +36,10 @@
 	<listEntry value="3">@Strings.activity_level_3</listEntry>
 	<listEntry value="4">@Strings.activity_level_4</listEntry>
 	</settingConfig>
+	</setting>
+	
+	<setting propertyKey="@Properties.birthday" title="@Strings.birthday_title">
+	<settingConfig type="date" /> 
 	</setting>
 </settings>
 

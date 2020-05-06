@@ -37,13 +37,6 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
 			} else {
 				fast_manager.toggleFast();
 			}
-		
 		}
-		
-		System.println("KEY DOWN: " + key_press_timestamp.toNumber() 
-			+ " | KEY UP: " + key_release_timestamp.toNumber()
-			+ " | DELTA: " + (key_release_timestamp - key_press_timestamp).toNumber()
-			+ " | THRESHOLD: " + resource_manager.longpress_threshold);
 	}
-
 }

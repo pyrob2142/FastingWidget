@@ -51,7 +51,7 @@ class Fast {
 		var goal_val = d_goal.value();
 		var elapsed_val = d_elapsed.value();
 		
-		progress = elapsed_val / goal_val;
+		progress = elapsed_val / goal_val.toFloat();
 	}
 	
 	// Calculate kcal burned using Harris-Benedict formula
@@ -72,9 +72,9 @@ class Fast {
 			}
 		}
 		
-		var calories_per_second = bmr * activity_level / 86400;
-		
-		return calories_per_second * d_elapsed.value();
+		var calories_per_second = bmr * activity_level / 86400.0;
+	
+		calories = calories_per_second * d_elapsed.value().toDouble();
 	}
 	
 	function update() {

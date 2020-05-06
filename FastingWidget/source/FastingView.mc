@@ -34,6 +34,8 @@ class FastingView extends WatchUi.View {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
         
+        fast_manager.update();
+        
         switch (fast_manager.getPage()) {
         	case fast_manager.STREAK:
         		drawStreak(dc);
@@ -73,27 +75,34 @@ class FastingView extends WatchUi.View {
 		dc.clear();
 		
 		var mode_label = "ELAPSED";
-		var time_label = "03D 18H 20MIN";
+		var time_label = fast_manager.getElapsed();
 		
 		if (show_remaining == true) {
 			mode_label = "REMAINING";
-			time_label = "02D 06H 01MIN";
+			time_label = fast_manager.getRemaining();
 		}
+		
+		var end_label = fast_manager.getGoalDate();
+		var progress = fast_manager.getProgress();
+		var progress_label = (progress * 100.0).format("%.1f") + "%";
 		
 		dc.drawText(center_x, center_y - 46 - dc.getFontHeight(Graphics.FONT_TINY), Graphics.FONT_TINY, mode_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y - dc.getFontHeight(Graphics.FONT_LARGE), Graphics.FONT_MEDIUM, time_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y, Graphics.FONT_TINY, "UNTIL", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y + 36, Graphics.FONT_MEDIUM, "06.05.20, 07:26", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y + 75, Graphics.FONT_MEDIUM, "85.5%", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 36, Graphics.FONT_MEDIUM, end_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 75, Graphics.FONT_MEDIUM, progress_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
-		drawProgressArc(dc, 1);
+		drawProgressArc(dc, progress);
 	}
 	
 	function drawCalories(dc) {
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
+		
+		var calories_label = fast_manager.getCalories().format("%.1f");
+		
 		dc.drawBitmap(center_x - 32, center_y - 100, resource_manager.bitmap_burn);
-		dc.drawText(center_x, center_y + 10, Graphics.FONT_NUMBER_HOT, "1000", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 10, Graphics.FONT_NUMBER_HOT, calories_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 70, Graphics.FONT_MEDIUM, "KCAL", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
 	
