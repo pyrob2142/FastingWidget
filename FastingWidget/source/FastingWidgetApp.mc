@@ -24,7 +24,7 @@ class FastingWidgetApp extends Application.AppBase {
     }
     
     function onSettingsChanged() {
-    	resource_manager.load();
+    	resource_manager.reloadSettings();
     }
 
 }

@@ -1,7 +1,8 @@
 using Toybox.Time;
-using Toybox.UserProfile;
 
 class Fast {
+	var fast_manager;
+	var resource_manager;
 	var m_start;
 	var d_goal;
 	var m_now;
@@ -10,9 +11,16 @@ class Fast {
 	var has_goal;
 	var progress;
 	var calories;
-	var user;
+	var weight;
+	var height;
+	var age;
+	var gender;
+	var activity_level;
+	var bmi;
 	
-	function initialize(m_start, d_goal) {
+	function initialize(m_start, d_goal, fast_manager) {
+		me.fast_manager = fast_manager;
+		resource_manager = Application.getApp().resource_manager;
 		me.m_start = m_start;
 		me.d_goal = d_goal;
 		is_complete = false;
@@ -24,8 +32,12 @@ class Fast {
 			is_complete = true;
 		}
 		
-		user = UserProfile.getProfile();
-		
+		weight = resource_manager.weight;
+		height = resource_manager.height;
+		age = resource_manager.age;
+		gender = resource_manager.gender;
+		activity_level = resource_manager.activity_level;
+		bmi = resource_manager.bmi;
 		update();
 	}
 	
@@ -42,19 +54,38 @@ class Fast {
 		progress = elapsed_val / goal_val;
 	}
 	
+	// Calculate kcal burned using Harris-Benedict formula
 	function calculateCalories() {
+		var bmr;
 		
+		if (bmi >= 30) {
+			if (gender == 0) {
+				bmr = 2.4 * weight + 9.0 * height - 4.7 * age - 65;
+			} else {
+				bmr = 3.4 * weight + 15.3 * height - 6.8 * age - 961;
+			}
+		} else {
+			if (gender == 0) {
+				bmr = 655 + 9.6 * weight + 1.8 * height - 4.7 * age;
+			} else {
+				bmr = 66.5 + 13.7 * weight + 5.0 * height - 6.8 * age;
+			}
+		}
+		
+		var calories_per_second = bmr * activity_level / 86400;
+		
+		return calories_per_second * d_elapsed.value();
 	}
 	
-
 	function update() {
 		m_now = Time.now();
 		d_elapsed = m_now.subtract(m_start);
+		
+		calculateCalories();
 		
 		if (has_goal == true) {
 			calculateProgress();
 		}
 	}	
-	
 	
 }

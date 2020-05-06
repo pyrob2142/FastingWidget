@@ -1,4 +1,3 @@
-
 class FastManager {
 	enum {
 		STREAK,
@@ -8,8 +7,10 @@ class FastManager {
 	}
 	
 	var current_page;
+	var resource_manager;
 	
 	function initialize() {
+		resource_manager = Application.getApp().resource_manager;
 		current_page = STREAK;
 	}
 	
