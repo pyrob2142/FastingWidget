@@ -1,0 +1,40 @@
+<resources>
+
+<properties>
+	<property id="longpress_threshold" type="number">2000</property>
+	<property id="default_goal" type="number">36</property> 
+	<property id="activity_level" type="number">0</property>
+</properties>
+
+<strings>
+	<string id="longpress_threshold_title">Long Press Threshold</string>
+	<string id="default_goal_title">Default Goal (hours)</string>
+	<string id="activity_level_title">Activity Level</string>
+	<string id="activity_level_0">Sedentary (little to no exercise)</string>
+	<string id="activity_level_1">Lightly Active (light exercise 1-3 days per week)</string>
+	<string id="activity_level_2">Moderately Active (moderate exercise 3-5 days per week)</string>
+	<string id="activity_level_3">Very Active (hard exercise 6-7 days per week)</string>
+	<string id="activity_level_4">Extra Active (very hard exercise/training or a physical job)</string>
+</strings>
+
+<settings>
+	<setting propertyKey="@Properties.longpress_threshold" title="@Strings.longpress_threshold_title">
+	<settingConfig type="numeric" min="1000" />
+	</setting>
+	
+	<setting propertyKey="@Properties.default_goal" title="@Strings.default_goal_title">
+	<settingConfig type="numeric" min="1" />
+	</setting>
+	
+	<setting propertyKey="@Properties.activity_level" title="@Strings.activity_level_title">
+	<settingConfig type="list">
+	<listEntry value="0">@Strings.activity_level_0</listEntry>
+	<listEntry value="1">@Strings.activity_level_1</listEntry>
+	<listEntry value="2">@Strings.activity_level_2</listEntry>
+	<listEntry value="3">@Strings.activity_level_3</listEntry>
+	<listEntry value="4">@Strings.activity_level_4</listEntry>
+	</settingConfig>
+	</setting>
+</settings>
+
+</resources>
