@@ -8,8 +8,9 @@ class FastingWidgetApp extends Application.AppBase {
     function initialize() {
         AppBase.initialize();
         toolbox = new Toolbox();
-        fast_manager = new FastManager();
         resource_manager = new ResourceManager();
+        fast_manager = new FastManager();
+       
         
     }
 

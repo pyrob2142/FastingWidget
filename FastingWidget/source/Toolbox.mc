@@ -72,16 +72,15 @@ class Toolbox {
 		}
 	}
 	
-	// Convert goal into date, HH:MM
-	function calculateEnd(m_start, d_goal) {
-		var end = m_start.add(d_goal);
+	function momentToString(moment, line_break) {
+		var moment_info = Gregorian.info(moment, Time.FORMAT_SHORT);
 		
-		var end_info = Gregorian.info(end, Time.FORMAT_SHORT);
-		
-		return end_info.day + "." + end_info.month + "." + end_info.year 
-			+ ", " + end_info.hour + ":" + end_info.min;
-		
-		
-		
+		if (line_break) {
+			return moment_info.day + "." + moment_info.month + "." + moment_info.year 
+			+ "\n" + moment_info.hour + ":" + moment_info.min;
+		} else {
+			return moment_info.day + "." + moment_info.month + "." + moment_info.year 
+			+ ", " + moment_info.hour + ":" + moment_info.min;
+		}
 	}
 }

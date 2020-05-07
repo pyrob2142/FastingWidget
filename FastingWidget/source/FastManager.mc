@@ -5,6 +5,7 @@ class FastManager {
 		STREAK,
 		ELAPSED,
 		REMAINING,
+		OPEN,
 		CALORIES
 	}
 	
@@ -12,17 +13,21 @@ class FastManager {
 	var toolbox;
 	var resource_manager;
 	var fast;
+	var streak;
 	
 	function initialize() {
 		resource_manager = Application.getApp().resource_manager;
 		toolbox = Application.getApp().toolbox;
 		current_page = STREAK;
+		streak = resource_manager.streak;
+	
 		fast = null;
 	}
 	
 	function toggleFast() {
 		if (fast == null) {
-			fast = new Fast(Time.now(), new Time.Duration(36 * 3600), me);
+			fast = new Fast(Time.now(), null, me);
+			//fast = new Fast(Time.now(), new Time.Duration(3600), me);
 		} else {
 		
 			// TODO: clean up fast and manage streak
@@ -30,12 +35,32 @@ class FastManager {
 		}
 	}
 	
+	function initPageCounter() {
+		if (fast == null) {
+			current_page = STREAK;
+		} else if (fast.has_goal == true) {
+			current_page = ELAPSED;
+		} else {
+			current_page = OPEN;
+		}
+	}
+	
 	function nextPage() {
 		if (fast != null) {
 			current_page++;
 			
-			if (current_page > 3) {
-				current_page = 0;
+			if (fast.has_goal == true) {
+				if (current_page == OPEN) {
+					current_page = CALORIES;
+				}
+			} else {
+				if (current_page == ELAPSED) {
+					current_page = OPEN;
+				}
+			}
+			
+			if (current_page > CALORIES) {
+				current_page = STREAK;
 			}
 			
 			WatchUi.requestUpdate();
@@ -44,6 +69,10 @@ class FastManager {
 	
 	function getPage() {
 		return current_page;
+	}
+	
+	function getElapsedRaw() {
+		return fast.d_elapsed.value();
 	}
 	
 	function getElapsed() {
@@ -63,9 +92,18 @@ class FastManager {
 		}
 	}
 	
-	function getGoalDate() {
+	function getStartMoment() {
+		if (fast != null) {
+			return fast.m_start;
+		} else {
+			return null;
+		}
+	}
+	
+	function getGoalMoment() {
 		if (fast != null && fast.d_goal != null) {
-			return toolbox.calculateEnd(fast.m_start, fast.d_goal);
+			var end = fast.m_start.add(fast.d_goal);
+			return end;
 		} else {
 			return null;
 		}
@@ -91,5 +129,9 @@ class FastManager {
 		if (fast != null) {
 			fast.update();
 		}
+	}
+	
+	function getStreak() {
+		return streak;
 	}
 }

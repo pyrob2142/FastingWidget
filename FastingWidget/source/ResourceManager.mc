@@ -13,6 +13,8 @@ class ResourceManager {
 	var fast_manager;
 	var bitmap_burn;
 	var longpress_threshold;
+	var arc_yellow_threshold;
+	var arc_green_threshold;
 	
 	// User profile data
 	var user;
@@ -27,6 +29,7 @@ class ResourceManager {
 	var fast_in_progress;
 	var start_data_string;
 	var goal_data;
+	var streak;
 	
 	function initialize() {
 		toolbox = Application.getApp().toolbox;
@@ -44,6 +47,9 @@ class ResourceManager {
 	
 	function reloadSettings() {
 		longpress_threshold = Application.AppBase.getProperty("longpress_threshold");
+		arc_yellow_threshold = Application.AppBase.getProperty("arc_yellow_threshold") * 3600;
+		arc_green_threshold = Application.AppBase.getProperty("arc_green_threshold") * 3600;
+		streak = Application.AppBase.getProperty("streak").toNumber();
 		
 		var raw_activity = Application.AppBase.getProperty("activity_level");
 		if (raw_activity != null) {

@@ -5,6 +5,9 @@
 	<property id="default_goal" type="number">36</property> 
 	<property id="activity_level" type="number">0</property>
 	<property id="birthday" type="number">0</property>
+	<property id="arc_yellow_threshold" type="number">16</property>
+	<property id="arc_green_threshold" type="number">20</property>
+	<property id="streak" type="number">0</property>
 </properties>
 
 <strings>
@@ -17,6 +20,9 @@
 	<string id="activity_level_3">Very Active (hard exercise 6-7 days per week)</string>
 	<string id="activity_level_4">Extra Active (very hard exercise/training or a physical job)</string>
 	<string id="birthday_title">Birthday</string>
+	<string id="arc_yellow_threshold_title">Fast Threshold Yellow (hours)</string>
+	<string id="arc_green_threshold_title">Fast Threshold Green (hours)</string>
+	<string id="streak_title">Current Streak</string>
 </strings>
 
 <settings>
@@ -40,6 +46,18 @@
 	
 	<setting propertyKey="@Properties.birthday" title="@Strings.birthday_title">
 	<settingConfig type="date" /> 
+	</setting>
+	
+	<setting propertyKey="@Properties.arc_yellow_threshold" title="@Strings.arc_yellow_threshold_title">
+	<settingConfig type="numeric" min="1" />
+	</setting>
+	
+	<setting propertyKey="@Properties.arc_green_threshold" title="@Strings.arc_green_threshold_title">
+	<settingConfig type="numeric" min="1" />
+	</setting>
+	
+	<setting propertyKey="@Properties.streak" title="@Strings.streak_title">
+	<settingConfig type="numeric" />
 	</setting>
 </settings>
 

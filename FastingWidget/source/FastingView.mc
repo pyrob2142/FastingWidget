@@ -5,14 +5,21 @@ class FastingView extends WatchUi.View {
 	
 	var resource_manager;
 	var fast_manager;
+	var toolbox;
 	
 	var center_x;
 	var center_y;
+	
+	var arc_yellow_threshold;
+	var arc_green_threshold;
 	
     function initialize() {
         View.initialize();
         fast_manager = Application.getApp().fast_manager;
         resource_manager = Application.getApp().resource_manager;
+        toolbox = Application.getApp().toolbox;
+        arc_yellow_threshold = resource_manager.arc_yellow_threshold;
+        arc_green_threshold = resource_manager.arc_green_threshold;
     }
 
     // Load your resources here
@@ -42,11 +49,15 @@ class FastingView extends WatchUi.View {
         		break;
         	
         	case fast_manager.ELAPSED:
-        		drawFast(dc, false);
+        		drawFastWithGoal(dc, false);
         		break;
         	
         	case fast_manager.REMAINING: 
-        		drawFast(dc, true);
+        		drawFastWithGoal(dc, true);
+        		break;
+        		
+        	case fast_manager.OPEN:
+        		drawFastWithoutGoal(dc);
         		break;
         	
         	case fast_manager.CALORIES:
@@ -62,15 +73,33 @@ class FastingView extends WatchUi.View {
     }
 
 	function drawStreak(dc) {
+		var streak_label = fast_manager.getStreak();
+	
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
 		dc.drawText(center_x, center_y - 25 - dc.getFontHeight(Graphics.FONT_MEDIUM), Graphics.FONT_MEDIUM, "STREAK", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y, Graphics.FONT_NUMBER_HOT, "1000", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y, Graphics.FONT_NUMBER_HOT, streak_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 60, Graphics.FONT_MEDIUM, "FASTS", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
 	
-	function drawFast(dc, show_remaining) {
+	function drawFastWithoutGoal(dc) {
+		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
+		dc.clear();
+		
+		var mode_label = "ELAPSED";
+		var time_label = fast_manager.getElapsed();
+		var start_label = toolbox.momentToString(fast_manager.getStartMoment(), true);
+		
+		dc.drawText(center_x, center_y - 46 - dc.getFontHeight(Graphics.FONT_TINY), Graphics.FONT_TINY, mode_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - dc.getFontHeight(Graphics.FONT_LARGE), Graphics.FONT_MEDIUM, time_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y, Graphics.FONT_TINY, "SINCE", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 55, Graphics.FONT_MEDIUM, start_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		
+		drawProgressArc(dc, 1.0);
+	}
+	
+	function drawFastWithGoal(dc, show_remaining) {
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
@@ -82,7 +111,7 @@ class FastingView extends WatchUi.View {
 			time_label = fast_manager.getRemaining();
 		}
 		
-		var end_label = fast_manager.getGoalDate();
+		var end_label = toolbox.momentToString(fast_manager.getGoalMoment(), false);
 		var progress = fast_manager.getProgress();
 		var progress_label = (progress * 100.0).format("%.1f") + "%";
 		
@@ -109,6 +138,7 @@ class FastingView extends WatchUi.View {
 	function drawProgressArc(dc, percent) {
 		var degrees = 360 * percent;
 		var arc_end = 0;
+		var arc_color;
 		
 		if (degrees < 90) {
 			arc_end = 90 - degrees;
@@ -117,7 +147,16 @@ class FastingView extends WatchUi.View {
 		}
 	
 		dc.setPenWidth(10);
-		dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLACK);
+		
+		if (57600 >= arc_yellow_threshold) {
+			arc_color = Graphics.COLOR_YELLOW;
+		} else if (57600 >= arc_green_threshold) {
+			arc_color = Graphics.COLOR_GREEN;
+		} else {
+			arc_color = Graphics.COLOR_RED;
+		}
+		
+		dc.setColor(arc_color, Graphics.COLOR_BLACK);
 		dc.drawArc(center_x, center_y, 115, dc.ARC_CLOCKWISE, 90, arc_end);
 	}
 }
