@@ -80,7 +80,7 @@ class FastingView extends WatchUi.View {
 		
 		dc.drawText(center_x, center_y - 25 - dc.getFontHeight(Graphics.FONT_MEDIUM), Graphics.FONT_MEDIUM, "STREAK", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y, Graphics.FONT_NUMBER_HOT, streak_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y + 60, Graphics.FONT_MEDIUM, "FASTS", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 60, Graphics.FONT_MEDIUM, "SESSIONS", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
 	
 	function drawFastWithoutGoal(dc) {
@@ -89,7 +89,7 @@ class FastingView extends WatchUi.View {
 		
 		var mode_label = "ELAPSED";
 		var time_label = fast_manager.getElapsed();
-		var start_label = toolbox.momentToString(fast_manager.getStartMoment(), true);
+		var start_label = toolbox.momentToString(fast_manager.getStartMoment(), true, true);
 		
 		dc.drawText(center_x, center_y - 46 - dc.getFontHeight(Graphics.FONT_TINY), Graphics.FONT_TINY, mode_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y - dc.getFontHeight(Graphics.FONT_LARGE), Graphics.FONT_MEDIUM, time_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
@@ -111,7 +111,7 @@ class FastingView extends WatchUi.View {
 			time_label = fast_manager.getRemaining();
 		}
 		
-		var end_label = toolbox.momentToString(fast_manager.getGoalMoment(), false);
+		var end_label = toolbox.momentToString(fast_manager.getGoalMoment(), true, false);
 		var progress = fast_manager.getProgress();
 		var progress_label = (progress * 100.0).format("%.1f") + "%";
 		
@@ -148,9 +148,11 @@ class FastingView extends WatchUi.View {
 	
 		dc.setPenWidth(10);
 		
-		if (57600 >= arc_yellow_threshold) {
+		var elapsed = fast_manager.fast.d_elapsed.value();
+		
+		if (elapsed >= arc_yellow_threshold) {
 			arc_color = Graphics.COLOR_YELLOW;
-		} else if (57600 >= arc_green_threshold) {
+		} else if (elapsed >= arc_green_threshold) {
 			arc_color = Graphics.COLOR_GREEN;
 		} else {
 			arc_color = Graphics.COLOR_RED;

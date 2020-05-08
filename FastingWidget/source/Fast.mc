@@ -28,9 +28,8 @@ class Fast {
 		
 		if (d_goal != null) {
 			has_goal = true;
-		} else {
-			is_complete = true;
 		}
+		
 		
 		weight = resource_manager.weight;
 		height = resource_manager.height;

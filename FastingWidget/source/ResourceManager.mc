@@ -13,6 +13,8 @@ class ResourceManager {
 	var fast_manager;
 	var bitmap_burn;
 	var longpress_threshold;
+	var default_goal_hours;
+	var default_goal_index;
 	var arc_yellow_threshold;
 	var arc_green_threshold;
 	
@@ -47,6 +49,9 @@ class ResourceManager {
 	
 	function reloadSettings() {
 		longpress_threshold = Application.AppBase.getProperty("longpress_threshold");
+		
+		default_goal_index = Application.AppBase.getProperty("default_goal");
+		
 		arc_yellow_threshold = Application.AppBase.getProperty("arc_yellow_threshold") * 3600;
 		arc_green_threshold = Application.AppBase.getProperty("arc_green_threshold") * 3600;
 		streak = Application.AppBase.getProperty("streak").toNumber();

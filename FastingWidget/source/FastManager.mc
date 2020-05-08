@@ -1,4 +1,5 @@
 using Toybox.Time;
+using Toybox.WatchUi;
 
 class FastManager {
 	enum {
@@ -24,14 +25,18 @@ class FastManager {
 		fast = null;
 	}
 	
-	function toggleFast() {
+	function startFast(goal) {
 		if (fast == null) {
-			fast = new Fast(Time.now(), null, me);
-			//fast = new Fast(Time.now(), new Time.Duration(3600), me);
-		} else {
-		
-			// TODO: clean up fast and manage streak
-			fast = null;
+		System.println("Goal: " + goal);
+			if (goal != null) {
+				fast = new Fast(Time.now(), new Time.Duration(goal * 3600), me);
+				current_page = ELAPSED;
+				WatchUi.requestUpdate();
+			} else {
+				fast = new Fast(Time.now(), null, me);
+				current_page = OPEN;
+				WatchUi.requestUpdate();
+			}
 		}
 	}
 	

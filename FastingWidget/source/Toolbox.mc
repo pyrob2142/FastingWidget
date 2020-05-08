@@ -18,7 +18,7 @@ class Toolbox {
 		return height / 100.0;
 	}
 	
-	// Calculate the age by taking birthday in UNIX Epoch
+	// Calculate user age by taking birthday in UNIX epoch
 	function calculateAge(birthday) {
 		var m_bday = new Time.Moment(birthday);
 		var m_now = Time.now();
@@ -48,39 +48,51 @@ class Toolbox {
 		
 		var seconds = n;
 		
-		if (hours < 10) {
-			hours = "0" + hours;
-		}
-		
-		if (minutes < 10) {
-			minutes = "0" + minutes;
-		}
-		
 		if (days > 0) {
-			if (days < 10) {
-				days = "0" + days;
-			}
-			
-			return days + "D " + hours + "H " + minutes + "MIN";
-			
+			return days.format("%02d") + "D " + hours.format("%02d") + "H " + minutes.format("%02d") + "MIN";
 		} else {
-			if (seconds < 10) {
-				seconds = "0" + seconds;
-			}
-				
-			return hours + "H " + minutes + "MIN " + seconds + "S";
+			return hours.format("%02d") + "H " + minutes.format("%02d") + "MIN " + seconds.format("%02d") + "S";
 		}
 	}
 	
-	function momentToString(moment, line_break) {
+	function momentToString(moment, year, line_break) {
 		var moment_info = Gregorian.info(moment, Time.FORMAT_SHORT);
 		
-		if (line_break) {
-			return moment_info.day + "." + moment_info.month + "." + moment_info.year 
-			+ "\n" + moment_info.hour + ":" + moment_info.min;
+		var date_string;
+		
+		if (year == true) {
+			date_string = moment_info.day.format("%02d") + "."
+				+ moment_info.month.format("%02d") + "." + moment_info.year.toString().substring(2,4);
 		} else {
-			return moment_info.day + "." + moment_info.month + "." + moment_info.year 
-			+ ", " + moment_info.hour + ":" + moment_info.min;
+			date_string = moment_info.day.format("%02d") + "."
+				+ moment_info.month.format("%02d") + ".";
+		}	 
+		var time_string = moment_info.hour.format("%02d") + ":" + moment_info.min.format("%02d");
+		
+		if (line_break) {
+			return date_string + "\n" + time_string;
+		} else {
+			return date_string + ", " + time_string;
 		}
+	}
+	
+	function calculateDate(hours) {
+		var duration = new Time.Duration(hours * 3600);
+		var date = Time.now().add(duration);
+		var date_info = Gregorian.info(date, Gregorian.FORMAT_MEDIUM); 
+		return date_info.day_of_week + " " + momentToString(date, true, false);
+	}
+	
+	function hoursToDays(value) {
+		var days = value / 24;
+		var hours = value % 24;
+		
+		var result;
+		if (hours != 0) {
+			result = days.format("%d") + " 1/2 Days";
+		} else {
+			result = days.format("%d") + " Days";
+		}
+		return result;
 	}
 }

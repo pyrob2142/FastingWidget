@@ -3,7 +3,7 @@
 <properties>
 	<property id="longpress_threshold" type="number">2000</property>
 	<property id="default_goal" type="number">36</property> 
-	<property id="activity_level" type="number">0</property>
+	<property id="activity_level" type="number">6</property>
 	<property id="birthday" type="number">0</property>
 	<property id="arc_yellow_threshold" type="number">16</property>
 	<property id="arc_green_threshold" type="number">20</property>
@@ -13,6 +13,29 @@
 <strings>
 	<string id="longpress_threshold_title">Long Press Threshold</string>
 	<string id="default_goal_title">Default Goal (hours)</string>
+	
+	<string id="default_goal_8">8 Hours</string>
+	<string id="default_goal_12">12 Hours</string>
+	<string id="default_goal_14">14 Hours</string>
+	<string id="default_goal_16">16 Hours</string>
+	<string id="default_goal_20">20 Hours</string>
+	<string id="default_goal_24">24 Hours</string>
+	<string id="default_goal_36">36 Hours</string>
+	<string id="default_goal_48">48 Hours</string>
+	<string id="default_goal_60">60 Hours</string>
+	<string id="default_goal_72">72 Hours</string>
+	<string id="default_goal_84">84 Hours</string>
+	<string id="default_goal_96">96 Hours</string>
+	<string id="default_goal_108">4 1/2 Days</string>
+	<string id="default_goal_120">5 Days</string>
+	<string id="default_goal_132">5 1/2 Days</string>
+	<string id="default_goal_144">6 Days</string>
+	<string id="default_goal_156">6 1/2 Days</string>
+	<string id="default_goal_168">1 Week</string>
+	<string id="default_goal_336">2 Weeks</string>
+	<string id="default_goal_504">3 Weeks</string>
+	<string id="default_goal_672">4 Weeks</string>
+	
 	<string id="activity_level_title">Activity Level</string>
 	<string id="activity_level_0">Sedentary (little to no exercise)</string>
 	<string id="activity_level_1">Lightly Active (light exercise 1-3 days per week)</string>
@@ -31,7 +54,31 @@
 	</setting>
 	
 	<setting propertyKey="@Properties.default_goal" title="@Strings.default_goal_title">
-	<settingConfig type="numeric" min="1" />
+	<settingConfig type="list">
+	
+	<listEntry value="0">@Strings.default_goal_8</listEntry>
+	<listEntry value="1">@Strings.default_goal_12</listEntry>
+	<listEntry value="2">@Strings.default_goal_14</listEntry>
+	<listEntry value="3">@Strings.default_goal_16</listEntry>
+	<listEntry value="4">@Strings.default_goal_20</listEntry>
+	<listEntry value="5">@Strings.default_goal_24</listEntry>
+	<listEntry value="6">@Strings.default_goal_36</listEntry>
+	<listEntry value="7">@Strings.default_goal_48</listEntry>
+	<listEntry value="8">@Strings.default_goal_60</listEntry>
+	<listEntry value="9">@Strings.default_goal_72</listEntry>
+	<listEntry value="10">@Strings.default_goal_84</listEntry>
+	<listEntry value="11">@Strings.default_goal_96</listEntry>
+	<listEntry value="12">@Strings.default_goal_108</listEntry>
+	<listEntry value="13">@Strings.default_goal_120</listEntry>
+	<listEntry value="14">@Strings.default_goal_132</listEntry>
+	<listEntry value="15">@Strings.default_goal_144</listEntry>
+	<listEntry value="16">@Strings.default_goal_156</listEntry>
+	<listEntry value="17">@Strings.default_goal_168</listEntry>
+	<listEntry value="18">@Strings.default_goal_336</listEntry>
+	<listEntry value="19">@Strings.default_goal_504</listEntry>
+	<listEntry value="20">@Strings.default_goal_672</listEntry>
+	
+	</settingConfig>
 	</setting>
 	
 	<setting propertyKey="@Properties.activity_level" title="@Strings.activity_level_title">

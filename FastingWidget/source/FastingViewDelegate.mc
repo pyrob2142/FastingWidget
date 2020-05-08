@@ -35,7 +35,10 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
 			if (key_release_timestamp - key_press_timestamp < resource_manager.longpress_threshold) {
 				fast_manager.nextPage();
 			} else {
-				fast_manager.toggleFast();
+				if (fast_manager.fast == null) {
+					var menu = new MenuHandler();
+					menu.openFastTypeMenu();
+				}
 			}
 		}
 	}
