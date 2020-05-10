@@ -1,4 +1,6 @@
 using Toybox.Time;
+using Toybox.Timer;
+using Toybox.WatchUi;
 
 class Fast {
 	var fast_manager;
@@ -18,9 +20,11 @@ class Fast {
 	var activity_level;
 	var bmi;
 	var is_active;
+	var timer;
 	
 	function initialize() {
 		resource_manager = Application.getApp().resource_manager;
+		timer = new Timer.Timer();
 		reset();
 	}
 	
@@ -32,6 +36,7 @@ class Fast {
 			is_complete = true;
 		}
 		
+		timer.start(me.method(:update), 1000, true);
 		m_start = Time.now();
 		is_active = true;
 		update();
@@ -39,6 +44,7 @@ class Fast {
 	
 	function end() {
 		is_active = false;
+		timer.stop();
 	}
 	
 	function reset() {
@@ -107,5 +113,6 @@ class Fast {
 			calculateProgress();
 		}
 		
+		WatchUi.requestUpdate();
 	}
 }

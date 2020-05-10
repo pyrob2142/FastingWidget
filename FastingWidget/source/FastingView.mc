@@ -41,8 +41,6 @@ class FastingView extends WatchUi.View {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
         
-        fast_manager.update();
-        
         switch (fast_manager.getPage()) {
         	case fast_manager.STREAK:
         		drawStreak(dc);
