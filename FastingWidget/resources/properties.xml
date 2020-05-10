@@ -2,12 +2,12 @@
 
 <properties>
 	<property id="longpress_threshold" type="number">2000</property>
-	<property id="default_goal" type="number">36</property> 
-	<property id="activity_level" type="number">6</property>
+	<property id="default_goal" type="number">6</property> 
+	<property id="activity_level" type="number">2</property>
 	<property id="birthday" type="number">0</property>
 	<property id="arc_yellow_threshold" type="number">16</property>
 	<property id="arc_green_threshold" type="number">20</property>
-	<property id="streak" type="number">0</property>
+	<property id="streak_data" type="number">0</property>
 </properties>
 
 <strings>
@@ -45,7 +45,7 @@
 	<string id="birthday_title">Birthday</string>
 	<string id="arc_yellow_threshold_title">Fast Threshold Yellow (hours)</string>
 	<string id="arc_green_threshold_title">Fast Threshold Green (hours)</string>
-	<string id="streak_title">Current Streak</string>
+	<string id="streak_title">Overwrite Streak</string>
 </strings>
 
 <settings>
@@ -103,7 +103,7 @@
 	<settingConfig type="numeric" min="1" />
 	</setting>
 	
-	<setting propertyKey="@Properties.streak" title="@Strings.streak_title">
+	<setting propertyKey="@Properties.streak_data" title="@Strings.streak_title">
 	<settingConfig type="numeric" />
 	</setting>
 </settings>

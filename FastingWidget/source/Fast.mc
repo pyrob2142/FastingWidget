@@ -36,8 +36,23 @@ class Fast {
 			is_complete = true;
 		}
 		
+		me.m_start = Time.now();
 		timer.start(me.method(:update), 1000, true);
-		m_start = Time.now();
+		is_active = true;
+		resource_manager.save();
+		update();
+	}
+	
+	function resume(start, goal) {
+		if (goal != -1) {
+			d_goal = new Time.Duration(goal);
+			has_goal = true;
+		} else {
+			is_complete = true;
+		}
+		
+		me.m_start = new Time.Moment(start);
+		timer.start(me.method(:update), 1000, true);
 		is_active = true;
 		update();
 	}

@@ -22,11 +22,21 @@ class FastManager {
 	
 	function initialize() {
 		resource_manager = Application.getApp().resource_manager;
+		resource_manager.fast_manager = me;
 		toolbox = Application.getApp().toolbox;
-		initPageCounter();
-		streak = resource_manager.streak;
+		streak = resource_manager.streak_data;
 		streak_old = streak;
 		fast = new Fast();
+		
+		if (resource_manager.is_active == true) {
+			if (resource_manager.goal_data != -1) {
+				fast.resume(resource_manager.start_data, resource_manager.goal_data);
+			} else {
+				fast.resume(resource_manager.start_data, -1);
+			}
+		}
+		
+		initPageCounter();
 	}
 	
 	function startFast(goal) {
@@ -47,10 +57,12 @@ class FastManager {
 		
 		if (fast.is_complete == true) {
 				streak++;
-			} else {
+		} else {
 				streak_old = streak;
 				streak = 0;
-			}
+		}
+		
+		resource_manager.save();
 		
 		current_page = SUMMARY;
 		
@@ -59,7 +71,7 @@ class FastManager {
 	}
 	
 	function initPageCounter() {
-		if (fast == null) {
+		if (fast.is_active == false) {
 			current_page = STREAK;
 		} else if (fast.has_goal == true) {
 			current_page = ELAPSED;
@@ -146,11 +158,5 @@ class FastManager {
 	
 	function getCalories() {
 		return fast.calories;
-	}
-	
-	function update() {
-		if (fast.is_active == true) {
-			fast.update();
-		}
 	}
 }

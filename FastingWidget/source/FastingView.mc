@@ -80,6 +80,7 @@ class FastingView extends WatchUi.View {
     // state of this View here. This includes freeing resources from
     // memory.
     function onHide() {
+    	
     }
     
     function drawSummary(dc) {
