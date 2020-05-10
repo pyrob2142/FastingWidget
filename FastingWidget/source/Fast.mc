@@ -51,7 +51,7 @@ class Fast {
 			is_complete = true;
 		}
 		
-		me.m_start = new Time.Moment(start);
+		m_start = new Time.Moment(start);
 		timer.start(me.method(:update), 1000, true);
 		is_active = true;
 		update();

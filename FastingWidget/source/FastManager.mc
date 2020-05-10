@@ -56,10 +56,10 @@ class FastManager {
 		fast.end();
 		
 		if (fast.is_complete == true) {
-				streak++;
+			streak++;
 		} else {
-				streak_old = streak;
-				streak = 0;
+			streak_old = streak;
+			streak = 0;
 		}
 		
 		resource_manager.save();
