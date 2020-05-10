@@ -40,6 +40,62 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		return true;
 	}
 	
+	function openFinishMenu() {
+		var menu = new WatchUi.Menu2({
+			:title => "End Fast?"
+		});
+			
+		menu.addItem(
+			new MenuItem(
+				"Yes",
+				null,
+				"item_yes",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				"No",
+				 null,
+				"item_no",
+				{}
+			)
+		);
+		
+		WatchUi.pushView(menu, new EndFastMenuDelegate(), WatchUi.SLIDE_UP);
+		
+		return true;
+	}
+	
+	function openCancelMenu() {
+		var menu = new WatchUi.Menu2({
+			:title => "Cancel Fast?"
+		});
+		
+		menu.addItem(
+			new MenuItem(
+				"No",
+				 null,
+				"item_no",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				"Yes",
+				null,
+				"item_yes",
+				{}
+			)
+		);
+		
+		WatchUi.pushView(menu, new EndFastMenuDelegate(), WatchUi.SLIDE_UP);
+		
+		return true;
+	}
+	
 	function openGoalMenu() {
 		var default_goal_index = resource_manager.default_goal_index;
 		
@@ -175,7 +231,7 @@ class FastTypeMenuDelegate extends WatchUi.Menu2InputDelegate {
 		}
 		
 		if (item.getId().equals("item_no_goal")) {
-			fast_manager.startFast(null);
+			fast_manager.startFast(-1);
 			onBack();
 		}
 	}
@@ -202,5 +258,27 @@ class GoalMenuDelegate extends WatchUi.Menu2InputDelegate {
 	
 		fast_manager.startFast(hours);
 		onBack();
+	}
+}
+
+class EndFastMenuDelegate extends WatchUi.Menu2InputDelegate {
+
+	var fast_manager;
+	
+	function initialize() {
+		Menu2InputDelegate.initialize();
+		fast_manager = Application.getApp().fast_manager;
+	}
+	
+	function onSelect(item) {
+		
+		if (item.getId().equals("item_yes")) {
+			fast_manager.endFast();
+			onBack();
+		}
+		
+		if (item.getId().equals("item_no")) {
+			onBack();
+		}
 	}
 }

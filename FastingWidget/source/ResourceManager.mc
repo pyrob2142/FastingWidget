@@ -85,46 +85,7 @@ class ResourceManager {
 		} else {
 			age = 30;
 		} 
-		
-		// DEBUG
-		var debug_gender;
-		if (gender == 0) {
-			debug_gender = "FEMALE";
-		} else {
-			debug_gender = "MALE";
-		}
-		System.println("Weight: " + weight + " kg.");
-		System.println("Height: " + height + " cm.");
-		System.println("BMI: " + bmi + " kg/m^2.");
-		System.println("Age: " + age + " years.");
-		System.println("Gender: " + debug_gender + ".");
-		System.println("Activity Level: " + activity_level);	
 	}
-	
-	function saveFast() {
-		var m_start = fast_manager.fast.m_start;
-		var d_goal = fast_manager.fast.d_goal;
-		
-		if (m_start != null) {
-			var m_start_info = Gregorian.info(m_start, Time.FORMAT_SHORT);
-			start_data_string = m_start_info.day + m_start_info.month + m_start_info.year
-				+ m_start_info.hour + m_start_info.min + m_start_info.sec;
-				
-			System.println("Save Fast:");
-			System.println("Start Data: " + start_data_string);
-		}
-		
-		if (d_goal != null) {
-			goal_data = d_goal.value();
-			System.println("Goal Data: " + goal_data);
-		}
-	}
-	
-	function loadFast() {
-		
-	}
-	
-	
 }
 
 

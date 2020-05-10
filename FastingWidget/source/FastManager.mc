@@ -7,7 +7,10 @@ class FastManager {
 		ELAPSED,
 		REMAINING,
 		OPEN,
-		CALORIES
+		CALORIES,
+		SUMMARY,
+		STREAKINC,
+		STREAKRES
 	}
 	
 	var current_page;
@@ -15,29 +18,44 @@ class FastManager {
 	var resource_manager;
 	var fast;
 	var streak;
+	var streak_old;
 	
 	function initialize() {
 		resource_manager = Application.getApp().resource_manager;
 		toolbox = Application.getApp().toolbox;
-		current_page = STREAK;
+		initPageCounter();
 		streak = resource_manager.streak;
-	
-		fast = null;
+		streak_old = streak;
+		fast = new Fast();
 	}
 	
 	function startFast(goal) {
-		if (fast == null) {
-		System.println("Goal: " + goal);
-			if (goal != null) {
-				fast = new Fast(Time.now(), new Time.Duration(goal * 3600), me);
-				current_page = ELAPSED;
-				WatchUi.requestUpdate();
+	
+		if (goal != -1) {
+			fast.start(goal);
+			current_page = ELAPSED;
+			WatchUi.requestUpdate();
+		} else {
+			fast.start(goal);
+			current_page = OPEN;
+			WatchUi.requestUpdate();
+		}	
+	}
+	
+	function endFast() {
+		fast.end();
+		
+		if (fast.is_complete == true) {
+				streak++;
 			} else {
-				fast = new Fast(Time.now(), null, me);
-				current_page = OPEN;
-				WatchUi.requestUpdate();
+				streak_old = streak;
+				streak = 0;
 			}
-		}
+		
+		current_page = SUMMARY;
+		
+		WatchUi.requestUpdate();
+		
 	}
 	
 	function initPageCounter() {
@@ -50,8 +68,10 @@ class FastManager {
 		}
 	}
 	
-	function nextPage() {
-		if (fast != null) {
+	function nextPage() {	
+	
+		if (fast.is_active == true && current_page != SUMMARY) {
+			
 			current_page++;
 			
 			if (fast.has_goal == true) {
@@ -63,13 +83,35 @@ class FastManager {
 					current_page = OPEN;
 				}
 			}
-			
+				
 			if (current_page > CALORIES) {
 				current_page = STREAK;
 			}
+		} 
+		
+		if (current_page == STREAKINC) {
+			fast.reset();
 			
-			WatchUi.requestUpdate();
+			current_page = STREAK;
 		}
+		
+		if (current_page == STREAKRES) {
+			fast.reset();
+			
+			current_page = STREAK;
+		}
+		
+		if (current_page == SUMMARY) {
+			
+			if (fast.is_complete == true) {
+				current_page = STREAKINC;
+			} else {
+				current_page = STREAKRES;
+			}
+			
+		}
+		
+		WatchUi.requestUpdate();
 	}
 	
 	function getPage() {
@@ -81,62 +123,34 @@ class FastManager {
 	}
 	
 	function getElapsed() {
-		if (fast != null) {
-			return toolbox.convertSeconds(fast.d_elapsed.value());
-		} else {
-			return null;
-		}
+		return toolbox.convertSeconds(fast.d_elapsed.value());
 	}
 	
 	function getRemaining() {
-		if (fast != null && fast.d_goal != null) {
-			var remaining = fast.d_goal.subtract(fast.d_elapsed);
-			return toolbox.convertSeconds(remaining.value());
-		} else {
-			return null;
-		}
+		var remaining = fast.d_goal.subtract(fast.d_elapsed);
+		return toolbox.convertSeconds(remaining.value());
 	}
 	
 	function getStartMoment() {
-		if (fast != null) {
-			return fast.m_start;
-		} else {
-			return null;
-		}
+		return fast.m_start;
 	}
 	
 	function getGoalMoment() {
-		if (fast != null && fast.d_goal != null) {
-			var end = fast.m_start.add(fast.d_goal);
-			return end;
-		} else {
-			return null;
-		}
+		var end = fast.m_start.add(fast.d_goal);
+		return end;
 	}
 	
 	function getProgress() {
-		if (fast != null && fast.d_goal != null) {
-			return fast.progress;
-		} else {
-			return 0;
-		}
+		return fast.progress;
 	}
 	
 	function getCalories() {
-		if (fast != null) {
-			return fast.calories;
-		} else {
-			return null;
-		}
+		return fast.calories;
 	}
 	
 	function update() {
-		if (fast != null) {
+		if (fast.is_active == true) {
 			fast.update();
 		}
-	}
-	
-	function getStreak() {
-		return streak;
 	}
 }

@@ -63,6 +63,18 @@ class FastingView extends WatchUi.View {
         	case fast_manager.CALORIES:
         		drawCalories(dc);
         		break;
+        		
+        	case fast_manager.SUMMARY:
+        		drawSummary(dc);
+        		break;
+        	
+        	case fast_manager.STREAKINC:
+        		drawStreakIncrement(dc);
+        		break;
+        		
+        	case fast_manager.STREAKRES:
+        		drawStreakReset(dc);
+        		break;
         }
     }
 
@@ -71,16 +83,90 @@ class FastingView extends WatchUi.View {
     // memory.
     function onHide() {
     }
+    
+    function drawSummary(dc) {
+    	
+    	var duration_label = fast_manager.getElapsed();
+    	var calories_label = fast_manager.getCalories().format("%.1f");
+    	
+    	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
+		dc.clear();
+		
+		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, "SUMMARY", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 30, Graphics.FONT_TINY, "DURATION", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y, Graphics.FONT_MEDIUM, duration_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 40, Graphics.FONT_TINY, "CALORIES", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 70, Graphics.FONT_MEDIUM, calories_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		
+		var arc_color;
+		
+		if (fast_manager.fast.is_complete == true) {
+			arc_color = Graphics.COLOR_GREEN;
+		} else {
+			arc_color = Graphics.COLOR_RED;
+		}
+		
+		dc.setColor(arc_color, Graphics.COLOR_BLACK);
+		dc.setPenWidth(7);
+		dc.drawArc(center_x, center_y, 118, dc.ARC_CLOCKWISE, 0, 360);
+    }
+    
+    function drawStreakIncrement(dc) {
+    	var streak = fast_manager.streak;
+    	
+    	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
+		dc.clear();
+		
+		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, "STREAK", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		
+		dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_BLACK);
+		dc.drawText(center_x, center_y - 30, Graphics.FONT_NUMBER_MILD, streak + 1, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		
+		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
+		dc.drawText(center_x, center_y + 20, Graphics.FONT_NUMBER_HOT, streak, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		
+		if (streak > 0) {
+			dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_BLACK);
+			dc.drawText(center_x, center_y + 70, Graphics.FONT_NUMBER_MILD, streak - 1, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		}
+		
+		dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_BLACK);
+		dc.setPenWidth(7);
+		dc.drawArc(center_x, center_y, 118, dc.ARC_CLOCKWISE, 0, 360);
+    }
+    
+    function drawStreakReset(dc) {
+    	var streak = fast_manager.streak_old;
+    	
+    	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
+		dc.clear();
+		
+		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, "STREAK", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+	
+		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
+		dc.drawText(center_x, center_y - 10, Graphics.FONT_NUMBER_THAI_HOT, "0", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		
+		dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_BLACK);
+		dc.drawText(center_x, center_y + 60, Graphics.FONT_NUMBER_MEDIUM, streak, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		
+		dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_BLACK);
+		dc.setPenWidth(7);
+		dc.drawArc(center_x, center_y, 118, dc.ARC_CLOCKWISE, 0, 360);
+    }
 
 	function drawStreak(dc) {
-		var streak_label = fast_manager.getStreak();
-	
+		var streak_label = fast_manager.streak;
+		var fast_label = "FASTS";
+		
+		if (streak_label == 1) {
+			fast_label = "FAST";
+		}
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
 		dc.drawText(center_x, center_y - 25 - dc.getFontHeight(Graphics.FONT_MEDIUM), Graphics.FONT_MEDIUM, "STREAK", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y, Graphics.FONT_NUMBER_HOT, streak_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y + 60, Graphics.FONT_MEDIUM, "SESSIONS", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 60, Graphics.FONT_MEDIUM, fast_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
 	
 	function drawFastWithoutGoal(dc) {
@@ -92,7 +178,7 @@ class FastingView extends WatchUi.View {
 		var start_label = toolbox.momentToString(fast_manager.getStartMoment(), true, true);
 		
 		dc.drawText(center_x, center_y - 46 - dc.getFontHeight(Graphics.FONT_TINY), Graphics.FONT_TINY, mode_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y - dc.getFontHeight(Graphics.FONT_LARGE), Graphics.FONT_MEDIUM, time_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - dc.getFontHeight(Graphics.FONT_MEDIUM) - 2, Graphics.FONT_MEDIUM, time_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y, Graphics.FONT_TINY, "SINCE", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 55, Graphics.FONT_MEDIUM, start_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
@@ -146,7 +232,7 @@ class FastingView extends WatchUi.View {
 			arc_end = 360 - (degrees - 90);
 		}
 	
-		dc.setPenWidth(10);
+		dc.setPenWidth(7);
 		
 		var elapsed = fast_manager.fast.d_elapsed.value();
 		
@@ -159,6 +245,6 @@ class FastingView extends WatchUi.View {
 		}
 		
 		dc.setColor(arc_color, Graphics.COLOR_BLACK);
-		dc.drawArc(center_x, center_y, 115, dc.ARC_CLOCKWISE, 90, arc_end);
+		dc.drawArc(center_x, center_y, 118, dc.ARC_CLOCKWISE, 90, arc_end);
 	}
 }

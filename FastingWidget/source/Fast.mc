@@ -17,27 +17,47 @@ class Fast {
 	var gender;
 	var activity_level;
 	var bmi;
+	var is_active;
 	
-	function initialize(m_start, d_goal, fast_manager) {
-		me.fast_manager = fast_manager;
+	function initialize() {
 		resource_manager = Application.getApp().resource_manager;
-		me.m_start = m_start;
-		me.d_goal = d_goal;
-		is_complete = false;
-		has_goal = false;
-		
-		if (d_goal != null) {
+		reset();
+	}
+	
+	function start(goal) {
+		if (goal != -1) {
+			d_goal = new Time.Duration(goal * 3600);
 			has_goal = true;
+		} else {
+			is_complete = true;
 		}
 		
-		
+		m_start = Time.now();
+		is_active = true;
+		update();
+	}
+	
+	function end() {
+		is_active = false;
+	}
+	
+	function reset() {
 		weight = resource_manager.weight;
 		height = resource_manager.height;
 		age = resource_manager.age;
 		gender = resource_manager.gender;
 		activity_level = resource_manager.activity_level;
 		bmi = resource_manager.bmi;
-		update();
+		
+		m_start = Time.now();
+		m_now = Time.now();
+		d_goal = new Time.Duration(0);
+		d_elapsed = new Time.Duration(0);
+		is_complete = false;
+		has_goal = false;
+		progress = 0.0;
+		calories = 0;
+		is_active = false;		
 	}
 	
 	function calculateProgress() {
@@ -77,6 +97,7 @@ class Fast {
 	}
 	
 	function update() {
+		
 		m_now = Time.now();
 		d_elapsed = m_now.subtract(m_start);
 		
@@ -85,6 +106,6 @@ class Fast {
 		if (has_goal == true) {
 			calculateProgress();
 		}
-	}	
-	
+		
+	}
 }
