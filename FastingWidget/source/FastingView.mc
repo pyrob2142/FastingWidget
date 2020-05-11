@@ -91,10 +91,10 @@ class FastingView extends WatchUi.View {
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, "SUMMARY", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y - 30, Graphics.FONT_TINY, "DURATION", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, resource_manager.string_summary, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 30, Graphics.FONT_TINY, resource_manager.string_duration, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y, Graphics.FONT_MEDIUM, duration_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y + 40, Graphics.FONT_TINY, "CALORIES", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 40, Graphics.FONT_TINY, resource_manager.string_calories, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 70, Graphics.FONT_MEDIUM, calories_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
 		var arc_color;
@@ -116,7 +116,7 @@ class FastingView extends WatchUi.View {
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, "STREAK", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, resource_manager.string_streak, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
 		dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_BLACK);
 		dc.drawText(center_x, center_y - 30, Graphics.FONT_NUMBER_MILD, streak + 1, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
@@ -140,7 +140,7 @@ class FastingView extends WatchUi.View {
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, "STREAK", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, resource_manager.string_streak, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.drawText(center_x, center_y - 10, Graphics.FONT_NUMBER_THAI_HOT, "0", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
@@ -155,15 +155,15 @@ class FastingView extends WatchUi.View {
 
 	function drawStreak(dc) {
 		var streak_label = fast_manager.streak;
-		var fast_label = "FASTS";
+		var fast_label = resource_manager.string_fast_pl;
 		
 		if (streak_label == 1) {
-			fast_label = "FAST";
+			fast_label = resource_manager.string_fast_sg;
 		}
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		dc.drawText(center_x, center_y - 25 - dc.getFontHeight(Graphics.FONT_MEDIUM), Graphics.FONT_MEDIUM, "STREAK", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 25 - dc.getFontHeight(Graphics.FONT_MEDIUM), Graphics.FONT_MEDIUM, resource_manager.string_streak, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y, Graphics.FONT_NUMBER_HOT, streak_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 60, Graphics.FONT_MEDIUM, fast_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
@@ -172,13 +172,13 @@ class FastingView extends WatchUi.View {
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		var mode_label = "ELAPSED";
+		var mode_label = resource_manager.string_elapsed;
 		var time_label = fast_manager.getElapsed();
 		var start_label = toolbox.momentToString(fast_manager.getStartMoment(), true, true);
 		
 		dc.drawText(center_x, center_y - 46 - dc.getFontHeight(Graphics.FONT_TINY), Graphics.FONT_TINY, mode_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y - dc.getFontHeight(Graphics.FONT_MEDIUM) - 2, Graphics.FONT_MEDIUM, time_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y, Graphics.FONT_TINY, "SINCE", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y, Graphics.FONT_TINY, resource_manager.string_since, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 55, Graphics.FONT_MEDIUM, start_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
 		drawProgressArc(dc, 1.0);
@@ -188,22 +188,26 @@ class FastingView extends WatchUi.View {
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		var mode_label = "ELAPSED";
+		var mode_label = resource_manager.string_elapsed;
+		var conjunction = resource_manager.string_since;
 		var time_label = fast_manager.getElapsed();
+		var date_label = toolbox.momentToString(fast_manager.getStartMoment(), true, false);
 		
 		if (show_remaining == true) {
-			mode_label = "REMAINING";
+			mode_label = resource_manager.string_remaining;
+			conjunction = resource_manager.string_until;
 			time_label = fast_manager.getRemaining();
+			date_label = toolbox.momentToString(fast_manager.getGoalMoment(), true, false);
 		}
 		
-		var end_label = toolbox.momentToString(fast_manager.getGoalMoment(), true, false);
+		
 		var progress = fast_manager.getProgress();
 		var progress_label = (progress * 100.0).format("%.1f") + "%";
 		
 		dc.drawText(center_x, center_y - 46 - dc.getFontHeight(Graphics.FONT_TINY), Graphics.FONT_TINY, mode_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y - dc.getFontHeight(Graphics.FONT_LARGE), Graphics.FONT_MEDIUM, time_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y, Graphics.FONT_TINY, "UNTIL", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y + 36, Graphics.FONT_MEDIUM, end_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y, Graphics.FONT_TINY, conjunction, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 36, Graphics.FONT_MEDIUM, date_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 75, Graphics.FONT_MEDIUM, progress_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
 		drawProgressArc(dc, progress);
@@ -217,7 +221,7 @@ class FastingView extends WatchUi.View {
 		
 		dc.drawBitmap(center_x - 32, center_y - 100, resource_manager.bitmap_burn);
 		dc.drawText(center_x, center_y + 10, Graphics.FONT_NUMBER_HOT, calories_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y + 70, Graphics.FONT_MEDIUM, "KCAL", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 70, Graphics.FONT_MEDIUM, resource_manager.string_kcal, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
 	
 	function drawProgressArc(dc, percent) {

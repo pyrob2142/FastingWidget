@@ -14,12 +14,12 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 	
 	function openFastTypeMenu() {
 		var menu = new WatchUi.Menu2({
-			:title => "Start"
+			:title => resource_manager.string_fast_type_menu_title
 		});
 			
 		menu.addItem(
 			new MenuItem(
-				"Set Goal",
+				resource_manager.string_fast_set_goal,
 				null,
 				"item_set_goal",
 				{}
@@ -28,7 +28,7 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		
 		menu.addItem(
 			new MenuItem(
-				"No Goal",
+				resource_manager.string_fast_no_goal,
 				 null,
 				"item_no_goal",
 				{}
@@ -42,12 +42,12 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 	
 	function openFinishMenu() {
 		var menu = new WatchUi.Menu2({
-			:title => "End Fast?"
+			:title => resource_manager.string_end_fast_title
 		});
 			
 		menu.addItem(
 			new MenuItem(
-				"Yes",
+				resource_manager.string_yes,
 				null,
 				"item_yes",
 				{}
@@ -56,8 +56,8 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		
 		menu.addItem(
 			new MenuItem(
-				"No",
-				 null,
+				resource_manager.string_no,
+				null,
 				"item_no",
 				{}
 			)
@@ -70,12 +70,12 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 	
 	function openCancelMenu() {
 		var menu = new WatchUi.Menu2({
-			:title => "Cancel Fast?"
+			:title => resource_manager.string_cancel_fast_title
 		});
 		
 		menu.addItem(
 			new MenuItem(
-				"No",
+				resource_manager.string_no,
 				 null,
 				"item_no",
 				{}
@@ -84,7 +84,7 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		
 		menu.addItem(
 			new MenuItem(
-				"Yes",
+				resource_manager.string_yes,
 				null,
 				"item_yes",
 				{}
@@ -100,12 +100,12 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		var default_goal_index = resource_manager.default_goal_index;
 		
 		var menu = new WatchUi.Menu2({
-			:title => "Goal"
+			:title => Rez.Strings.goal_menu_title
 		});
 		
 		menu.addItem(
 			new MenuItem(
-				"8 Hours",
+				resource_manager.string_goal_8,
 				toolbox.calculateDate(8),
 				"hours_8",
 				{}
@@ -114,7 +114,7 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		
 		menu.addItem(
 			new MenuItem(
-				"12 Hours",
+				resource_manager.string_goal_12,
 				toolbox.calculateDate(12),
 				"hours_12",
 				{}
@@ -123,7 +123,7 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		
 		menu.addItem(
 			new MenuItem(
-				"14 Hours",
+				resource_manager.string_goal_14,
 				toolbox.calculateDate(14),
 				"hours_14",
 				{}
@@ -132,7 +132,7 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		
 		menu.addItem(
 			new MenuItem(
-				"16 Hours",
+				resource_manager.string_goal_16,
 				toolbox.calculateDate(16),
 				"hours_16",
 				{}
@@ -141,37 +141,124 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		
 		menu.addItem(
 			new MenuItem(
-				"20 Hours",
+				resource_manager.string_goal_20,
 				toolbox.calculateDate(20),
 				"hours_20",
 				{}
 			)
 		);
 		
-		for (var i = 24; i < 168; i = i + 12) {
-			
-			var label;
-			
-			if (i >= 108) {
-				label = toolbox.hoursToDays(i);
-			} else {
-				label = i + " Hours";
-			}
-			var id = "hours_" + i;
-			
-			menu.addItem(
-				new MenuItem(
-					label,
-					toolbox.calculateDate(i),
-					id,
-					{}
-				)
-			);
-		}
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_24,
+				toolbox.calculateDate(24),
+				"hours_24",
+				{}
+			)
+		);
 		
 		menu.addItem(
 			new MenuItem(
-				"1 Week",
+				resource_manager.string_goal_36,
+				toolbox.calculateDate(36),
+				"hours_36",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_48,
+				toolbox.calculateDate(48),
+				"hours_48",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_60,
+				toolbox.calculateDate(60),
+				"hours_60",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_72,
+				toolbox.calculateDate(72),
+				"hours_72",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_84,
+				toolbox.calculateDate(84),
+				"hours_84",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_96,
+				toolbox.calculateDate(96),
+				"hours_96",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_108,
+				toolbox.calculateDate(108),
+				"hours_108",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_120,
+				toolbox.calculateDate(120),
+				"hours_120",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_132,
+				toolbox.calculateDate(132),
+				"hours_132",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_144,
+				toolbox.calculateDate(144),
+				"hours_144",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_156,
+				toolbox.calculateDate(156),
+				"hours_156",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_goal_168,
 				toolbox.calculateDate(168),
 				"hours_168",
 				{}
@@ -180,7 +267,7 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		
 		menu.addItem(
 			new MenuItem(
-				"2 Weeks",
+				resource_manager.string_goal_336,
 				toolbox.calculateDate(336),
 				"hours_336",
 				{}
@@ -189,7 +276,7 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		
 		menu.addItem(
 			new MenuItem(
-				"3 Weeks",
+				resource_manager.string_goal_504,
 				toolbox.calculateDate(504),
 				"hours_504",
 				{}
@@ -198,7 +285,7 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		
 		menu.addItem(
 			new MenuItem(
-				"4 Weeks",
+				resource_manager.string_goal_672,
 				toolbox.calculateDate(672),
 				"hours_672",
 				{}

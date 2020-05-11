@@ -2,12 +2,18 @@
     <iq:application entry="FastingWidgetApp" id="74579354f96b40df996bb0e019eb90da" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="3.0.0" name="@Strings.AppName" type="widget" version="0.0.0">
         <iq:products>
             <iq:product id="fenix5"/>
+            <iq:product id="fenix5plus"/>
+            <iq:product id="fenix5splus"/>
+            <iq:product id="fenix5x"/>
+            <iq:product id="fenix5xplus"/>
+            <iq:product id="fenix6s"/>
+            <iq:product id="fenix6spro"/>
         </iq:products>
         <iq:permissions>
-            <iq:uses-permission id="PersistedContent"/>
             <iq:uses-permission id="UserProfile"/>
         </iq:permissions>
         <iq:languages>
+            <iq:language>deu</iq:language>
             <iq:language>eng</iq:language>
         </iq:languages>
         <iq:barrels/>

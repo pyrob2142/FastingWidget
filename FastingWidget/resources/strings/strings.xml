@@ -1,3 +1,72 @@
-<strings>
-    <string id="AppName">FastingWidget</string>
-</strings>
+<resources>
+	<!-- APP NAME -->
+	<string id="AppName">Fasting Widget</string>
+
+	<!-- USER SETTINGS -->
+	<string id="longpress_threshold_title">Long Press Threshold (ms)</string>
+	
+	<string id="default_goal_title">Default Goal</string>
+	<string id="goal_8">8 Hours</string>
+	<string id="goal_12">12 Hours</string>
+	<string id="goal_14">14 Hours</string>
+	<string id="goal_16">16 Hours</string>
+	<string id="goal_20">20 Hours</string>
+	<string id="goal_24">24 Hours</string>
+	<string id="goal_36">36 Hours</string>
+	<string id="goal_48">48 Hours</string>
+	<string id="goal_60">60 Hours</string>
+	<string id="goal_72">72 Hours</string>
+	<string id="goal_84">84 Hours</string>
+	<string id="goal_96">96 Hours</string>
+	<string id="goal_108">4½ Days</string>
+	<string id="goal_120">5 Days</string>
+	<string id="goal_132">5½ Days</string>
+	<string id="goal_144">6 Days</string>
+	<string id="goal_156">6½ Days</string>
+	<string id="goal_168">1 Week</string>
+	<string id="goal_336">2 Weeks</string>
+	<string id="goal_504">3 Weeks</string>
+	<string id="goal_672">4 Weeks</string>
+	
+	<string id="activity_level_title">Activity Level</string>
+	<string id="activity_level_0">Sedentary (little to no exercise)</string>
+	<string id="activity_level_1">Lightly Active (light exercise 1-3 days per week)</string>
+	<string id="activity_level_2">Moderately Active (moderate exercise 3-5 days per week)</string>
+	<string id="activity_level_3">Very Active (hard exercise 6-7 days per week)</string>
+	<string id="activity_level_4">Extra Active (very hard exercise/training or a physical job)</string>
+	
+	<string id="birthday_title">Birthday</string>
+	<string id="arc_yellow_threshold_title">Ring turns yellow after (hours)</string>
+	<string id="arc_green_threshold_title">Ring turns green after (hours)</string>
+	<string id="streak_title">Overwrite Streak</string>
+
+	<!-- FastingView.mc -->
+	<string id="summary">SUMMARY</string>
+	<string id="duration">DURATION</string>
+	<string id="calories">CALORIES</string>
+	<string id="streak">STREAK</string>
+	<string id="fast_sg">FAST</string>
+	<string id="fast_pl">FASTS</string>
+	<string id="elapsed">ELAPSED</string>
+	<string id="remaining">REMAINING</string>
+	<string id="since">SINCE</string>
+	<string id="until">UNTIL</string>
+	<string id="kcal">KCAL</string>
+	
+	<!-- MenuHandler.mc -->
+	<string id="fast_type_menu_title">Start</string>
+	<string id="fast_set_goal">Set Goal</string>
+	<string id="fast_no_goal">No Goal</string>
+	<string id="end_fast_title">End Fast?</string>
+	<string id="yes">Yes</string>
+	<string id="no">No</string>
+	<string id="cancel_fast_title">Cancel Fast?</string>
+	<string id="goal_menu_title">Goal</string>
+	
+	<!-- Toolbox.mc -->
+	<string id="symbol_days">D</string>
+	<string id="symbol_hours">H</string>
+	<string id="symbol_minutes">MIN</string>
+	<string id="symbol_seconds">S</string>
+	<string id="days">Days</string>	
+</resources>

@@ -10,44 +10,6 @@
 	<property id="streak_data" type="number">0</property>
 </properties>
 
-<strings>
-	<string id="longpress_threshold_title">Long Press Threshold</string>
-	<string id="default_goal_title">Default Goal (hours)</string>
-	
-	<string id="default_goal_8">8 Hours</string>
-	<string id="default_goal_12">12 Hours</string>
-	<string id="default_goal_14">14 Hours</string>
-	<string id="default_goal_16">16 Hours</string>
-	<string id="default_goal_20">20 Hours</string>
-	<string id="default_goal_24">24 Hours</string>
-	<string id="default_goal_36">36 Hours</string>
-	<string id="default_goal_48">48 Hours</string>
-	<string id="default_goal_60">60 Hours</string>
-	<string id="default_goal_72">72 Hours</string>
-	<string id="default_goal_84">84 Hours</string>
-	<string id="default_goal_96">96 Hours</string>
-	<string id="default_goal_108">4 1/2 Days</string>
-	<string id="default_goal_120">5 Days</string>
-	<string id="default_goal_132">5 1/2 Days</string>
-	<string id="default_goal_144">6 Days</string>
-	<string id="default_goal_156">6 1/2 Days</string>
-	<string id="default_goal_168">1 Week</string>
-	<string id="default_goal_336">2 Weeks</string>
-	<string id="default_goal_504">3 Weeks</string>
-	<string id="default_goal_672">4 Weeks</string>
-	
-	<string id="activity_level_title">Activity Level</string>
-	<string id="activity_level_0">Sedentary (little to no exercise)</string>
-	<string id="activity_level_1">Lightly Active (light exercise 1-3 days per week)</string>
-	<string id="activity_level_2">Moderately Active (moderate exercise 3-5 days per week)</string>
-	<string id="activity_level_3">Very Active (hard exercise 6-7 days per week)</string>
-	<string id="activity_level_4">Extra Active (very hard exercise/training or a physical job)</string>
-	<string id="birthday_title">Birthday</string>
-	<string id="arc_yellow_threshold_title">Fast Threshold Yellow (hours)</string>
-	<string id="arc_green_threshold_title">Fast Threshold Green (hours)</string>
-	<string id="streak_title">Overwrite Streak</string>
-</strings>
-
 <settings>
 	<setting propertyKey="@Properties.longpress_threshold" title="@Strings.longpress_threshold_title">
 	<settingConfig type="numeric" min="1000" />
@@ -56,27 +18,27 @@
 	<setting propertyKey="@Properties.default_goal" title="@Strings.default_goal_title">
 	<settingConfig type="list">
 	
-	<listEntry value="0">@Strings.default_goal_8</listEntry>
-	<listEntry value="1">@Strings.default_goal_12</listEntry>
-	<listEntry value="2">@Strings.default_goal_14</listEntry>
-	<listEntry value="3">@Strings.default_goal_16</listEntry>
-	<listEntry value="4">@Strings.default_goal_20</listEntry>
-	<listEntry value="5">@Strings.default_goal_24</listEntry>
-	<listEntry value="6">@Strings.default_goal_36</listEntry>
-	<listEntry value="7">@Strings.default_goal_48</listEntry>
-	<listEntry value="8">@Strings.default_goal_60</listEntry>
-	<listEntry value="9">@Strings.default_goal_72</listEntry>
-	<listEntry value="10">@Strings.default_goal_84</listEntry>
-	<listEntry value="11">@Strings.default_goal_96</listEntry>
-	<listEntry value="12">@Strings.default_goal_108</listEntry>
-	<listEntry value="13">@Strings.default_goal_120</listEntry>
-	<listEntry value="14">@Strings.default_goal_132</listEntry>
-	<listEntry value="15">@Strings.default_goal_144</listEntry>
-	<listEntry value="16">@Strings.default_goal_156</listEntry>
-	<listEntry value="17">@Strings.default_goal_168</listEntry>
-	<listEntry value="18">@Strings.default_goal_336</listEntry>
-	<listEntry value="19">@Strings.default_goal_504</listEntry>
-	<listEntry value="20">@Strings.default_goal_672</listEntry>
+	<listEntry value="0">@Strings.goal_8</listEntry>
+	<listEntry value="1">@Strings.goal_12</listEntry>
+	<listEntry value="2">@Strings.goal_14</listEntry>
+	<listEntry value="3">@Strings.goal_16</listEntry>
+	<listEntry value="4">@Strings.goal_20</listEntry>
+	<listEntry value="5">@Strings.goal_24</listEntry>
+	<listEntry value="6">@Strings.goal_36</listEntry>
+	<listEntry value="7">@Strings.goal_48</listEntry>
+	<listEntry value="8">@Strings.goal_60</listEntry>
+	<listEntry value="9">@Strings.goal_72</listEntry>
+	<listEntry value="10">@Strings.goal_84</listEntry>
+	<listEntry value="11">@Strings.goal_96</listEntry>
+	<listEntry value="12">@Strings.goal_108</listEntry>
+	<listEntry value="13">@Strings.goal_120</listEntry>
+	<listEntry value="14">@Strings.goal_132</listEntry>
+	<listEntry value="15">@Strings.goal_144</listEntry>
+	<listEntry value="16">@Strings.goal_156</listEntry>
+	<listEntry value="17">@Strings.goal_168</listEntry>
+	<listEntry value="18">@Strings.goal_336</listEntry>
+	<listEntry value="19">@Strings.goal_504</listEntry>
+	<listEntry value="20">@Strings.goal_672</listEntry>
 	
 	</settingConfig>
 	</setting>

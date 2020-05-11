@@ -11,7 +11,8 @@ class ResourceManager {
 	
 	var toolbox;
 	var fast_manager;
-	var bitmap_burn;
+	
+	// Settings
 	var longpress_threshold;
 	var default_goal_hours;
 	var default_goal_index;
@@ -33,22 +34,77 @@ class ResourceManager {
 	var goal_data;
 	var streak_data;
 	
+	// Resources
+	var bitmap_burn;
+	var string_goal_8;
+	var string_goal_12;
+	var string_goal_14;
+	var string_goal_16;
+	var string_goal_20;
+	var string_goal_24;
+	var string_goal_36;
+	var string_goal_48;
+	var string_goal_60;
+	var string_goal_72;
+	var string_goal_84;
+	var string_goal_96;
+	var string_goal_108;
+	var string_goal_120;
+	var string_goal_132;
+	var string_goal_144;
+	var string_goal_156;
+	var string_goal_168;
+	var string_goal_336;
+	var string_goal_504;
+	var string_goal_672;
+	
+	var string_summary;
+	var string_duration;
+	var string_calories;
+	var string_streak;
+	var string_fast_sg;
+	var string_fast_pl;
+	var string_elapsed;
+	var string_remaining;
+	var string_since;
+	var string_until;
+	var string_kcal;
+	
+	var string_fast_type_menu_title;
+	var string_fast_set_goal;
+	var string_fast_no_goal;
+	var string_end_fast_title;
+	var string_yes;
+	var string_no;
+	var string_cancel_fast_title;
+	var string_goal_menu_title;
+	
+	var symbol_days;
+	var symbol_hours;
+	var symbol_minutes;
+	var symbol_seconds;
+	var string_days;
+	
 	function initialize() {
 		toolbox = Application.getApp().toolbox;
+		toolbox.resource_manager = me;
 		fast_manager = null;
-		bitmap_burn = WatchUi.loadResource(Rez.Drawables.burn);
 		
+		loadResources();
+		loadSettings();
+		loadUserData();
+		load();
+	}
+	
+	function loadUserData() {
 		user = UserProfile.getProfile();
 		weight = toolbox.convertWeight(user.weight);
 		height = user.height;
 		gender = user.gender;
 		bmi = toolbox.calculateBMI(weight, height);
-		
-		reloadSettings();
-		load();
 	}
 	
-	function reloadSettings() {
+	function loadSettings() {
 		longpress_threshold = Application.AppBase.getProperty("longpress_threshold");
 		
 		default_goal_index = Application.AppBase.getProperty("default_goal");
@@ -154,6 +210,58 @@ class ResourceManager {
 		System.println("start_data: " + start_data);
 		System.println("goal_data: " + goal_data);
 		System.println("\n");
+	}
+	
+	function loadResources() {
+		bitmap_burn = WatchUi.loadResource(Rez.Drawables.burn);
+		string_goal_8 = WatchUi.loadResource(Rez.Strings.goal_8);
+		string_goal_12 = WatchUi.loadResource(Rez.Strings.goal_12);
+		string_goal_14 = WatchUi.loadResource(Rez.Strings.goal_14);
+		string_goal_16 = WatchUi.loadResource(Rez.Strings.goal_16);
+		string_goal_20 = WatchUi.loadResource(Rez.Strings.goal_20);
+		string_goal_24 = WatchUi.loadResource(Rez.Strings.goal_24);
+		string_goal_36 = WatchUi.loadResource(Rez.Strings.goal_36);
+		string_goal_48 = WatchUi.loadResource(Rez.Strings.goal_48);
+		string_goal_60 = WatchUi.loadResource(Rez.Strings.goal_60);
+		string_goal_72 = WatchUi.loadResource(Rez.Strings.goal_72);
+		string_goal_84 = WatchUi.loadResource(Rez.Strings.goal_84);
+		string_goal_96 = WatchUi.loadResource(Rez.Strings.goal_96);
+		string_goal_108 = WatchUi.loadResource(Rez.Strings.goal_108);
+		string_goal_120 = WatchUi.loadResource(Rez.Strings.goal_120);
+		string_goal_132 = WatchUi.loadResource(Rez.Strings.goal_132);
+		string_goal_144 = WatchUi.loadResource(Rez.Strings.goal_144);
+		string_goal_156 = WatchUi.loadResource(Rez.Strings.goal_156);
+		string_goal_168 = WatchUi.loadResource(Rez.Strings.goal_168);
+		string_goal_336 = WatchUi.loadResource(Rez.Strings.goal_336);
+		string_goal_504 = WatchUi.loadResource(Rez.Strings.goal_504);
+		string_goal_672 = WatchUi.loadResource(Rez.Strings.goal_672);
+		
+		string_summary = WatchUi.loadResource(Rez.Strings.summary);
+		string_duration = WatchUi.loadResource(Rez.Strings.duration);
+		string_calories = WatchUi.loadResource(Rez.Strings.calories);
+		string_streak = WatchUi.loadResource(Rez.Strings.streak);
+		string_fast_sg = WatchUi.loadResource(Rez.Strings.fast_sg);
+		string_fast_pl = WatchUi.loadResource(Rez.Strings.fast_pl);
+		string_elapsed = WatchUi.loadResource(Rez.Strings.elapsed);
+		string_remaining = WatchUi.loadResource(Rez.Strings.remaining);
+		string_since = WatchUi.loadResource(Rez.Strings.since);
+		string_until = WatchUi.loadResource(Rez.Strings.until);
+		string_kcal = WatchUi.loadResource(Rez.Strings.kcal);
+		
+		string_fast_type_menu_title = WatchUi.loadResource(Rez.Strings.fast_type_menu_title);
+		string_fast_set_goal = WatchUi.loadResource(Rez.Strings.fast_set_goal);
+		string_fast_no_goal = WatchUi.loadResource(Rez.Strings.fast_no_goal);
+		string_end_fast_title = WatchUi.loadResource(Rez.Strings.end_fast_title);
+		string_yes = WatchUi.loadResource(Rez.Strings.yes);
+		string_no = WatchUi.loadResource(Rez.Strings.no);
+		string_cancel_fast_title = WatchUi.loadResource(Rez.Strings.cancel_fast_title);
+		string_goal_menu_title = WatchUi.loadResource(Rez.Strings.goal_menu_title);
+		
+		symbol_days = WatchUi.loadResource(Rez.Strings.symbol_days);
+		symbol_hours = WatchUi.loadResource(Rez.Strings.symbol_hours);
+		symbol_minutes = WatchUi.loadResource(Rez.Strings.symbol_minutes);
+		symbol_seconds = WatchUi.loadResource(Rez.Strings.symbol_seconds);
+		string_days = WatchUi.loadResource(Rez.Strings.days);
 	}
 }
 

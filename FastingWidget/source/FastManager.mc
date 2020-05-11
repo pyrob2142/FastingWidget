@@ -74,7 +74,7 @@ class FastManager {
 		if (fast.is_active == false) {
 			current_page = STREAK;
 		} else if (fast.has_goal == true) {
-			current_page = ELAPSED;
+			current_page = REMAINING;
 		} else {
 			current_page = OPEN;
 		}

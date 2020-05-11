@@ -3,9 +3,10 @@ using Toybox.Time.Gregorian;
 using Toybox.Math;
 
 class Toolbox {
+	var resource_manager;
 	
 	function initialize() {
-	
+		
 	}
 	
 	// Convert weight from g to kg
@@ -49,9 +50,11 @@ class Toolbox {
 		var seconds = n;
 		
 		if (days > 0) {
-			return days.format("%02d") + "D " + hours.format("%02d") + "H " + minutes.format("%02d") + "MIN";
+			return days.format("%02d") + resource_manager.symbol_days + " " + hours.format("%02d") 
+				+ resource_manager.symbol_hours + " " + minutes.format("%02d") + resource_manager.symbol_minutes;
 		} else {
-			return hours.format("%02d") + "H " + minutes.format("%02d") + "MIN " + seconds.format("%02d") + "S";
+			return hours.format("%02d") + resource_manager.symbol_hours + " " + minutes.format("%02d") 
+				+ resource_manager.symbol_minutes + " " + seconds.format("%02d") + resource_manager.symbol_seconds;
 		}
 	}
 	
@@ -89,9 +92,9 @@ class Toolbox {
 		
 		var result;
 		if (hours != 0) {
-			result = days.format("%d") + " 1/2 Days";
+			result = days.format("%d") + "½ " + resource_manager.string_days;
 		} else {
-			result = days.format("%d") + " Days";
+			result = days.format("%d") + " " + resource_manager.string_days;
 		}
 		return result;
 	}

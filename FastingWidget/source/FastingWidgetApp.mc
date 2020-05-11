@@ -30,7 +30,9 @@ class FastingWidgetApp extends Application.AppBase {
     }
     
     function onSettingsChanged() {
-    	resource_manager.reloadSettings();
+    	resource_manager.loadResources();
+    	resource_manager.loadSettings();
+    	WatchUi.requestUpdate();
     }
 
 }
