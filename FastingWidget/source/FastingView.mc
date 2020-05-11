@@ -10,16 +10,16 @@ class FastingView extends WatchUi.View {
 	var center_x;
 	var center_y;
 	
-	var arc_yellow_threshold;
-	var arc_green_threshold;
+	var streak_reset_threshold;
+	var streak_inc_threshold;
 	
     function initialize() {
         View.initialize();
         fast_manager = Application.getApp().fast_manager;
         resource_manager = Application.getApp().resource_manager;
         toolbox = Application.getApp().toolbox;
-        arc_yellow_threshold = resource_manager.arc_yellow_threshold;
-        arc_green_threshold = resource_manager.arc_green_threshold;
+        streak_reset_threshold = resource_manager.streak_reset_threshold;
+        streak_inc_threshold = resource_manager.streak_inc_threshold;
     }
 
     // Load your resources here
@@ -82,11 +82,15 @@ class FastingView extends WatchUi.View {
     	
     }
     
+    
+    //! Draws the summary of the last fast, e.g. total time and calories
+    //! @param [Object] dc Device Context
     function drawSummary(dc) {
     	
     	var duration_label = fast_manager.getElapsed();
     	var calories_label = fast_manager.getCalories().format("%.1f");
     	var progress = fast_manager.getProgress();
+    	
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
@@ -99,8 +103,11 @@ class FastingView extends WatchUi.View {
 		drawProgressArc(dc, progress);
     }
     
+    //! Draws the reward screen, where your current streak is increased by 1, after a successful fast
+    //! @param [Object] dc Device Context
     function drawStreakIncrement(dc) {
     	var streak = fast_manager.streak;
+    	var progress = fast_manager.getProgress();
     	
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
@@ -118,13 +125,15 @@ class FastingView extends WatchUi.View {
 			dc.drawText(center_x, center_y + 70, Graphics.FONT_NUMBER_MILD, streak - 1, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		}
 		
-		dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_BLACK);
-		dc.setPenWidth(7);
-		dc.drawArc(center_x, center_y, 118, dc.ARC_CLOCKWISE, 0, 360);
+		drawProgressArc(dc, progress);
     }
     
+    //! Draws the "punishment" screen, where your streak is reset to zero, after you cancel a fast.
+    //! Just don't cancel your fasts and you will be fine.
+    //! @param [Object] dc Device Context
     function drawStreakReset(dc) {
     	var streak = fast_manager.streak_old;
+    	var progress = fast_manager.getProgress();
     	
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
@@ -137,11 +146,11 @@ class FastingView extends WatchUi.View {
 		dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_BLACK);
 		dc.drawText(center_x, center_y + 60, Graphics.FONT_NUMBER_MEDIUM, streak, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
-		dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_BLACK);
-		dc.setPenWidth(7);
-		dc.drawArc(center_x, center_y, 118, dc.ARC_CLOCKWISE, 0, 360);
+		drawProgressArc(dc, progress);
     }
 
+ 	//! Draws the current streak view
+    //! @param [Object] dc Device Context
 	function drawStreak(dc) {
 		var streak_label = fast_manager.streak;
 		var fast_label = resource_manager.string_fast_pl.toUpper();
@@ -157,6 +166,9 @@ class FastingView extends WatchUi.View {
 		dc.drawText(center_x, center_y + 60, Graphics.FONT_MEDIUM, fast_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
 	
+	//! Draws the elapsed screen for fasts without a set goal. Start date and time are split into two rows. 
+	//! The progress arc will still change colors according to the user settings, but will remain full at all times.
+    //! @param [Object] dc Device Context
 	function drawFastWithoutGoal(dc) {
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
@@ -173,6 +185,8 @@ class FastingView extends WatchUi.View {
 		drawProgressArc(dc, 1.0);
 	}
 	
+	//! Draws the elapsed or remaining screen and shows the current progress of the fast both with an arc and as a number.
+    //! @param [Object] dc Device Context
 	function drawFastWithGoal(dc, show_remaining) {
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
@@ -202,6 +216,8 @@ class FastingView extends WatchUi.View {
 		drawProgressArc(dc, progress);
 	}
 	
+	//! Draws the current calories.
+    //! @param [Object] dc Device Context
 	function drawCalories(dc) {
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
@@ -213,6 +229,12 @@ class FastingView extends WatchUi.View {
 		dc.drawText(center_x, center_y + 70, Graphics.FONT_MEDIUM, resource_manager.string_kcal.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
 	
+	//! Draws the progess arc according to the percentage of completion. The colors represent a traffic light system,
+	//! the user can choose when it turns from red to yellow and green. If the fast is cancelled during the yellow stage, 
+	//! the streak will not increase, but will not be reset either. Once it turns green the user receives an A for effort and the 
+	//! streak will be increased as well.
+    //! @param [Object] dc Device Context
+    //! @param [Number] percent The current completion percentage in the range of 0 to 1.
 	function drawProgressArc(dc, percent) {
 		var degrees = 360 * percent;
 		var arc_end = 0;
@@ -226,11 +248,9 @@ class FastingView extends WatchUi.View {
 	
 		dc.setPenWidth(7);
 		
-		var elapsed = fast_manager.fast.d_elapsed.value();
-		
-		if (elapsed >= arc_green_threshold) {
+		if (percent >= streak_inc_threshold) {
 			arc_color = Graphics.COLOR_GREEN;
-		} else if (elapsed >= arc_yellow_threshold) {
+		} else if (percent >= streak_reset_threshold) {
 			arc_color = Graphics.COLOR_YELLOW;
 		} else {
 			arc_color = Graphics.COLOR_RED;

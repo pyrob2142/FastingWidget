@@ -43,8 +43,8 @@
 	<string id="activity_level_4">Besonders aktiv (sehr harte Belastung/Sport oder eine körperliche Arbeit)</string>
 	
 	<string id="birthday_title">Geburtsdatum</string>
-	<string id="arc_yellow_threshold_title">Ring wird gelb ab (Stunden)</string>
-	<string id="arc_green_threshold_title">Ring wird grün ab (Stunden)</string>
+	<string id="streak_reset_threshold_title">Serie zurücksetzen unter (Prozent Fortschritt)</string>
+	<string id="streak_inc_threshold_title">Serie erhöhen (Prozent Fortschritt)</string>
 	<string id="streak_title">Serie überschreiben</string>
 
 	<!-- FastingView.mc -->

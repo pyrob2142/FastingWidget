@@ -2,6 +2,7 @@ using Toybox.System;
 using Toybox.Timer;
 using Toybox.WatchUi;
 
+//! Handles the page navigation and long press menus.
 class FastingViewDelegate extends WatchUi.BehaviorDelegate {
 	
 	var keys;
@@ -9,6 +10,7 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
 	var fast_manager;
 	var resource_manager;
 	
+	//! Used to determine if a key is held for a set amount of time.
 	class KeyHeldDelegate {
 		var parent;
 		var key;
@@ -46,6 +48,10 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
 		return true; 
 	}
 	
+	//! Handles key held events.
+	//! If no fast is active, the users gets to start a new fast.
+	//! If a fast is active, we present options to finish or cancel the fast 
+	//! depending on its current progress.
 	function onKeyHeld(evt) {
 		var key = evt.getKey();
 		keys[key] = null;
@@ -66,6 +72,8 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
 		}
 	}
 	
+	//! If the key is released, we can assume that the timer has not 
+	//! been triggered and ask the fast_manager for the next page.
 	function onKeyReleased(evt) {
 		var key = evt.getKey();
 		

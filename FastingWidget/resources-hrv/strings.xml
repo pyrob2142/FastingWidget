@@ -43,8 +43,8 @@
 	<string id="activity_level_4">Posebno aktivan (vrlo naporan / sportski ili fizički rad)</string>
 	
 	<string id="birthday_title">Datum rođenja</string>
-	<string id="arc_yellow_threshold_title">Prsten postaje žut nakon (sati)</string>
-	<string id="arc_green_threshold_title">Prsten postaje zeleni nakon (sati)</string>
+	<string id="streak_reset_threshold_title">Poništi niz ispod (postotak završetka)</string>
+	<string id="streak_inc_threshold_title">Povećajte niz iznad (postotak završetka)</string>
 	<string id="streak_title">Prepiši red</string>
 
 	<!-- FastingView.mc -->

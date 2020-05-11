@@ -44,8 +44,8 @@
 	<string id="activity_level_4">[activity_level_4]</string>
 	
 	<string id="birthday_title">[birthday_title]</string>
-	<string id="arc_yellow_threshold_title">[arc_yellow_threshold_title]</string>
-	<string id="arc_green_threshold_title">[arc_green_threshold_title]</string>
+	<string id="streak_reset_threshold_title">[streak_reset_threshold_title]</string>
+	<string id="streak_inc_threshold_title">[streak_inc_threshold_title]</string>
 	<string id="streak_title">[streak_title]</string>
 
 	<!-- FastingView.mc -->

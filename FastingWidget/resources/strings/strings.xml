@@ -44,8 +44,8 @@
 	<string id="activity_level_4">Extra Active (very hard exercise/training or a physical job)</string>
 	
 	<string id="birthday_title">Birthday</string>
-	<string id="arc_yellow_threshold_title">Ring turns yellow after (hours)</string>
-	<string id="arc_green_threshold_title">Ring turns green after (hours)</string>
+	<string id="streak_reset_threshold_title">Reset streak below (percent of completion)</string>
+	<string id="streak_inc_threshold_title">Increase streak above (percent of completion)</string>
 	<string id="streak_title">Overwrite Streak</string>
 
 	<!-- FastingView.mc -->

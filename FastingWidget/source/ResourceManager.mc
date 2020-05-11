@@ -6,22 +6,22 @@ using Toybox.Application.Storage;
 using Toybox.Time;
 using Toybox.Time.Gregorian;
 
-
+//! Handles resources, settings and loading and saving of fasts.
 class ResourceManager {
 	
 	var toolbox;
 	var fast_manager;
 	
-	// Settings
+	//! Settings
 	var longpress_threshold;
 	var default_page_goal;
 	var default_page_no_goal;
 	var default_goal_hours;
 	var default_goal_index;
-	var arc_yellow_threshold;
-	var arc_green_threshold;
+	var streak_reset_threshold;
+	var streak_inc_threshold;
 	
-	// User profile data
+	//! User profile data
 	var user;
 	var activity_level;
 	var weight;
@@ -30,13 +30,13 @@ class ResourceManager {
 	var gender;
 	var bmi;
 	
-	// Fast data
+	//! Fast data
 	var is_active;
 	var start_data;
 	var goal_data;
 	var streak_data;
 	
-	// Resources
+	//! Resources
 	var bitmap_burn;
 	var string_goal_8;
 	var string_goal_12;
@@ -98,6 +98,7 @@ class ResourceManager {
 		load();
 	}
 	
+	//! Loads the user profile.
 	function loadUserData() {
 		user = UserProfile.getProfile();
 		weight = toolbox.convertWeight(user.weight);
@@ -106,6 +107,7 @@ class ResourceManager {
 		bmi = toolbox.calculateBMI(weight, height);
 	}
 	
+	//! Loads the user settings.
 	function loadSettings() {
 		longpress_threshold = Application.AppBase.getProperty("longpress_threshold");
 		
@@ -114,9 +116,9 @@ class ResourceManager {
 		
 		default_goal_index = Application.AppBase.getProperty("default_goal");
 		
-		arc_yellow_threshold = Application.AppBase.getProperty("arc_yellow_threshold") * 3600;
-		arc_green_threshold = Application.AppBase.getProperty("arc_green_threshold") * 3600;
-		streak_data = Application.AppBase.getProperty("streak_data").toNumber();
+		streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold") / 100.0;
+		streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold") / 100.0;
+		streak_data = Application.AppBase.getProperty("streak_data");
 	
 		
 		var raw_activity = Application.AppBase.getProperty("activity_level");
@@ -153,8 +155,8 @@ class ResourceManager {
 		System.println("SETTINGS");
 		System.println("longpress_threshold: " + longpress_threshold);
 		System.println("default_goal_index: " + default_goal_index);
-		System.println("arc_yellow_threshold: " + arc_yellow_threshold);
-		System.println("arc_green_threshold: " + arc_green_threshold);
+		System.println("streak_reset_threshold: " + streak_reset_threshold);
+		System.println("streak_inc_threshold: " + streak_inc_threshold);
 		System.println("streak_data: " + streak_data);
 		System.println("raw_activity: " + raw_activity);
 		System.println("activity_level: " + activity_level);
@@ -163,6 +165,7 @@ class ResourceManager {
 		System.println("\n");
 	}
 	
+	//! Saves the current state of the fast, as well as the streak.
 	function save() {
 		// DEBUG
 		System.println("SAVE DATA");
@@ -190,6 +193,7 @@ class ResourceManager {
 		}
 	}
 	
+	//! Loads a previous fast and streak.
 	function load() {
 		streak_data = Application.AppBase.getProperty("streak_data").toNumber();
 	
@@ -219,6 +223,7 @@ class ResourceManager {
 		System.println("\n");
 	}
 	
+	//! Loads all necessary resources.
 	function loadResources() {
 		bitmap_burn = WatchUi.loadResource(Rez.Drawables.burn);
 		string_goal_8 = WatchUi.loadResource(Rez.Strings.goal_8);

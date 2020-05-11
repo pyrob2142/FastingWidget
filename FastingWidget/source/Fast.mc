@@ -2,12 +2,20 @@ using Toybox.Time;
 using Toybox.Timer;
 using Toybox.WatchUi;
 
+//! Hold data and does calculations regarding the fast
 class Fast {
 	var fast_manager;
 	var resource_manager;
+	
+	//! Time.Moment of when the fast was started
 	var m_start;
+	
+	//! Time.Duration of the goal duration
 	var d_goal;
+	
 	var m_now;
+	
+	//! Time.Duration since m_start
 	var d_elapsed;
 	var is_complete;
 	var has_goal;
@@ -28,6 +36,9 @@ class Fast {
 		reset();
 	}
 	
+	//! Starts a new fast.
+	//! If goal is set to anything else than -1 the fast will have a goal.
+	//! @param [Number] goal The target duration of the fast in hours
 	function start(goal) {
 		if (goal != -1) {
 			d_goal = new Time.Duration(goal * 3600);
@@ -43,6 +54,10 @@ class Fast {
 		update();
 	}
 	
+	//! Resumes a previously saved fast. 
+	//! Same as start expect that it starts from a specific moment.
+	//! @param [Number] start UNIX Epoch of when the fast was started.
+	//! @param [Number] goal  target duration of the fast in seconds.
 	function resume(start, goal) {
 		if (goal != -1) {
 			d_goal = new Time.Duration(goal);
@@ -57,11 +72,13 @@ class Fast {
 		update();
 	}
 	
+	//! Ends the current fast, by setting it inactive and stopping the auto-refresh.
 	function end() {
 		is_active = false;
 		timer.stop();
 	}
 	
+	//! Resets the fast object in order to begin a new fast.
 	function reset() {
 		weight = resource_manager.weight;
 		height = resource_manager.height;
@@ -81,6 +98,7 @@ class Fast {
 		is_active = false;		
 	}
 	
+	//! Calculates the current progress of the fast in percent of goal completion.
 	function calculateProgress() {
 		var m_goal = m_start.add(d_goal);
 		
@@ -94,7 +112,7 @@ class Fast {
 		progress = elapsed_val / goal_val.toFloat();
 	}
 	
-	// Calculate kcal burned using Harris-Benedict formula
+	//! Calculates kcal burned using the Harris-Benedict formula.
 	function calculateCalories() {
 		var bmr;
 		
@@ -117,8 +135,9 @@ class Fast {
 		calories = calories_per_second * d_elapsed.value().toDouble();
 	}
 	
-	function update() {
-		
+	//! Updates the fast and requests a screen refresh. 
+	//! Target refresh: Once per second.
+	function update() {	
 		m_now = Time.now();
 		d_elapsed = m_now.subtract(m_start);
 		

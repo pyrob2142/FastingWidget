@@ -12,6 +12,8 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		
 	}
 	
+	//! Opens the fast-type menu to the User.
+	//! Fasts can have a goal or run unrestricted.
 	function openFastTypeMenu() {
 		var menu = new WatchUi.Menu2({
 			:title => resource_manager.string_fast_type_menu_title
@@ -40,6 +42,9 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		return true;
 	}
 	
+	//! Opens the finish menu.
+	//! A fast is considered finished once the target duration has been reached
+	//! or if no goal was set.
 	function openFinishMenu() {
 		var menu = new WatchUi.Menu2({
 			:title => resource_manager.string_end_fast_title
@@ -68,6 +73,9 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		return true;
 	}
 	
+	//! Opens the cancel menu.
+	//! A fast is considered cancelled, if it ends before the target duration has been reached.
+	//! A cancelled fast may lead to the reset of the streak.
 	function openCancelMenu() {
 		var menu = new WatchUi.Menu2({
 			:title => resource_manager.string_cancel_fast_title
@@ -96,6 +104,8 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		return true;
 	}
 	
+	//! Opens the goal menu.
+	//! Users can choose from a variety of common fast durations.
 	function openGoalMenu() {
 		var default_goal_index = resource_manager.default_goal_index;
 		
@@ -300,6 +310,8 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 	}
 }
 
+//! Handles user input during fast-type selection.
+//! @return [Boolean] Returns false to prevent menu wrapping.
 class FastTypeMenuDelegate extends WatchUi.Menu2InputDelegate {
 	
 	var fast_manager;
@@ -328,6 +340,7 @@ class FastTypeMenuDelegate extends WatchUi.Menu2InputDelegate {
 	}
 }
 
+//! Handles user input during target duration selection.
 class GoalMenuDelegate extends WatchUi.Menu2InputDelegate {
 
 	var fast_manager;
@@ -348,6 +361,7 @@ class GoalMenuDelegate extends WatchUi.Menu2InputDelegate {
 	}
 }
 
+//! Handles user input during end fast and cancel fast selections.
 class EndFastMenuDelegate extends WatchUi.Menu2InputDelegate {
 
 	var fast_manager;

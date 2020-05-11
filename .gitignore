@@ -1,3 +1,5 @@
 fasting_widget_key
-FastingWidget/bin/
+FastingWidget/bin/*
 .metadata
+Screenshots
+*.png

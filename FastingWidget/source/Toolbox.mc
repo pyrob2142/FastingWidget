@@ -2,6 +2,8 @@ using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.Math;
 
+//! Provides a variety of useful functions, that aren't specific enough to fit
+//! into a certain class.
 class Toolbox {
 	var resource_manager;
 	
@@ -9,17 +11,25 @@ class Toolbox {
 		
 	}
 	
-	// Convert weight from g to kg
+	//! Converts weight from grams to kilograms.
+	//! @param [Number] weight Weight in grams.
+	//! @return [Number] Weight in kilograms.
 	function convertWeight(weight) {
 		return weight / 1000.0;
 	}
 	
-	// Convert height from cm to m
+	//! Converts height from centimeters to meters.
+	//! @param [Number] height Height in centimeters.
+	//! @return [Number] height in meters.
 	function convertHeight(height) {
 		return height / 100.0;
 	}
 	
-	// Calculate user age by taking birthday in UNIX epoch
+	//! Calculates user age by taking the birthday in UNIX Epoch.
+	//! Since the user profile is only storing the birth year,
+	//! we calculate the exact age ourselves.
+	//! @param [Number] birthday Birthday in UNIX Epoch.
+	//! @return [Number] User age in years.
 	function calculateAge(birthday) {
 		var m_bday = new Time.Moment(birthday);
 		var m_now = Time.now();
@@ -29,12 +39,17 @@ class Toolbox {
 		return d_age.value() / Gregorian.SECONDS_PER_YEAR;
 	}
 	
-	// Calculate BMI
+	//! Calculates the user's BMI.
+	//! @param [Number] weight Weight in kilogram.
+	//! @param [Number] height Height in centimeters.
+	//! @return [Number] BMI in kg/m^2.
 	function calculateBMI(weight, height) {
 		return weight / Math.pow(convertHeight(height), 2);
 	}
 	
-	// Convert seconds into DD:HH:MM or HH:MM:SS
+	//! Converts seconds into DD:HH:MM or HH:MM:SS
+	//! @param [Number] value Seconds to convert.
+	//! @return [String] A pretty time string.
 	function convertSeconds(value) {
 		var n = value;
 		
@@ -58,6 +73,11 @@ class Toolbox {
 		}
 	}
 	
+	//! Creates a pretty date string from a Time.moment.
+	//! @param [Time.Moment] moment The moment to be converted.
+	//! @param [Boolean] year Set to true to include the year in the string.
+	//! @param [Boolean] line_break Set to true to replace the comma with a new line.
+	//! @return [String] A pretty date string.
 	function momentToString(moment, year, line_break) {
 		var moment_info = Gregorian.info(moment, Time.FORMAT_SHORT);
 		
@@ -79,6 +99,9 @@ class Toolbox {
 		}
 	}
 	
+	//! Calculates a Time.Moment a specific duration from Time.now() and returns it as a pretty string.
+	//! @param [Number] hours Duration to add to current time in hours.
+	//! @return [String] A pretty string representing a date in the future.
 	function calculateDate(hours) {
 		var duration = new Time.Duration(hours * 3600);
 		var date = Time.now().add(duration);
@@ -86,6 +109,9 @@ class Toolbox {
 		return date_info.day_of_week + " " + momentToString(date, true, false);
 	}
 	
+	//! Converts a duration in hours into a duration of pretty days.
+	//! @param [Number] value Duration in hours.
+	//! @return [String] A string of pretty days.
 	function hoursToDays(value) {
 		var days = value / 24;
 		var hours = value % 24;

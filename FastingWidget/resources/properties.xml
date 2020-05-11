@@ -7,8 +7,8 @@
 	<property id="default_goal" type="number">6</property> 
 	<property id="activity_level" type="number">2</property>
 	<property id="birthday" type="number">0</property>
-	<property id="arc_yellow_threshold" type="number">16</property>
-	<property id="arc_green_threshold" type="number">20</property>
+	<property id="streak_reset_threshold" type="number">50</property>
+	<property id="streak_inc_threshold" type="number">75</property>
 	<property id="streak_data" type="number">0</property>
 </properties>
 
@@ -77,12 +77,12 @@
 	<settingConfig type="date" /> 
 	</setting>
 	
-	<setting propertyKey="@Properties.arc_yellow_threshold" title="@Strings.arc_yellow_threshold_title">
-	<settingConfig type="numeric" min="1" />
+	<setting propertyKey="@Properties.streak_reset_threshold" title="@Strings.streak_reset_threshold_title">
+	<settingConfig type="numeric" min="1" max="100" />
 	</setting>
 	
-	<setting propertyKey="@Properties.arc_green_threshold" title="@Strings.arc_green_threshold_title">
-	<settingConfig type="numeric" min="1" />
+	<setting propertyKey="@Properties.streak_inc_threshold" title="@Strings.streak_inc_threshold_title">
+	<settingConfig type="numeric" min="1" max="100" />
 	</setting>
 	
 	<setting propertyKey="@Properties.streak_data" title="@Strings.streak_title">
