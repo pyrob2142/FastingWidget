@@ -3,7 +3,14 @@
 	<string id="AppName">Fasten Widget</string>
 
 	<!-- USER SETTINGS -->
-	<string id="longpress_threshold_title">Langes Drücken ab (ms)</string>
+	<string id="longpress_threshold_title">Langer Druck ab (ms)</string>
+	
+	<string id="default_page_goal_title">Startseite (mit Ziel)</string>
+	<string id="default_page_no_goal_title">Startseite (ohne Ziel)</string>
+	<string id="page_streak">Serie</string>
+	<string id="page_elapsed">Vergangene Zeit</string>
+	<string id="page_remaining">Verbleibende Zeit</string>
+	<string id="page_calories">Kalorien</string>
 	
 	<string id="default_goal_title">Standard Ziel</string>
 	<string id="goal_8">8 Stunden</string>
@@ -30,21 +37,21 @@
 	
 	<string id="activity_level_title">Aktivität</string>
 	<string id="activity_level_0">Sitzend (wenig bis keine Bewegung)</string>
-	<string id="activity_level_1">Leicht aktiv (leichte Beanspruchung 1-3 Tage pro Woche)</string>
-	<string id="activity_level_2">Durchschnittlich aktiv (mittlere Beanspruchung 3-5 Tage pro Woche)</string>
-	<string id="activity_level_3">Sehr aktiv (harte Beanspruchung 6-7 Tage pro Woche)</string>
-	<string id="activity_level_4">Besonders aktiv (sehr harte Beanspruchung/Sport oder eine körperliche Arbeit)</string>
+	<string id="activity_level_1">Leicht aktiv (leichte Belastung 1-3 Tage pro Woche)</string>
+	<string id="activity_level_2">Durchschnittlich aktiv (mittlere Belastung 3-5 Tage pro Woche)</string>
+	<string id="activity_level_3">Sehr aktiv (harte Belastung 6-7 Tage pro Woche)</string>
+	<string id="activity_level_4">Besonders aktiv (sehr harte Belastung/Sport oder eine körperliche Arbeit)</string>
 	
 	<string id="birthday_title">Geburtsdatum</string>
-	<string id="arc_yellow_threshold_title">Ampelring wird gelb ab (Stunden)</string>
-	<string id="arc_green_threshold_title">Ampelring wird grün ab (Stunden)</string>
-	<string id="streak_title">Lauf überschreiben</string>
+	<string id="arc_yellow_threshold_title">Ring wird gelb ab (Stunden)</string>
+	<string id="arc_green_threshold_title">Ring wird grün ab (Stunden)</string>
+	<string id="streak_title">Serie überschreiben</string>
 
 	<!-- FastingView.mc -->
 	<string id="summary">ÜBERBLICK</string>
 	<string id="duration">ZEIT</string>
 	<string id="calories">KALORIEN</string>
-	<string id="streak">LAUF</string>
+	<string id="streak">SERIE</string>
 	<string id="fast_sg">FASTEN</string>
 	<string id="fast_pl">FASTEN</string>
 	<string id="elapsed">VERGANGEN</string>
@@ -54,14 +61,14 @@
 	<string id="kcal">KCAL</string>
 	
 	<!-- MenuHandler.mc -->
-	<string id="fast_type_menu_title">Beginn</string>
+	<string id="fast_type_menu_title">Neues Fasten</string>
 	<string id="fast_set_goal">Ziel setzen</string>
-	<string id="fast_no_goal">Ohne Ziel</string>
+	<string id="fast_no_goal">Kein Ziel</string>
 	<string id="end_fast_title">Fasten beenden?</string>
-	<string id="yes">Ja</string>
-	<string id="no">Nein</string>
 	<string id="cancel_fast_title">Fasten abbrechen?</string>
 	<string id="goal_menu_title">Ziel</string>
+	<string id="yes">Ja</string>
+	<string id="no">Nein</string>
 	
 	<!-- Toolbox.mc -->
 	<string id="symbol_days">T</string>

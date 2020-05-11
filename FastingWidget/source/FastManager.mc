@@ -74,9 +74,9 @@ class FastManager {
 		if (fast.is_active == false) {
 			current_page = STREAK;
 		} else if (fast.has_goal == true) {
-			current_page = REMAINING;
+			current_page = resource_manager.default_page_goal;
 		} else {
-			current_page = OPEN;
+			current_page = resource_manager.default_page_no_goal;
 		}
 	}
 	

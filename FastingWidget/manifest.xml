@@ -6,15 +6,15 @@
             <iq:product id="fenix5splus"/>
             <iq:product id="fenix5x"/>
             <iq:product id="fenix5xplus"/>
-            <iq:product id="fenix6s"/>
-            <iq:product id="fenix6spro"/>
         </iq:products>
         <iq:permissions>
             <iq:uses-permission id="UserProfile"/>
         </iq:permissions>
         <iq:languages>
+            <iq:language>ara</iq:language>
             <iq:language>deu</iq:language>
             <iq:language>eng</iq:language>
+            <iq:language>hrv</iq:language>
         </iq:languages>
         <iq:barrels/>
     </iq:application>

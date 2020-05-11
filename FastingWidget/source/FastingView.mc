@@ -27,7 +27,6 @@ class FastingView extends WatchUi.View {
         setLayout(Rez.Layouts.MainLayout(dc));
         center_x = dc.getWidth() / 2;
         center_y = dc.getHeight() / 2;
-        
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -87,27 +86,17 @@ class FastingView extends WatchUi.View {
     	
     	var duration_label = fast_manager.getElapsed();
     	var calories_label = fast_manager.getCalories().format("%.1f");
-    	
+    	var progress = fast_manager.getProgress();
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, resource_manager.string_summary, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y - 30, Graphics.FONT_TINY, resource_manager.string_duration, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, resource_manager.string_summary.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 30, Graphics.FONT_TINY, resource_manager.string_duration.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y, Graphics.FONT_MEDIUM, duration_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y + 40, Graphics.FONT_TINY, resource_manager.string_calories, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 40, Graphics.FONT_TINY, resource_manager.string_calories.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 70, Graphics.FONT_MEDIUM, calories_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
-		var arc_color;
-		
-		if (fast_manager.fast.is_complete == true) {
-			arc_color = Graphics.COLOR_GREEN;
-		} else {
-			arc_color = Graphics.COLOR_RED;
-		}
-		
-		dc.setColor(arc_color, Graphics.COLOR_BLACK);
-		dc.setPenWidth(7);
-		dc.drawArc(center_x, center_y, 118, dc.ARC_CLOCKWISE, 0, 360);
+		drawProgressArc(dc, progress);
     }
     
     function drawStreakIncrement(dc) {
@@ -116,7 +105,7 @@ class FastingView extends WatchUi.View {
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, resource_manager.string_streak, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, resource_manager.string_streak.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
 		dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_BLACK);
 		dc.drawText(center_x, center_y - 30, Graphics.FONT_NUMBER_MILD, streak + 1, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
@@ -140,7 +129,7 @@ class FastingView extends WatchUi.View {
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, resource_manager.string_streak, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 70, Graphics.FONT_SMALL, resource_manager.string_streak.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.drawText(center_x, center_y - 10, Graphics.FONT_NUMBER_THAI_HOT, "0", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
@@ -155,15 +144,15 @@ class FastingView extends WatchUi.View {
 
 	function drawStreak(dc) {
 		var streak_label = fast_manager.streak;
-		var fast_label = resource_manager.string_fast_pl;
+		var fast_label = resource_manager.string_fast_pl.toUpper();
 		
 		if (streak_label == 1) {
-			fast_label = resource_manager.string_fast_sg;
+			fast_label = resource_manager.string_fast_sg.toUpper();
 		}
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		dc.drawText(center_x, center_y - 25 - dc.getFontHeight(Graphics.FONT_MEDIUM), Graphics.FONT_MEDIUM, resource_manager.string_streak, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 25 - dc.getFontHeight(Graphics.FONT_MEDIUM), Graphics.FONT_MEDIUM, resource_manager.string_streak.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y, Graphics.FONT_NUMBER_HOT, streak_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 60, Graphics.FONT_MEDIUM, fast_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
@@ -172,13 +161,13 @@ class FastingView extends WatchUi.View {
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		var mode_label = resource_manager.string_elapsed;
-		var time_label = fast_manager.getElapsed();
+		var mode_label = resource_manager.string_elapsed.toUpper();
+		var time_label = fast_manager.getElapsed().toUpper();
 		var start_label = toolbox.momentToString(fast_manager.getStartMoment(), true, true);
 		
 		dc.drawText(center_x, center_y - 46 - dc.getFontHeight(Graphics.FONT_TINY), Graphics.FONT_TINY, mode_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y - dc.getFontHeight(Graphics.FONT_MEDIUM) - 2, Graphics.FONT_MEDIUM, time_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y, Graphics.FONT_TINY, resource_manager.string_since, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y, Graphics.FONT_TINY, resource_manager.string_since.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 55, Graphics.FONT_MEDIUM, start_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
 		drawProgressArc(dc, 1.0);
@@ -188,16 +177,16 @@ class FastingView extends WatchUi.View {
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 		
-		var mode_label = resource_manager.string_elapsed;
-		var conjunction = resource_manager.string_since;
-		var time_label = fast_manager.getElapsed();
-		var date_label = toolbox.momentToString(fast_manager.getStartMoment(), true, false);
+		var mode_label = resource_manager.string_elapsed.toUpper();
+		var conjunction = resource_manager.string_since.toUpper();
+		var time_label = fast_manager.getElapsed().toUpper();
+		var date_label = toolbox.momentToString(fast_manager.getStartMoment(), true, false).toUpper();
 		
 		if (show_remaining == true) {
-			mode_label = resource_manager.string_remaining;
-			conjunction = resource_manager.string_until;
-			time_label = fast_manager.getRemaining();
-			date_label = toolbox.momentToString(fast_manager.getGoalMoment(), true, false);
+			mode_label = resource_manager.string_remaining.toUpper();
+			conjunction = resource_manager.string_until.toUpper();
+			time_label = fast_manager.getRemaining().toUpper();
+			date_label = toolbox.momentToString(fast_manager.getGoalMoment(), true, false).toUpper();
 		}
 		
 		
@@ -221,7 +210,7 @@ class FastingView extends WatchUi.View {
 		
 		dc.drawBitmap(center_x - 32, center_y - 100, resource_manager.bitmap_burn);
 		dc.drawText(center_x, center_y + 10, Graphics.FONT_NUMBER_HOT, calories_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(center_x, center_y + 70, Graphics.FONT_MEDIUM, resource_manager.string_kcal, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y + 70, Graphics.FONT_MEDIUM, resource_manager.string_kcal.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
 	
 	function drawProgressArc(dc, percent) {
@@ -239,10 +228,10 @@ class FastingView extends WatchUi.View {
 		
 		var elapsed = fast_manager.fast.d_elapsed.value();
 		
-		if (elapsed >= arc_yellow_threshold) {
-			arc_color = Graphics.COLOR_YELLOW;
-		} else if (elapsed >= arc_green_threshold) {
+		if (elapsed >= arc_green_threshold) {
 			arc_color = Graphics.COLOR_GREEN;
+		} else if (elapsed >= arc_yellow_threshold) {
+			arc_color = Graphics.COLOR_YELLOW;
 		} else {
 			arc_color = Graphics.COLOR_RED;
 		}

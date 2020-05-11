@@ -5,6 +5,14 @@
 	<!-- USER SETTINGS -->
 	<string id="longpress_threshold_title">Long Press Threshold (ms)</string>
 	
+	<string id="default_page_goal_title">Initial Page (with goal)</string>
+	<string id="default_page_no_goal_title">Initial Page (without goal)</string>
+	<string id="page_streak">Streak</string>
+	<string id="page_elapsed">Elapsed Time</string>
+	<string id="page_remaining">Remaining Time</string>
+	<string id="page_calories">Calories</string>
+	
+	
 	<string id="default_goal_title">Default Goal</string>
 	<string id="goal_8">8 Hours</string>
 	<string id="goal_12">12 Hours</string>
@@ -54,14 +62,14 @@
 	<string id="kcal">KCAL</string>
 	
 	<!-- MenuHandler.mc -->
-	<string id="fast_type_menu_title">Start</string>
+	<string id="fast_type_menu_title">New Fast</string>
 	<string id="fast_set_goal">Set Goal</string>
 	<string id="fast_no_goal">No Goal</string>
 	<string id="end_fast_title">End Fast?</string>
-	<string id="yes">Yes</string>
-	<string id="no">No</string>
 	<string id="cancel_fast_title">Cancel Fast?</string>
 	<string id="goal_menu_title">Goal</string>
+	<string id="yes">Yes</string>
+	<string id="no">No</string>
 	
 	<!-- Toolbox.mc -->
 	<string id="symbol_days">D</string>

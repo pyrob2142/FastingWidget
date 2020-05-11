@@ -14,6 +14,8 @@ class ResourceManager {
 	
 	// Settings
 	var longpress_threshold;
+	var default_page_goal;
+	var default_page_no_goal;
 	var default_goal_hours;
 	var default_goal_index;
 	var arc_yellow_threshold;
@@ -107,6 +109,9 @@ class ResourceManager {
 	function loadSettings() {
 		longpress_threshold = Application.AppBase.getProperty("longpress_threshold");
 		
+		default_page_goal = Application.AppBase.getProperty("default_page_goal");
+		default_page_no_goal = Application.AppBase.getProperty("default_page_no_goal");
+		
 		default_goal_index = Application.AppBase.getProperty("default_goal");
 		
 		arc_yellow_threshold = Application.AppBase.getProperty("arc_yellow_threshold") * 3600;
@@ -194,11 +199,13 @@ class ResourceManager {
 		}
 		
 		start_data = Storage.getValue("start_data");
+		start_data = 1589129700;
 		if (start_data == -1 || start_data == null) {
 			start_data = -1;
 		}
 		
 		goal_data = Storage.getValue("goal_data");
+		goal_data = 129600;
 		if (goal_data == -1 || goal_data == null) {
 			goal_data = -1;
 		}
