@@ -89,7 +89,6 @@ class FastingView extends WatchUi.View {
     	
     	var duration_label = fast_manager.getElapsed();
     	var calories_label = fast_manager.getCalories().format("%.1f");
-    	var progress = fast_manager.getProgress();
     	
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
@@ -100,14 +99,13 @@ class FastingView extends WatchUi.View {
 		dc.drawText(center_x, center_y + 40, Graphics.FONT_TINY, resource_manager.string_calories.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 70, Graphics.FONT_MEDIUM, calories_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
-		drawProgressArc(dc, progress);
+		drawProgressArc(dc);
     }
     
     //! Draws the reward screen, where your current streak is increased by 1, after a successful fast
     //! @param [Object] dc Device Context
     function drawStreakIncrement(dc) {
     	var streak = fast_manager.streak;
-    	var progress = fast_manager.getProgress();
     	
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
@@ -125,7 +123,7 @@ class FastingView extends WatchUi.View {
 			dc.drawText(center_x, center_y + 70, Graphics.FONT_NUMBER_MILD, streak - 1, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		}
 		
-		drawProgressArc(dc, progress);
+		drawProgressArc(dc);
     }
     
     //! Draws the "punishment" screen, where your streak is reset to zero, after you cancel a fast.
@@ -133,7 +131,6 @@ class FastingView extends WatchUi.View {
     //! @param [Object] dc Device Context
     function drawStreakReset(dc) {
     	var streak = fast_manager.streak_old;
-    	var progress = fast_manager.getProgress();
     	
     	dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
@@ -146,14 +143,13 @@ class FastingView extends WatchUi.View {
 		dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_BLACK);
 		dc.drawText(center_x, center_y + 60, Graphics.FONT_NUMBER_MEDIUM, streak, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
-		drawProgressArc(dc, progress);
+		drawProgressArc(dc);
     }
 
  	//! Draws the current streak view
     //! @param [Object] dc Device Context
 	function drawStreak(dc) {
 		var streak_label = fast_manager.streak;
-		
 		
 		var fast_label = resource_manager.string_fast_pl.toUpper();
 		
@@ -186,8 +182,8 @@ class FastingView extends WatchUi.View {
 		dc.drawText(center_x, center_y - dc.getFontHeight(Graphics.FONT_MEDIUM) - 2, Graphics.FONT_MEDIUM, time_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y, Graphics.FONT_TINY, resource_manager.string_since.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 55, Graphics.FONT_MEDIUM, start_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		
-		drawProgressArc(dc, 1.0);
+	
+		drawProgressArc(dc);
 	}
 	
 	//! Draws the elapsed or remaining screen and shows the current progress of the fast both with an arc and as a number.
@@ -224,7 +220,7 @@ class FastingView extends WatchUi.View {
 		dc.drawText(center_x, center_y + 36, Graphics.FONT_MEDIUM, date_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y + 75, Graphics.FONT_MEDIUM, progress_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
-		drawProgressArc(dc, progress);
+		drawProgressArc(dc);
 	}
 	
 	//! Draws the current calories.
@@ -245,31 +241,42 @@ class FastingView extends WatchUi.View {
 	//! the streak will not increase, but will not be reset either. Once it turns green the user receives an A for effort and the 
 	//! streak will be increased as well.
     //! @param [Object] dc Device Context
-    //! @param [Number] percent The current completion percentage in the range of 0 to 1.
-	function drawProgressArc(dc, percent) {
-		
-		if (percent > 1.0) {
-			percent = 1.0;
-		}
-		var degrees = 360 * percent;
-		var arc_end = 0;
+	function drawProgressArc(dc) {
+		var has_goal = fast_manager.fast.has_goal;
+		var percent = 1.0;
+		var degrees;
+		var arc_end;
 		var arc_color;
 		
-		if (degrees < 90) {
-			arc_end = 90 - degrees;
-		} else {
-			arc_end = 360 - (degrees - 90);
-		}
-	
-		dc.setPenWidth(7);
+		if (has_goal == true) {
+			percent = fast_manager.getProgress();
+			
+			if (percent > 1.0) {
+				percent = 1.0;
+			}
+			
+			degrees = 360 * percent;
 		
-		if (percent >= streak_inc_threshold) {
-			arc_color = Graphics.COLOR_GREEN;
-		} else if (percent >= streak_reset_threshold) {
-			arc_color = Graphics.COLOR_YELLOW;
+			if (degrees < 90) {
+				arc_end = 90 - degrees;
+			} else {
+				arc_end = 360 - (degrees - 90);
+			}
+		
+			if (percent >= streak_inc_threshold) {
+				arc_color = Graphics.COLOR_GREEN;
+			} else if (percent >= streak_reset_threshold) {
+				arc_color = Graphics.COLOR_YELLOW;
+			} else {
+				arc_color = Graphics.COLOR_RED;
+			}
 		} else {
-			arc_color = Graphics.COLOR_RED;
+			arc_end = 90;
+			arc_color = Graphics.COLOR_BLUE;
 		}
+		
+		
+		dc.setPenWidth(7);
 		
 		dc.setColor(arc_color, Graphics.COLOR_BLACK);
 		dc.drawArc(center_x, center_y, 118, dc.ARC_CLOCKWISE, 90, arc_end);

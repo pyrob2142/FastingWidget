@@ -3,7 +3,7 @@
 <properties>
 	<property id="longpress_threshold" type="number">2000</property>
 	<property id="default_page_goal" type="number">2</property>
-	<property id="default_page_no_goal" type="number">1</property>
+	<property id="default_page_no_goal" type="number">3</property>
 	<property id="default_goal" type="number">6</property> 
 	<property id="activity_level" type="number">2</property>
 	<property id="birthday" type="number">0</property>
@@ -29,7 +29,7 @@
 	<setting propertyKey="@Properties.default_page_no_goal" title="@Strings.default_page_no_goal_title">
 	<settingConfig type="list">
 	<listEntry value="0">@Strings.page_streak</listEntry>
-	<listEntry value="1">@Strings.page_elapsed</listEntry>
+	<listEntry value="3">@Strings.page_elapsed</listEntry>
 	<listEntry value="4">@Strings.page_calories</listEntry>
 	</settingConfig>
 	</setting>

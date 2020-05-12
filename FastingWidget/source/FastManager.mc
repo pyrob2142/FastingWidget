@@ -58,7 +58,8 @@ class FastManager {
 	//! Starts a fast and navigates the view to the correct page.
 	//! @param [Number] goal Target duration in hours.
 	function startFast(goal) {
-	
+		fast.reset();
+		
 		if (goal != -1) {
 			fast.start(goal);
 			current_page = ELAPSED;
@@ -98,10 +99,12 @@ class FastManager {
 	function initPageCounter() {
 		if (fast.is_active == false) {
 			current_page = STREAK;
-		} else if (fast.has_goal == true) {
-			current_page = resource_manager.default_page_goal;
 		} else {
-			current_page = resource_manager.default_page_no_goal;
+			if (fast.has_goal == true) {
+				current_page = resource_manager.default_page_goal;
+			} else {
+				current_page = resource_manager.default_page_no_goal;
+			}
 		}
 	}
 	

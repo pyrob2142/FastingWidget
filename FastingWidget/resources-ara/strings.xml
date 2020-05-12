@@ -55,13 +55,14 @@
 	<string id="streak">[streak]</string>
 	<string id="fast_sg">[fast]</string>
 	<string id="fast_pl">[fasts]</string>
+	<string id="nominalization">n</string>
 	<string id="elapsed">[elapsed]</string>
 	<string id="remaining">[remaining]</string>
 	<string id="since">[since]</string>
 	<string id="until">[until]</string>
 	<string id="kcal">[kcal]</string>
 	<string id="overtime">[overtime]</string>
-	<string id="nominalization">n</string>
+	
 	
 	<!-- MenuHandler.mc -->
 	<string id="fast_type_menu_title">[fast_type_menu_title]</string>

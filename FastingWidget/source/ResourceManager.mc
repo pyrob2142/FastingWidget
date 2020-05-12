@@ -172,6 +172,8 @@ class ResourceManager {
 		// DEBUG
 		System.println("SETTINGS");
 		System.println("longpress_threshold: " + longpress_threshold);
+		System.println("default_page_goal: " + default_page_goal);
+		System.println("default_page_no_goal: " + default_page_no_goal);
 		System.println("default_goal_index: " + default_goal_index);
 		System.println("streak_reset_threshold: " + streak_reset_threshold);
 		System.println("streak_inc_threshold: " + streak_inc_threshold);
