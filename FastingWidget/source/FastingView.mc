@@ -251,12 +251,16 @@ class FastingView extends WatchUi.View {
 		if (has_goal == true) {
 			percent = fast_manager.getProgress();
 			
+			degrees = 360 * percent;
+			
 			if (percent > 1.0) {
-				percent = 1.0;
+				degrees = 360;
 			}
 			
-			degrees = 360 * percent;
-		
+			if (percent == 0.0) {
+				degrees = 1;
+			}
+			
 			if (degrees < 90) {
 				arc_end = 90 - degrees;
 			} else {
@@ -275,9 +279,7 @@ class FastingView extends WatchUi.View {
 			arc_color = Graphics.COLOR_BLUE;
 		}
 		
-		
 		dc.setPenWidth(7);
-		
 		dc.setColor(arc_color, Graphics.COLOR_BLACK);
 		dc.drawArc(center_x, center_y, 118, dc.ARC_CLOCKWISE, 90, arc_end);
 	}
