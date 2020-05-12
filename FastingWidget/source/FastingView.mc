@@ -153,6 +153,8 @@ class FastingView extends WatchUi.View {
     //! @param [Object] dc Device Context
 	function drawStreak(dc) {
 		var streak_label = fast_manager.streak;
+		
+		
 		var fast_label = resource_manager.string_fast_pl.toUpper();
 		
 		if (streak_label == 1) {
@@ -163,6 +165,9 @@ class FastingView extends WatchUi.View {
 		
 		dc.drawText(center_x, center_y - 25 - dc.getFontHeight(Graphics.FONT_MEDIUM), Graphics.FONT_MEDIUM, resource_manager.string_streak.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y, Graphics.FONT_NUMBER_HOT, streak_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		if (resource_manager.nominalization == true) {
+			dc.drawText(center_x + 10 + dc.getTextWidthInPixels(streak_label.toString(), Graphics.FONT_NUMBER_HOT), center_y + dc.getFontHeight(Graphics.FONT_NUMBER_HOT) / 2 - (dc.getFontHeight(Graphics.FONT_LARGE) / 2) + 7, Graphics.FONT_LARGE, "X", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		}
 		dc.drawText(center_x, center_y + 60, Graphics.FONT_MEDIUM, fast_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
 	
@@ -199,6 +204,12 @@ class FastingView extends WatchUi.View {
 		if (show_remaining == true) {
 			mode_label = resource_manager.string_remaining.toUpper();
 			conjunction = resource_manager.string_until.toUpper();
+			
+			if (fast_manager.getProgress() > 1.0) {
+				mode_label = resource_manager.string_overtime.toUpper();
+				conjunction = resource_manager.string_since.toUpper();
+			}
+			
 			time_label = fast_manager.getRemaining().toUpper();
 			date_label = toolbox.momentToString(fast_manager.getGoalMoment(), true, false).toUpper();
 		}
@@ -236,6 +247,10 @@ class FastingView extends WatchUi.View {
     //! @param [Object] dc Device Context
     //! @param [Number] percent The current completion percentage in the range of 0 to 1.
 	function drawProgressArc(dc, percent) {
+		
+		if (percent > 1.0) {
+			percent = 1.0;
+		}
 		var degrees = 360 * percent;
 		var arc_end = 0;
 		var arc_color;

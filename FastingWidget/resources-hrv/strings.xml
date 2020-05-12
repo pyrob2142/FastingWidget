@@ -54,11 +54,13 @@
 	<string id="streak">Red</string>
 	<string id="fast_sg">Post</string>
 	<string id="fast_pl">Postovi</string>
+	<string id="nominalization">n</string>
 	<string id="elapsed">Proteklo</string>
 	<string id="remaining">Ostalo</string>
-	<string id="since">Od</string>
-	<string id="until">Do</string>
+	<string id="since">od</string>
+	<string id="until">do</string>
 	<string id="kcal">kcal</string>
+	<string id="overtime">Prekovremeno</string>
 	
 	<!-- MenuHandler.mc -->
 	<string id="fast_type_menu_title">Novi post</string>

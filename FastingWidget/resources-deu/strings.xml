@@ -48,17 +48,19 @@
 	<string id="streak_title">Serie überschreiben</string>
 
 	<!-- FastingView.mc -->
-	<string id="summary">ÜBERBLICK</string>
-	<string id="duration">ZEIT</string>
-	<string id="calories">KALORIEN</string>
-	<string id="streak">SERIE</string>
-	<string id="fast_sg">FASTEN</string>
-	<string id="fast_pl">FASTEN</string>
-	<string id="elapsed">VERGANGEN</string>
-	<string id="remaining">VERBLEIBEND</string>
-	<string id="since">SEIT</string>
-	<string id="until">BIS</string>
-	<string id="kcal">KCAL</string>
+	<string id="summary">Überblick</string>
+	<string id="duration">Zeit</string>
+	<string id="calories">Kalorien</string>
+	<string id="streak">Serie</string>
+	<string id="fast_sg">Fasten</string>
+	<string id="fast_pl">Fasten</string>
+	<string id="nominalization">y</string>
+	<string id="elapsed">Vergangen</string>
+	<string id="remaining">Verbleibend</string>
+	<string id="since">seit</string>
+	<string id="until">bis</string>
+	<string id="kcal">kcal</string>
+	<string id="overtime">Überzeit</string>
 	
 	<!-- MenuHandler.mc -->
 	<string id="fast_type_menu_title">Neues Fasten</string>

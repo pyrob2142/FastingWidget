@@ -49,17 +49,19 @@
 	<string id="streak_title">Overwrite Streak</string>
 
 	<!-- FastingView.mc -->
-	<string id="summary">SUMMARY</string>
-	<string id="duration">DURATION</string>
-	<string id="calories">CALORIES</string>
-	<string id="streak">STREAK</string>
-	<string id="fast_sg">FAST</string>
-	<string id="fast_pl">FASTS</string>
-	<string id="elapsed">ELAPSED</string>
-	<string id="remaining">REMAINING</string>
-	<string id="since">SINCE</string>
-	<string id="until">UNTIL</string>
-	<string id="kcal">KCAL</string>
+	<string id="summary">Summary</string>
+	<string id="duration">Duration</string>
+	<string id="calories">Calories</string>
+	<string id="streak">Streak</string>
+	<string id="fast_sg">Fast</string>
+	<string id="fast_pl">Fasts</string>
+	<string id="nominalization">n</string>
+	<string id="elapsed">Elapsed</string>
+	<string id="remaining">Remaining</string>
+	<string id="since">since</string>
+	<string id="until">until</string>
+	<string id="kcal">kcal</string>
+	<string id="overtime">Overtime</string>
 	
 	<!-- MenuHandler.mc -->
 	<string id="fast_type_menu_title">New Fast</string>

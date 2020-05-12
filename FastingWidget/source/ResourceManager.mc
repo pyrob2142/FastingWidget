@@ -71,6 +71,9 @@ class ResourceManager {
 	var string_since;
 	var string_until;
 	var string_kcal;
+	var string_overtime;
+	var string_nominalization;
+	var nominalization;
 	
 	var string_fast_type_menu_title;
 	var string_fast_set_goal;
@@ -105,6 +108,21 @@ class ResourceManager {
 		height = user.height;
 		gender = user.gender;
 		bmi = toolbox.calculateBMI(weight, height);
+		
+		// DEBUG
+		System.println("USER PROFILE");
+		
+		if (gender == 0) {
+			System.println("Gender: FEMALE");
+		} else {
+			System.println("Gender: MALE");
+		}
+		
+		System.println("Height: " + height);
+		System.println("Weight: " + weight);
+		System.println("BMI: " + bmi);
+		System.println("\n");
+		
 	}
 	
 	//! Loads the user settings.
@@ -203,13 +221,11 @@ class ResourceManager {
 		}
 		
 		start_data = Storage.getValue("start_data");
-		start_data = 1589129700;
 		if (start_data == -1 || start_data == null) {
 			start_data = -1;
 		}
 		
 		goal_data = Storage.getValue("goal_data");
-		goal_data = 129600;
 		if (goal_data == -1 || goal_data == null) {
 			goal_data = -1;
 		}
@@ -259,6 +275,14 @@ class ResourceManager {
 		string_since = WatchUi.loadResource(Rez.Strings.since);
 		string_until = WatchUi.loadResource(Rez.Strings.until);
 		string_kcal = WatchUi.loadResource(Rez.Strings.kcal);
+		string_overtime = WatchUi.loadResource(Rez.Strings.overtime);
+		string_nominalization = WatchUi.loadResource(Rez.Strings.nominalization);
+		
+		if (string_nominalization.equals("y")) {
+			nominalization = true;
+		} else {
+			nominalization = false;
+		}
 		
 		string_fast_type_menu_title = WatchUi.loadResource(Rez.Strings.fast_type_menu_title);
 		string_fast_set_goal = WatchUi.loadResource(Rez.Strings.fast_set_goal);

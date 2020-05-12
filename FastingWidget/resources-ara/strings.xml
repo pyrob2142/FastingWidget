@@ -60,6 +60,8 @@
 	<string id="since">[since]</string>
 	<string id="until">[until]</string>
 	<string id="kcal">[kcal]</string>
+	<string id="overtime">[overtime]</string>
+	<string id="nominalization">n</string>
 	
 	<!-- MenuHandler.mc -->
 	<string id="fast_type_menu_title">[fast_type_menu_title]</string>
