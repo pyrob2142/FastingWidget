@@ -71,7 +71,7 @@ If you want to provide a translation for the widget please feel free to edit the
 * Overwrite Streak: Allows you to overwrite the streak in case the settings get reset. Don't cheat!
 
 ## Real-time Calories Estimation
-The widget uses a combination of your BMR (basal metabolic rate) and activity level to estimate your daily calorie burn. These are then divided by 86400 to get your calories per second, which lets us estimate how many calories you should have burned at any point of your fast. Do note that while these equations are backed by statistics their accuracy is limited. For more information please see: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3572798/
+The widget uses a combination of your BMR (basal metabolic rate) and activity level to estimate your daily calorie burn, which is then divided by 86400 (seconds in a day) to get your calories per second. Multiplying with the amount of seconds elapsed since you started your fast, results in an estimate of how many calories you should have burned at this point in your fast. Do note that while these equations are backed by statistics their accuracy is limited. For more information please see: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3572798/
 
 The formulas available for BMR calculation are:
 * Mifflin-St Jeor Equation:
