@@ -49,8 +49,8 @@
 	<string id="bmr_katch">Katch-McArdle Formel (benötigt Körperfettanteil in Prozent)</string>
 	<string id="body_fat_title">Körperfettanteil (%)</string>
 	
-	<string id="streak_reset_threshold_title">Serie zurücksetzen unter (Prozent Fortschritt)</string>
-	<string id="streak_inc_threshold_title">Serie erhöhen (Prozent Fortschritt)</string>
+	<string id="streak_reset_threshold_title">Serie zurücksetzen unter (% Fortschritt)</string>
+	<string id="streak_inc_threshold_title">Serie erhöhen (% Fortschritt)</string>
 	<string id="streak_title">Serie überschreiben</string>
 
 	<!-- FastingView.mc -->

@@ -50,8 +50,8 @@
 	<string id="bmr_katch">Katch-McArdle Formula (requires body fat percentage)</string>
 	<string id="body_fat_title">Body fat (%)</string>
 	
-	<string id="streak_reset_threshold_title">Reset streak below (percent of completion)</string>
-	<string id="streak_inc_threshold_title">Increase streak above (percent of completion)</string>
+	<string id="streak_reset_threshold_title">Reset streak below (% of completion)</string>
+	<string id="streak_inc_threshold_title">Increase streak above (% of completion)</string>
 	<string id="streak_title">Overwrite Streak</string>
 
 	<!-- FastingView.mc -->
