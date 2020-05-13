@@ -44,6 +44,12 @@
 	<string id="activity_level_4">[activity_level_4]</string>
 	
 	<string id="birthday_title">[birthday_title]</string>
+	<string id="bmr_formula_title">[bmr_formula_title]</string>
+	<string id="bmr_mifflin">[bmr_mifflin]</string>
+	<string id="bmr_harris">[bmr_harris]</string>
+	<string id="bmr_katch">[bmr_katch]</string>
+	<string id="body_fat_title">[body_fat_title]</string>
+	
 	<string id="streak_reset_threshold_title">[streak_reset_threshold_title]</string>
 	<string id="streak_inc_threshold_title">[streak_inc_threshold_title]</string>
 	<string id="streak_title">[streak_title]</string>

@@ -44,6 +44,12 @@
 	<string id="activity_level_4">Extra Active (very hard exercise/training or a physical job)</string>
 	
 	<string id="birthday_title">Birthday</string>
+	<string id="bmr_formula_title">BMR calculation based on</string>
+	<string id="bmr_mifflin">Mifflin-St Jeor equation</string>
+	<string id="bmr_harris">Revised Harris Benedict equation</string>
+	<string id="bmr_katch">Katch-McArdle Formula (requires body fat percentage)</string>
+	<string id="body_fat_title">Body fat (%)</string>
+	
 	<string id="streak_reset_threshold_title">Reset streak below (percent of completion)</string>
 	<string id="streak_inc_threshold_title">Increase streak above (percent of completion)</string>
 	<string id="streak_title">Overwrite Streak</string>

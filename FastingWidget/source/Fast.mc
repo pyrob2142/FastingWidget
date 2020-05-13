@@ -112,22 +112,39 @@ class Fast {
 		progress = elapsed_val / goal_val.toFloat();
 	}
 	
-	//! Calculates kcal burned using the Harris-Benedict formula.
+	//! Calculates kcal burned per second using different formulas selected by the user.
+	//!	Mifflin-St Jeor Equation:
+	//! Men: 	BMR = 10 * W + 6.25 * H - 5 * A + 5
+	//! Women:  BMR = 10 * W + 6.25 * H - 5 * A - 161
+	//!
+	//! Revised Harris-Benedict Equation:
+	//! Men:	BMR = 13.397 * W + 4.799 * H - 5.677 * A + 88.362
+	//! Women: 	BMR = 9.247 * W + 3.098 * H - 4.330 * A + 447.593
+	//!
+	//! Katch-McArdle Formula (requires body fat in percent):
+	//! Unisex: BMR = 370 + 21.6 * (1 - F) * W
 	function calculateCalories() {
-		var bmr;
+		var bmr = 0;
 		
-		if (bmi >= 30) {
+		if (resource_manager.bmr_formula == resource_manager.MIFFLIN) {
 			if (gender == 0) {
-				bmr = 2.4 * weight + 9.0 * height - 4.7 * age - 65;
+				bmr = 10 * weight + 6.25 * height - 5 * age - 161;
 			} else {
-				bmr = 3.4 * weight + 15.3 * height - 6.8 * age - 961;
+				bmr = 10 * weight + 6.25 * height - 5 * age + 5;
 			}
-		} else {
+		}
+		
+		if (resource_manager.bmr_formula == resource_manager.HARRIS) {
 			if (gender == 0) {
-				bmr = 655 + 9.6 * weight + 1.8 * height - 4.7 * age;
+				bmr = 9.247 * weight + 3.098 * height - 4.330 * age + 447.593;
 			} else {
-				bmr = 66.5 + 13.7 * weight + 5.0 * height - 6.8 * age;
+				bmr = 13.397 * weight + 4.799 * height - 5.677 * age + 88.362;
 			}
+		}
+		
+		if (resource_manager.bmr_formula == resource_manager.KATCH) {
+			var body_fat = resource_manager.body_fat / 100.0;
+			bmr = 370 + 21.6 * (1 - body_fat) * weight;
 		}
 		
 		var calories_per_second = bmr * activity_level / 86400.0;

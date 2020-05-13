@@ -43,6 +43,12 @@
 	<string id="activity_level_4">Besonders aktiv (sehr harte Belastung/Sport oder eine körperliche Arbeit)</string>
 	
 	<string id="birthday_title">Geburtsdatum</string>
+	<string id="bmr_formula_title">BMR-Berechnung basierend auf</string>
+	<string id="bmr_mifflin">Mifflin-St Jeor Formel</string>
+	<string id="bmr_harris">Überarbeitete Harris-Benedict Formel</string>
+	<string id="bmr_katch">Katch-McArdle Formel (benötigt Körperfettanteil in Prozent)</string>
+	<string id="body_fat_title">Körperfettanteil (%)</string>
+	
 	<string id="streak_reset_threshold_title">Serie zurücksetzen unter (Prozent Fortschritt)</string>
 	<string id="streak_inc_threshold_title">Serie erhöhen (Prozent Fortschritt)</string>
 	<string id="streak_title">Serie überschreiben</string>

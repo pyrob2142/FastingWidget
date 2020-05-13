@@ -7,6 +7,8 @@
 	<property id="default_goal" type="number">6</property> 
 	<property id="activity_level" type="number">2</property>
 	<property id="birthday" type="number">0</property>
+	<property id="bmr_formula" type="number">0</property>
+	<property id="body_fat" type="number">23</property>
 	<property id="streak_reset_threshold" type="number">50</property>
 	<property id="streak_inc_threshold" type="number">75</property>
 	<property id="streak_data" type="number">0</property>
@@ -75,6 +77,18 @@
 	
 	<setting propertyKey="@Properties.birthday" title="@Strings.birthday_title">
 	<settingConfig type="date" /> 
+	</setting>
+	
+	<setting propertyKey="@Properties.bmr_formula" title="@Strings.bmr_formula_title">
+	<settingConfig type="list">
+	<listEntry value="0">@Strings.bmr_mifflin</listEntry>
+	<listEntry value="1">@Strings.bmr_harris</listEntry>
+	<listEntry value="2">@Strings.bmr_katch</listEntry>
+	</settingConfig>
+	</setting>
+	
+	<setting propertyKey="@Properties.body_fat" title="@Strings.body_fat_title">
+	<settingConfig type="numeric" min="1" max="100" />
 	</setting>
 	
 	<setting propertyKey="@Properties.streak_reset_threshold" title="@Strings.streak_reset_threshold_title">

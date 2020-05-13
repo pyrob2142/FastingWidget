@@ -43,6 +43,12 @@
 	<string id="activity_level_4">Posebno aktivan (vrlo naporan / sportski ili fizički rad)</string>
 	
 	<string id="birthday_title">Datum rođenja</string>
+	<string id="bmr_formula_title">BMR izračun na temelju</string>
+	<string id="bmr_mifflin">Mifflin-St Jeor jednadžba</string>
+	<string id="bmr_harris">Prerađen Harris-Benedict jednadžba</string>
+	<string id="bmr_katch">Katch-McArdle formula (zahtijeva postotak tjelesne masti)</string>
+	<string id="body_fat_title">Tjelesna masnoća (%)</string>
+	
 	<string id="streak_reset_threshold_title">Poništi niz ispod (postotak završetka)</string>
 	<string id="streak_inc_threshold_title">Povećajte niz iznad (postotak završetka)</string>
 	<string id="streak_title">Prepiši red</string>

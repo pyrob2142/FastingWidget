@@ -9,6 +9,12 @@ using Toybox.Time.Gregorian;
 //! Handles resources, settings and loading and saving of fasts.
 class ResourceManager {
 	
+	enum {
+		MIFFLIN,
+		HARRIS,
+		KATCH
+	}
+	
 	var toolbox;
 	var fast_manager;
 	
@@ -18,6 +24,7 @@ class ResourceManager {
 	var default_page_no_goal;
 	var default_goal_hours;
 	var default_goal_index;
+	var bmr_formula;
 	var streak_reset_threshold;
 	var streak_inc_threshold;
 	
@@ -29,6 +36,7 @@ class ResourceManager {
 	var age;
 	var gender;
 	var bmi;
+	var body_fat;
 	
 	//! Fast data
 	var is_active;
@@ -134,6 +142,8 @@ class ResourceManager {
 		
 		default_goal_index = Application.AppBase.getProperty("default_goal");
 		
+		
+		
 		streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold") / 100.0;
 		streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold") / 100.0;
 		streak_data = Application.AppBase.getProperty("streak_data");
@@ -169,6 +179,9 @@ class ResourceManager {
 			age = 30;
 		} 
 		
+		bmr_formula = Application.AppBase.getProperty("bmr_formula");
+		body_fat = Application.AppBase.getProperty("body_fat");
+		
 		// DEBUG
 		System.println("SETTINGS");
 		System.println("longpress_threshold: " + longpress_threshold);
@@ -181,6 +194,8 @@ class ResourceManager {
 		System.println("raw_activity: " + raw_activity);
 		System.println("activity_level: " + activity_level);
 		System.println("birthday: " + birthday);
+		System.println("bmr_formula: " + bmr_formula);
+		System.println("body_fat: " + body_fat);
 		System.println("age: " + age);
 		System.println("\n");
 	}
