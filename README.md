@@ -2,11 +2,23 @@
 
 This Fasting Widget for Garmin devices allows you to keep track of your fast right on your wrist.
 
+## Sections
+1. [Features](https://github.com/pyrob2142/FastingWidget#features)
+2. [Installation](https://github.com/pyrob2142/FastingWidget#installation)
+3. [Supported devices](https://github.com/pyrob2142/FastingWidget#supported-devices)
+4. [Supported languages](https://github.com/pyrob2142/FastingWidget#supported-languages)
+5. [Settings](https://github.com/pyrob2142/FastingWidget#settings)
+6. [Real-time Calories Estimation](https://github.com/pyrob2142/FastingWidget#real-time-calories-estimation)
+7. [Credits](https://github.com/pyrob2142/FastingWidget#credits)
+8. [License](https://github.com/pyrob2142/FastingWidget#license)
+9. [Screenshots](https://github.com/pyrob2142/FastingWidget#screenshots)
+
+
 ## Features
 * Set yourself a goal by choosing from various popular fast lengths or fast freely without any commitment
 * Keep track of your fast's duration and how long you have left until you meet your goal.
-* Get an estimate of your real-time calorie burn based on implementations of BMR and activity formulas (details below)
-* Keep yourself on track by maintaining a streak
+* Get an estimate of your real-time calorie burn based on implementations of BMR and activity formulas (see section [Real-time Calories Estimation](https://github.com/pyrob2142/FastingWidget#real-time-calories-estimation) for details)
+* Keep yourself accountable by maintaining a streak
 * The widget can be configured via Garmin Connect Mobile or Garmin Express
 * No account or registration required. All data comes from either your user settings (birthday, body fat percentage) or your user profile (weight, height) and is only used during runtime for the calorie calculations
 
@@ -39,11 +51,11 @@ Due to the differences in display, memory and button configurations only the fol
 
 ## Supported Languages:
 I try to support as many languages as possible, but require the help of volunteers to provide translations. For now the widget is available in the following languages:
-* English (default)
-* German
-* Croatian
+* Croatian (notefolio)
+* English (pyrob2142)
+* German (pyrob2142)
 
-If you want to provide a translation for the widget please feel free to edit the respective column in the [translation sheet](https://docs.google.com/spreadsheets/d/1SsTI2uS_bSHyEUOPEC_kIoC_L1SxvAgFt5AfdP6ME7Q/edit?usp=sharing). 
+If you want to provide a translation for the widget please feel free to edit the respective column in the [translation sheet](https://docs.google.com/spreadsheets/d/1SsTI2uS_bSHyEUOPEC_kIoC_L1SxvAgFt5AfdP6ME7Q/edit?usp=sharing).
 
 ## Settings
 * Long Press Threshold (ms): Set how long you have to hold the start button to open up the menus (Default: 2000 ms)
@@ -54,12 +66,12 @@ If you want to provide a translation for the widget please feel free to edit the
 * Birthday: Set your date of birth to further increase the accuracy of your calorie estimate (Default: 30)
 * BMR calculation based on: Select from a variety of formulas (details below) for estimating your real-time calorie burn.
 * Body fat (%): Required by the Katch-McArdle formula (Default: 23%)
-* Reset streak below (% of completion): Count your fast as failed and reset your streak if your fast doesn't reach a certain threshold of completion (Default: 50%)
-* Increase streak above(% of completion): Count your fast as successful and increase your streak if you reached at least this threshold of completion (Default: 75%)
+* Reset streak below (% of completion): Count your fast as failed and reset your streak, if your fast does not reach a certain threshold of completion (Default: 50%)
+* Increase streak above(% of completion): Count your fast as successful and increase your streak, if you reached at least this threshold of completion (Default: 75%)
 * Overwrite Streak: Allows you to overwrite the streak in case the settings get reset. Don't cheat!
 
 ## Real-time Calories Estimation
-The widget uses a combination of your BMR (basal metabolic rate) and activity level to calculate your daily calories. These are then divided by 86400 to get your calories per second, which lets us estimate how many calories you should have burned at any point of your fast.
+The widget uses a combination of your BMR (basal metabolic rate) and activity level to estimate your daily calorie burn. These are then divided by 86400 to get your calories per second, which lets us estimate how many calories you should have burned at any point of your fast. Do note that while these equations are backed by statistics their accuracy is limited. For more information please see: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3572798/
 
 The formulas available for BMR calculation are:
 * Mifflin-St Jeor Equation:
@@ -98,4 +110,17 @@ Your activity level is determined as follows:
 * Extra Active (very hard exercise/training or a physical job): 1.9
 
 ## Credits
-fire.png made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](www.flaticon.com)
+fire.png made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](www.flaticon.com).
+
+Translators are credited next to their respective languages.
+
+## License
+This project is licensed under the terms of the [GNU General Public License v3.0](LICENSE.md) license.
+
+## Screenshots
+<img src="/Screenshots/streak_view.png" height="425" /> <img src="/Screenshots/new_fast.png" height="425" />
+<img src="/Screenshots/goal_hours.png" height="425" /> <img src="/Screenshots/goal_days_weeks.png" height="425" />
+<img src="/Screenshots/elapsed_view.png" height="425" /> <img src="/Screenshots/remaining_view.png" height="425" />
+<img src="/Screenshots/calories_view.png" height="425" /> <img src="/Screenshots/end_fast.png" height="425" />
+<img src="/Screenshots/menu_cancel.png" height="425" /> <img src="/Screenshots/summary.png" height="425" />
+<img src="/Screenshots/streak_increase.png" height="425" /> <img src="/Screenshots/streak_reset.png" height="425" />
