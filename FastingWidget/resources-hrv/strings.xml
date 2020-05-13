@@ -1,17 +1,18 @@
+<!-- TRANSLATOR: notefolio -->
 <resources>
 	<!-- APP NAME -->
 	<string id="AppName">Widget za post</string>
 
 	<!-- USER SETTINGS -->
 	<string id="longpress_threshold_title">Prag dugog pritiska (ms)</string>
-	
+
 	<string id="default_page_goal_title">Početna stranica (s ciljem)</string>
 	<string id="default_page_no_goal_title">Početna stranica (bez cilja)</string>
 	<string id="page_streak">Red</string>
 	<string id="page_elapsed">Proteklo vrijeme</string>
 	<string id="page_remaining">Preostalo vrijeme</string>
 	<string id="page_calories">Kalorije</string>
-	
+
 	<string id="default_goal_title">Zadani cilj</string>
 	<string id="goal_8">8 Sati</string>
 	<string id="goal_12">12 Sati</string>
@@ -34,23 +35,23 @@
 	<string id="goal_336">2 Tjedni</string>
 	<string id="goal_504">3 Tjedni</string>
 	<string id="goal_672">4 Tjedni</string>
-	
+
 	<string id="activity_level_title">Razina aktivnosti</string>
 	<string id="activity_level_0">Sjedeći (malo bez vježbanja)</string>
 	<string id="activity_level_1">Lagano aktivan (lagana vježba 1-3 dana u tjednu)</string>
 	<string id="activity_level_2">Umjereno aktivan (umjereno vježbanje 3-5 dana tjedno)</string>
 	<string id="activity_level_3">Vrlo aktivan (naporna vježba 6-7 dana u tjednu)</string>
 	<string id="activity_level_4">Posebno aktivan (vrlo naporan / sportski ili fizički rad)</string>
-	
+
 	<string id="birthday_title">Datum rođenja</string>
 	<string id="bmr_formula_title">BMR izračun na temelju</string>
 	<string id="bmr_mifflin">Mifflin-St Jeor jednadžba</string>
 	<string id="bmr_harris">Prerađen Harris-Benedict jednadžba</string>
-	<string id="bmr_katch">Katch-McArdle formula (zahtijeva postotak tjelesne masti)</string>
+	<string id="bmr_katch">Katch-McArdle formula (zahtijeva postotak tjelesne masnoće)</string>
 	<string id="body_fat_title">Tjelesna masnoća (%)</string>
-	
-	<string id="streak_reset_threshold_title">Poništi niz ispod (% završetka)</string>
-	<string id="streak_inc_threshold_title">Povećajte niz iznad (% završetka)</string>
+
+	<string id="streak_reset_threshold_title">Poništi red ispod (% završetka)</string>
+	<string id="streak_inc_threshold_title">Povećajte red iznad (% završetka)</string>
 	<string id="streak_title">Prepiši red</string>
 
 	<!-- FastingView.mc -->
@@ -63,11 +64,11 @@
 	<string id="nominalization">n</string>
 	<string id="elapsed">Proteklo</string>
 	<string id="remaining">Ostalo</string>
-	<string id="since">od</string>
-	<string id="until">do</string>
+	<string id="since">Od</string>
+	<string id="until">Do</string>
 	<string id="kcal">kcal</string>
 	<string id="overtime">Prekovremeno</string>
-	
+
 	<!-- MenuHandler.mc -->
 	<string id="fast_type_menu_title">Novi post</string>
 	<string id="fast_set_goal">Postavite cilj</string>
@@ -77,11 +78,11 @@
 	<string id="goal_menu_title">Cilj</string>
 	<string id="yes">Da</string>
 	<string id="no">Ne</string>
-	
+
 	<!-- Toolbox.mc -->
 	<string id="symbol_days">D</string>
 	<string id="symbol_hours">H</string>
 	<string id="symbol_minutes">MIN</string>
 	<string id="symbol_seconds">S</string>
-	<string id="days">Dani</string>	
+	<string id="days">Dani</string>
 </resources>
