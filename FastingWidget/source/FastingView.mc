@@ -176,7 +176,7 @@ class FastingView extends WatchUi.View {
 		
 		var mode_label = resource_manager.string_elapsed.toUpper();
 		var time_label = fast_manager.getElapsed().toUpper();
-		var start_label = toolbox.momentToString(fast_manager.getStartMoment(), true, true);
+		var start_label = toolbox.momentToString(fast_manager.getStartMoment(), true);
 		
 		dc.drawText(center_x, center_y - 46 - dc.getFontHeight(Graphics.FONT_TINY), Graphics.FONT_TINY, mode_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y - dc.getFontHeight(Graphics.FONT_MEDIUM) - 2, Graphics.FONT_MEDIUM, time_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
@@ -195,7 +195,7 @@ class FastingView extends WatchUi.View {
 		var mode_label = resource_manager.string_elapsed.toUpper();
 		var conjunction = resource_manager.string_since.toUpper();
 		var time_label = fast_manager.getElapsed().toUpper();
-		var date_label = toolbox.momentToString(fast_manager.getStartMoment(), true, false).toUpper();
+		var date_label = toolbox.momentToString(fast_manager.getStartMoment(), false).toUpper();
 		
 		if (show_remaining == true) {
 			mode_label = resource_manager.string_remaining.toUpper();
@@ -207,7 +207,7 @@ class FastingView extends WatchUi.View {
 			}
 			
 			time_label = fast_manager.getRemaining().toUpper();
-			date_label = toolbox.momentToString(fast_manager.getGoalMoment(), true, false).toUpper();
+			date_label = toolbox.momentToString(fast_manager.getGoalMoment(), false).toUpper();
 		}
 		
 		

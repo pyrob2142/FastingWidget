@@ -53,6 +53,9 @@
 	<string id="streak_reset_threshold_title">Poništi red ispod (% završetka)</string>
 	<string id="streak_inc_threshold_title">Povećajte red iznad (% završetka)</string>
 	<string id="streak_title">Prepiši red</string>
+	<string id="overwrite_date_format_title">Prepisati format datuma</string>
+	<string id="time_format_title">Vremenski format</string>
+	<string id="show_days_title">Prijeđite na dane nakon (sati)</string>
 
 	<!-- FastingView.mc -->
 	<string id="summary">Sažetak</string>
@@ -85,4 +88,7 @@
 	<string id="symbol_minutes">MIN</string>
 	<string id="symbol_seconds">S</string>
 	<string id="days">Dani</string>
+	<string id="default_date_format">dd.mm.yy</string>
+	<string id="time_format_1">xD xH xMIN</string>
+	<string id="time_format_2">D:H:MIN</string>
 </resources>

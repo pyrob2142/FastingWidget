@@ -9,7 +9,6 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		BehaviorDelegate.initialize();
 		resource_manager = Application.getApp().resource_manager;
 		toolbox = Application.getApp().toolbox;
-		
 	}
 	
 	//! Opens the fast-type menu to the User.
@@ -38,7 +37,6 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		);
 		
 		WatchUi.pushView(menu, new FastTypeMenuDelegate(), WatchUi.SLIDE_UP);
-		
 		return true;
 	}
 	
@@ -69,7 +67,6 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		);
 		
 		WatchUi.pushView(menu, new EndFastMenuDelegate(), WatchUi.SLIDE_UP);
-		
 		return true;
 	}
 	
@@ -100,7 +97,6 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		);
 		
 		WatchUi.pushView(menu, new EndFastMenuDelegate(), WatchUi.SLIDE_UP);
-		
 		return true;
 	}
 	
@@ -303,9 +299,7 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		);
 		
 		menu.setFocus(default_goal_index);
-		
 		WatchUi.pushView(menu, new GoalMenuDelegate(), WatchUi.SLIDE_UP);
-		
 		return true;
 	}
 }
@@ -313,7 +307,6 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 //! Handles user input during fast-type selection.
 //! @return [Boolean] Returns false to prevent menu wrapping.
 class FastTypeMenuDelegate extends WatchUi.Menu2InputDelegate {
-	
 	var fast_manager;
 	
 	function initialize() {
@@ -342,7 +335,6 @@ class FastTypeMenuDelegate extends WatchUi.Menu2InputDelegate {
 
 //! Handles user input during target duration selection.
 class GoalMenuDelegate extends WatchUi.Menu2InputDelegate {
-
 	var fast_manager;
 	
 	function initialize() {
@@ -363,7 +355,6 @@ class GoalMenuDelegate extends WatchUi.Menu2InputDelegate {
 
 //! Handles user input during end fast and cancel fast selections.
 class EndFastMenuDelegate extends WatchUi.Menu2InputDelegate {
-
 	var fast_manager;
 	
 	function initialize() {

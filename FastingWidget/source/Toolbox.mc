@@ -53,43 +53,116 @@ class Toolbox {
 	function convertSeconds(value) {
 		var n = value;
 		
-		var days = n / (24 * 3600);
-		n = n % (24 * 3600);
-		
-		var hours = n / 3600;
-		n = n % 3600;
-		
-		var minutes = n / 60;
-		n = n % 60;
-		
-		var seconds = n;
-		
-		if (days > 0) {
-			return days.format("%02d") + resource_manager.symbol_days + " " + hours.format("%02d") 
-				+ resource_manager.symbol_hours + " " + minutes.format("%02d") + resource_manager.symbol_minutes;
+		if (resource_manager.time_format == 0) {
+			if (n / 3600 >= resource_manager.show_days) {
+				var days = n / (24 * 3600);
+				n = n % (24 * 3600);
+				
+				var hours = n / 3600;
+				n = n % 3600;
+				
+				var minutes = n / 60;
+				n = n % 60;
+				
+				var seconds = n;
+				return days.format("%02d") + resource_manager.symbol_days + " " + hours.format("%02d") 
+					+ resource_manager.symbol_hours + " " + minutes.format("%02d") + resource_manager.symbol_minutes;
+			} else {
+				var hours = n / 3600;
+				n = n % 3600;
+				
+				var minutes = n / 60;
+				n = n % 60;
+				
+				var seconds = n;
+				return hours.format("%02d") + resource_manager.symbol_hours + " " + minutes.format("%02d") 
+					+ resource_manager.symbol_minutes + " " + seconds.format("%02d") + resource_manager.symbol_seconds;
+			}
 		} else {
-			return hours.format("%02d") + resource_manager.symbol_hours + " " + minutes.format("%02d") 
-				+ resource_manager.symbol_minutes + " " + seconds.format("%02d") + resource_manager.symbol_seconds;
+			if (n / 3600 >= resource_manager.show_days) {
+				var days = n / (24 * 3600);
+				n = n % (24 * 3600);
+				
+				var hours = n / 3600;
+				n = n % 3600;
+				
+				var minutes = n / 60;
+				n = n % 60;
+				
+				var seconds = n;
+				return days.format("%02d") + ":" + hours.format("%02d") + ":" + minutes.format("%02d") + ":" + seconds.format("%02d");
+			} else {
+				var hours = n / 3600;
+				n = n % 3600;
+				
+				var minutes = n / 60;
+				n = n % 60;
+				
+				var seconds = n;
+				return hours.format("%02d") + ":" + minutes.format("%02d") + ":" + seconds.format("%02d");
+			}
 		}
 	}
 	
 	//! Creates a pretty date string from a Time.moment.
 	//! @param [Time.Moment] moment The moment to be converted.
-	//! @param [Boolean] year Set to true to include the year in the string.
 	//! @param [Boolean] line_break Set to true to replace the comma with a new line.
 	//! @return [String] A pretty date string.
-	function momentToString(moment, year, line_break) {
+	function momentToString(moment, line_break) {
 		var moment_info = Gregorian.info(moment, Time.FORMAT_SHORT);
+		var date_string = "";
+		var date_format = resource_manager.string_date_format.toLower();
+		var day = moment_info.day.format("%02d");
+		var month = moment_info.month.format("%02d");
+		var year = moment_info.year.toString().substring(2,4);
+		var date_separator = resource_manager.string_date_format.substring(2,3);
 		
-		var date_string;
+		switch (date_format.substring(0,2)) {
+			case "dd":
+				date_string = date_string + day;
+				break;
+			case "mm":
+				date_string = date_string + month;
+				break;
+			case "yy":
+				date_string = date_string + year;
+				break;
+			default:
+				date_string = date_string + day;
+		}
+	
+		date_string = date_string + date_separator;
 		
-		if (year == true) {
-			date_string = moment_info.day.format("%02d") + "."
-				+ moment_info.month.format("%02d") + "." + moment_info.year.toString().substring(2,4);
-		} else {
-			date_string = moment_info.day.format("%02d") + "."
-				+ moment_info.month.format("%02d") + ".";
-		}	 
+		switch (date_format.substring(3,5)) {
+			case "dd":
+				date_string = date_string + day;
+				break;
+			case "mm":
+				date_string = date_string + month;
+				break;
+			case "yy":
+				date_string = date_string + year;
+				break;
+			default:
+				date_string = date_string + day;
+		}
+	
+		date_string = date_string + date_separator;
+		
+		switch (date_format.substring(6,8)) {
+			case "dd":
+				date_string = date_string + day;
+				break;
+			case "mm":
+				date_string = date_string + month;
+				break;
+			case "yy":
+				date_string = date_string + year;
+				break;
+			default:
+				date_string = date_string + day;
+		}
+			
 		var time_string = moment_info.hour.format("%02d") + ":" + moment_info.min.format("%02d");
 		
 		if (line_break) {
@@ -106,7 +179,7 @@ class Toolbox {
 		var duration = new Time.Duration(hours * 3600);
 		var date = Time.now().add(duration);
 		var date_info = Gregorian.info(date, Gregorian.FORMAT_MEDIUM); 
-		return date_info.day_of_week + " " + momentToString(date, true, false);
+		return date_info.day_of_week + " " + momentToString(date, false);
 	}
 	
 	//! Converts a duration in hours into a duration of pretty days.

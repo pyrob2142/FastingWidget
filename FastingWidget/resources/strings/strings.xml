@@ -53,6 +53,9 @@
 	<string id="streak_reset_threshold_title">Reset streak below (percent of completion)</string>
 	<string id="streak_inc_threshold_title">Increase streak above (percent of completion)</string>
 	<string id="streak_title">Overwrite Streak</string>
+	<string id="overwrite_date_format_title">Overwrite date format</string>
+	<string id="time_format_title">Time format</string>
+	<string id="show_days_title">Switch to days after (hours)</string>
 
 	<!-- FastingView.mc -->
 	<string id="summary">Summary</string>
@@ -85,4 +88,7 @@
 	<string id="symbol_minutes">MIN</string>
 	<string id="symbol_seconds">S</string>
 	<string id="days">Days</string>
+	<string id="default_date_format">mm/dd/yy</string>
+	<string id="time_format_1">xD xH xMIN</string>
+	<string id="time_format_2">D:H:MIN</string>
 </resources>

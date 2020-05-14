@@ -13,7 +13,7 @@
 	<string id="page_remaining">Verbleibende Zeit</string>
 	<string id="page_calories">Kalorien</string>
 
-	<string id="default_goal_title">Standard Ziel</string>
+	<string id="default_goal_title">Zielvorauswahl</string>
 	<string id="goal_8">8 Stunden</string>
 	<string id="goal_12">12 Stunden</string>
 	<string id="goal_14">14 Stunden</string>
@@ -53,6 +53,9 @@
 	<string id="streak_reset_threshold_title">Serie zurücksetzen unter (% Fortschritt)</string>
 	<string id="streak_inc_threshold_title">Serie erhöhen (% Fortschritt)</string>
 	<string id="streak_title">Serie überschreiben</string>
+	<string id="overwrite_date_format_title">Datumsformat überschreiben</string>
+	<string id="time_format_title">Zeitdarstellung</string>
+	<string id="show_days_title">Anzeige in Tagen nach (Stunden)</string>
 
 	<!-- FastingView.mc -->
 	<string id="summary">Überblick</string>
@@ -85,4 +88,7 @@
 	<string id="symbol_minutes">MIN</string>
 	<string id="symbol_seconds">S</string>
 	<string id="days">Tage</string>
+	<string id="default_date_format">dd.mm.yy</string>
+	<string id="time_format_1">xT xH xMIN</string>
+	<string id="time_format_2">T:H:MIN</string>
 </resources>

@@ -8,7 +8,7 @@ using Toybox.Time.Gregorian;
 
 //! Handles resources, settings and loading and saving of fasts.
 class ResourceManager {
-	
+	//! The different forumulas for BMR calculation
 	enum {
 		MIFFLIN,
 		HARRIS,
@@ -27,6 +27,8 @@ class ResourceManager {
 	var bmr_formula;
 	var streak_reset_threshold;
 	var streak_inc_threshold;
+	var time_format;
+	var show_days;
 	
 	//! User profile data
 	var user;
@@ -97,6 +99,7 @@ class ResourceManager {
 	var symbol_minutes;
 	var symbol_seconds;
 	var string_days;
+	var string_date_format;
 	
 	function initialize() {
 		toolbox = Application.getApp().toolbox;
@@ -116,21 +119,6 @@ class ResourceManager {
 		height = user.height;
 		gender = user.gender;
 		bmi = toolbox.calculateBMI(weight, height);
-		
-		// DEBUG
-		System.println("USER PROFILE");
-		
-		if (gender == 0) {
-			System.println("Gender: FEMALE");
-		} else {
-			System.println("Gender: MALE");
-		}
-		
-		System.println("Height: " + height);
-		System.println("Weight: " + weight);
-		System.println("BMI: " + bmi);
-		System.println("\n");
-		
 	}
 	
 	//! Loads the user settings.
@@ -142,12 +130,18 @@ class ResourceManager {
 		
 		default_goal_index = Application.AppBase.getProperty("default_goal");
 		
-		
-		
 		streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold") / 100.0;
 		streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold") / 100.0;
 		streak_data = Application.AppBase.getProperty("streak_data");
-	
+		
+		var overwrite_date_format = Application.AppBase.getProperty("overwrite_date_format");
+		
+		if (overwrite_date_format != null && overwrite_date_format.length == 8) {
+			string_date_format = overwrite_date_format;
+		}
+		
+		time_format = Application.AppBase.getProperty("time_format");
+		show_days = Application.AppBase.getProperty("show_days");
 		
 		var raw_activity = Application.AppBase.getProperty("activity_level");
 		if (raw_activity != null) {
@@ -181,36 +175,10 @@ class ResourceManager {
 		
 		bmr_formula = Application.AppBase.getProperty("bmr_formula");
 		body_fat = Application.AppBase.getProperty("body_fat");
-		
-		// DEBUG
-		System.println("SETTINGS");
-		System.println("longpress_threshold: " + longpress_threshold);
-		System.println("default_page_goal: " + default_page_goal);
-		System.println("default_page_no_goal: " + default_page_no_goal);
-		System.println("default_goal_index: " + default_goal_index);
-		System.println("streak_reset_threshold: " + streak_reset_threshold);
-		System.println("streak_inc_threshold: " + streak_inc_threshold);
-		System.println("streak_data: " + streak_data);
-		System.println("raw_activity: " + raw_activity);
-		System.println("activity_level: " + activity_level);
-		System.println("birthday: " + birthday);
-		System.println("bmr_formula: " + bmr_formula);
-		System.println("body_fat: " + body_fat);
-		System.println("age: " + age);
-		System.println("\n");
 	}
 	
 	//! Saves the current state of the fast, as well as the streak.
-	function save() {
-		// DEBUG
-		System.println("SAVE DATA");
-		System.println("streak_data: " + fast_manager.streak);
-		System.println("is_active: " + fast_manager.fast.is_active);
-		System.println("start_data: " + fast_manager.fast.m_start.value());
-		System.println("goal_data: " + fast_manager.fast.d_goal.value());
-		System.println("\n");
-		
-		
+	function save() {		
 		Application.AppBase.setProperty("streak_data", fast_manager.streak);
 		
 		if (fast_manager.fast.is_active == true) {
@@ -246,14 +214,6 @@ class ResourceManager {
 		if (goal_data == -1 || goal_data == null) {
 			goal_data = -1;
 		}
-		
-		// DEBUG
-		System.println("LOAD");
-		System.println("streak_data: " + streak_data);
-		System.println("is_active: " + is_active);
-		System.println("start_data: " + start_data);
-		System.println("goal_data: " + goal_data);
-		System.println("\n");
 	}
 	
 	//! Loads all necessary resources.
@@ -315,6 +275,7 @@ class ResourceManager {
 		symbol_minutes = WatchUi.loadResource(Rez.Strings.symbol_minutes);
 		symbol_seconds = WatchUi.loadResource(Rez.Strings.symbol_seconds);
 		string_days = WatchUi.loadResource(Rez.Strings.days);
+		string_date_format = WatchUi.loadResource(Rez.Strings.default_date_format);
 	}
 }
 

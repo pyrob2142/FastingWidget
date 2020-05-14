@@ -4,7 +4,6 @@ using Toybox.WatchUi;
 
 //! Handles the page navigation and long press menus.
 class FastingViewDelegate extends WatchUi.BehaviorDelegate {
-	
 	var keys;
 	var timer;
 	var fast_manager;
@@ -29,7 +28,6 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
         BehaviorDelegate.initialize();
         fast_manager = Application.getApp().fast_manager;
         resource_manager = Application.getApp().resource_manager;
-        
         
         keys = new [WatchUi has :EXTENDED_KEYS ? 23 : 16];
         timer = new Timer.Timer();

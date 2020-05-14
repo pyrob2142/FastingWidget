@@ -3,7 +3,6 @@ using Toybox.WatchUi;
 
 //! Controls the flow of the application.
 class FastManager {
-	
 	//! The different pages / views of the application.
 	enum {
 		STREAK,
@@ -19,16 +18,17 @@ class FastManager {
 	//! Holds the number of the currently displayed page
 	var current_page;
 	
-	
 	var toolbox;
 	var resource_manager;
 	var fast;
 	
 	//! The current streak.
 	var streak;
+	
 	//! Backup of the current streak in case it gets reset.
 	//! Used to display the "lost" streak in STREAKRES view.
 	var streak_old;
+	
 	var streak_reset_threshold;
 	var streak_inc_threshold;
 	
@@ -92,7 +92,6 @@ class FastManager {
 		current_page = SUMMARY;
 		
 		WatchUi.requestUpdate();
-		
 	}
 	
 	//! Determines which page to show at start up.

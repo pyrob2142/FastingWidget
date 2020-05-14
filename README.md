@@ -63,12 +63,15 @@ If you want to provide a translation for the widget please feel free to edit the
 * Initial Page (without goal): Set the startup page for when your fast has no goal (Default: Show time elapsed)
 * Default goal: Avoid having to scroll through the options by setting your default fast duration (Default: 36 hours)
 * Activity level: Set your activity level to increase the accuracy of your calorie estimate (Default: Moderate)
-* Birthday: Set your date of birth to further increase the accuracy of your calorie estimate (Default: 30)
+* Date of Birth: Set your date of birth to further increase the accuracy of your calorie estimate (Default: 30)
 * BMR calculation based on: Select from a variety of formulas (details below) for estimating your real-time calorie burn.
 * Body fat (%): Required by the Katch-McArdle formula (Default: 23%)
 * Reset streak below (% of completion): Count your fast as failed and reset your streak, if your fast does not reach a certain threshold of completion (Default: 50%)
 * Increase streak above(% of completion): Count your fast as successful and increase your streak, if you reached at least this threshold of completion (Default: 75%)
 * Overwrite Streak: Allows you to overwrite the streak in case the settings get reset. Don't cheat!
+* Overwrite date format: While we provide a default format for your language, you are always free to customize it. Simply enter your desired format as a string: e.g. dd.mm.yy, mm/dd/yy, yy|mm|dd, ...
+* Time format: Choose if you want the labels for elapsed and remaining time shown with time units or in regular clock style
+* Switch to days after (hours): Select after how many hours you want the elasped and remaining time converted into days. E.g. 48H 00MIN 00S -> 02D 00H 00MIN / 02:00:00:00
 
 ## Real-time Calories Estimation
 The widget uses a combination of your BMR (basal metabolic rate) and activity level to estimate your daily calorie burn, which is then divided by 86400 (seconds in a day) to get your calories per second. Multiplying with the amount of seconds elapsed since you started your fast, results in an estimate of how many calories you should have burned at this point in your fast. Do note that while these equations are backed by statistics their accuracy is limited. For more information please see: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3572798/

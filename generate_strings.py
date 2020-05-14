@@ -102,34 +102,41 @@ body_fat_title = column[25]
 streak_reset_threshold_title = column[26]
 streak_inc_threshold_title = column[27]
 streak_title = column[28]
+overwrite_date_format_title = column[29]
+time_format_title = column[30]
+show_days_title = column[31]
 
-summary = column[29]
-duration = column[30]
-calories = column[31]
-streak = column[32]
-fast_sg = column[33]
-fast_pl = column[34]
-nominalization = column[35]
-elapsed = column[36]
-remaining = column[37]
-since = column[38]
-until = column[39]
-kcal = column[40]
-overtime = column[41]
+summary = column[32]
+duration = column[33]
+calories = column[34]
+streak = column[35]
+fast_sg = column[36]
+fast_pl = column[37]
+nominalization = column[38]
+elapsed = column[39]
+remaining = column[40]
+since = column[41]
+until = column[42]
+kcal = column[43]
+overtime = column[44]
 
-fast_type_menu_title = column[42]
-fast_set_goal = column[43]
-fast_no_goal  = column[44]
-end_fast_title = column[45]
-cancel_fast_title = column[46]
-goal_menu_title = column[47]
-yes = column[48]
-no = column[49]
+fast_type_menu_title = column[45]
+fast_set_goal = column[46]
+fast_no_goal  = column[47]
+end_fast_title = column[48]
+cancel_fast_title = column[49]
+goal_menu_title = column[50]
+yes = column[51]
+no = column[52]
 
-symbol_days = column[50]
-symbol_hours = column[51]
-symbol_minutes = column[52]
-symbol_seconds = column[53]
+symbol_days = column[53]
+symbol_hours = column[54]
+symbol_minutes = column[55]
+symbol_seconds = column[56]
+default_date_format = column[57]
+
+time_format_1 = "x" + symbol_days + " x" + symbol_hours + " x" + symbol_minutes
+time_format_2 = symbol_days + ":" + symbol_hours + ":" + symbol_minutes 
 
 # Write the new strings.xml file in the corresponding resources folder
 file_name = directory + os.path.sep + 'resources-%s' % (lang_short) + os.path.sep + 'strings.xml'
@@ -191,6 +198,9 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\t<string id="streak_reset_threshold_title">%s</string>\n' % (streak_reset_threshold_title))
     f.write('\t<string id="streak_inc_threshold_title">%s</string>\n' % (streak_inc_threshold_title))
     f.write('\t<string id="streak_title">%s</string>\n' % (streak_title))
+    f.write('\t<string id="overwrite_date_format_title">%s</string>\n' % (overwrite_date_format_title))
+    f.write('\t<string id="time_format_title">%s</string>\n' % (time_format_title))
+    f.write('\t<string id="show_days_title">%s</string>\n' % (show_days_title))
     f.write('\n')
     f.write('\t<!-- FastingView.mc -->\n')
     f.write('\t<string id="summary">%s</string>\n' % (summary))
@@ -223,5 +233,8 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\t<string id="symbol_minutes">%s</string>\n' % (symbol_minutes))
     f.write('\t<string id="symbol_seconds">%s</string>\n' % (symbol_seconds))
     f.write('\t<string id="days">%s</string>\n' % (days))
+    f.write('\t<string id="default_date_format">%s</string>\n' % (default_date_format))
+    f.write('\t<string id="time_format_1">%s</string>\n' % (time_format_1))
+    f.write('\t<string id="time_format_2">%s</string>\n' % (time_format_2))
     f.write('</resources>')
     f.close()
