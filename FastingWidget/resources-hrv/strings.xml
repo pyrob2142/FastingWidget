@@ -14,27 +14,9 @@
 	<string id="page_calories">Kalorije</string>
 
 	<string id="default_goal_title">Zadani cilj</string>
-	<string id="goal_8">8 Sati</string>
-	<string id="goal_12">12 Sati</string>
-	<string id="goal_14">14 Sati</string>
-	<string id="goal_16">16 Sati</string>
-	<string id="goal_20">20 Sati</string>
-	<string id="goal_24">24 Sati</string>
-	<string id="goal_36">36 Sati</string>
-	<string id="goal_48">48 Sati</string>
-	<string id="goal_60">60 Sati</string>
-	<string id="goal_72">72 Sati</string>
-	<string id="goal_84">84 Sati</string>
-	<string id="goal_96">96 Sati</string>
-	<string id="goal_108">4½ Dani</string>
-	<string id="goal_120">5 Dani</string>
-	<string id="goal_132">5½ Dani</string>
-	<string id="goal_144">6 Dani</string>
-	<string id="goal_156">6½ Dani</string>
-	<string id="goal_168">1 Tjedan</string>
-	<string id="goal_336">2 Tjedni</string>
-	<string id="goal_504">3 Tjedni</string>
-	<string id="goal_672">4 Tjedni</string>
+	<string id="custom_goal_title_1">Prilagođeni cilj (sati) 1</string>
+	<string id="custom_goal_title_2">Prilagođeni cilj (sati) 2</string>
+	<string id="custom_goal_title_3">Prilagođeni cilj (sati) 3</string>
 
 	<string id="activity_level_title">Razina aktivnosti</string>
 	<string id="activity_level_0">Sjedeći (malo bez vježbanja)</string>
@@ -83,11 +65,16 @@
 	<string id="no">Ne</string>
 
 	<!-- Toolbox.mc -->
+	<string id="string_hour">Sat</string>
+	<string id="string_hours">Sati</string>
+	<string id="string_day">Dan</string>
+	<string id="string_days">Dani</string>
+	<string id="string_week">Tjedan</string>
+	<string id="string_weeks">Tjedni</string>
 	<string id="symbol_days">D</string>
 	<string id="symbol_hours">H</string>
 	<string id="symbol_minutes">MIN</string>
 	<string id="symbol_seconds">S</string>
-	<string id="days">Dani</string>
 	<string id="default_date_format">dd.mm.yy</string>
 	<string id="time_format_1">xD xH xMIN</string>
 	<string id="time_format_2">D:H:MIN</string>

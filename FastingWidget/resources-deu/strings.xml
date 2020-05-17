@@ -14,27 +14,9 @@
 	<string id="page_calories">Kalorien</string>
 
 	<string id="default_goal_title">Zielvorauswahl</string>
-	<string id="goal_8">8 Stunden</string>
-	<string id="goal_12">12 Stunden</string>
-	<string id="goal_14">14 Stunden</string>
-	<string id="goal_16">16 Stunden</string>
-	<string id="goal_20">20 Stunden</string>
-	<string id="goal_24">24 Stunden</string>
-	<string id="goal_36">36 Stunden</string>
-	<string id="goal_48">48 Stunden</string>
-	<string id="goal_60">60 Stunden</string>
-	<string id="goal_72">72 Stunden</string>
-	<string id="goal_84">84 Stunden</string>
-	<string id="goal_96">96 Stunden</string>
-	<string id="goal_108">4½ Tage</string>
-	<string id="goal_120">5 Tage</string>
-	<string id="goal_132">5½ Tage</string>
-	<string id="goal_144">6 Tage</string>
-	<string id="goal_156">6½ Tage</string>
-	<string id="goal_168">1 Woche</string>
-	<string id="goal_336">2 Wochen</string>
-	<string id="goal_504">3 Wochen</string>
-	<string id="goal_672">4 Wochen</string>
+	<string id="custom_goal_title_1">Benutzerdefiniertes Ziel (Stunden) 1</string>
+	<string id="custom_goal_title_2">Benutzerdefiniertes Ziel (Stunden) 2</string>
+	<string id="custom_goal_title_3">Benutzerdefiniertes Ziel (Stunden) 3</string>
 
 	<string id="activity_level_title">Aktivität</string>
 	<string id="activity_level_0">Sitzend (wenig bis keine Bewegung)</string>
@@ -83,11 +65,16 @@
 	<string id="no">Nein</string>
 
 	<!-- Toolbox.mc -->
+	<string id="string_hour">Stunde</string>
+	<string id="string_hours">Stunden</string>
+	<string id="string_day">Tag</string>
+	<string id="string_days">Tage</string>
+	<string id="string_week">Woche</string>
+	<string id="string_weeks">Wochen</string>
 	<string id="symbol_days">T</string>
 	<string id="symbol_hours">H</string>
 	<string id="symbol_minutes">MIN</string>
 	<string id="symbol_seconds">S</string>
-	<string id="days">Tage</string>
 	<string id="default_date_format">dd.mm.yy</string>
 	<string id="time_format_1">xT xH xMIN</string>
 	<string id="time_format_2">T:H:MIN</string>

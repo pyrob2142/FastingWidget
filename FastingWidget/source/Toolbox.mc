@@ -185,16 +185,82 @@ class Toolbox {
 	//! Converts a duration in hours into a duration of pretty days.
 	//! @param [Number] value Duration in hours.
 	//! @return [String] A string of pretty days.
-	function hoursToDays(value) {
-		var days = value / 24;
-		var hours = value % 24;
+	function makeGoalHoursPretty(value) {
+		var weeks = value / 168;
+		var days = (value % 168) / 24;
+		var hours = (value % 168) % 24;
+		var result = "";
 		
-		var result;
-		if (hours != 0) {
-			result = days.format("%d") + "½ " + resource_manager.string_days;
-		} else {
-			result = days.format("%d") + " " + resource_manager.string_days;
+		System.println("Value: " + value);
+		System.println("Weeks: " + weeks);
+		System.println("Days: " + days);
+		System.println("Hours: " + hours);
+		System.println("\n");
+		
+		if (weeks != 0) {
+			result = weeks + " ";
+			if (weeks == 1) {
+				result += resource_manager.string_week;
+			} else {
+				result += resource_manager.string_weeks;
+			}
 		}
+		
+		if (days != 0) {
+			result += (weeks != 0 ? ", " : "") + days + " ";
+			if (days == 1) {
+				result += resource_manager.string_day;
+			} else {
+				result += resource_manager.string_days;
+			}
+		}
+		
+		if (hours != 0) {
+			result += (days != 0 ? ", " : "") + hours + " ";
+			if (hours == 1) {
+				result += resource_manager.string_hour;
+			} else {
+				result += resource_manager.string_hours;
+			}
+		}
+		
 		return result;
+	}
+	
+	//! Implementation of Quicksort for sorting numbers.
+	//! @param [Array] array The array to be sorted.
+	//! @param [Number] low The start index.
+	//! @param [Number] high The end index.
+	function sort(array, low, high) {
+		if (low < high) {
+			var partitioning_index = partition(array, low, high);
+			
+			sort(array, low, partitioning_index - 1);
+			sort(array, partitioning_index + 1, high);
+		}
+	}
+	
+	//! Last element is selected as pivot and placed at it's correct index.
+	//! All smaller elements are placed left, all greater elements are placed right
+	//! of the pivot. (we only need to sort in ascending order)
+	function partition(array, low, high) {
+		var pivot = array[high];
+		var temp;
+		var i = low - 1;
+		
+		for (var j = low; j <= high - 1; j++) {
+			if (array[j] < pivot) {
+				i++;
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+			}
+		}
+		
+		temp = array[i + 1];
+		array[i + 1] = array[high];
+		array[high] = temp;
+		
+		return i + 1;
 	}
 }

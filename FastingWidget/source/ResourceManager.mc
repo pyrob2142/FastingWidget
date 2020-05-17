@@ -15,6 +15,7 @@ class ResourceManager {
 		KATCH
 	}
 	
+	var goal_hours = [8, 12, 14, 16, 20, 24, 36, 48, 60, 72, 84, 96, 108, 120, 132, 144, 156, 168, 336, 504, 672];
 	var toolbox;
 	var fast_manager;
 	
@@ -23,7 +24,11 @@ class ResourceManager {
 	var default_page_goal;
 	var default_page_no_goal;
 	var default_goal_hours;
-	var default_goal_index;
+	var default_goal;
+	var custom_goal_1;
+	var custom_goal_2;
+	var custom_goal_3;
+	
 	var bmr_formula;
 	var streak_reset_threshold;
 	var streak_inc_threshold;
@@ -48,27 +53,6 @@ class ResourceManager {
 	
 	//! Resources
 	var bitmap_burn;
-	var string_goal_8;
-	var string_goal_12;
-	var string_goal_14;
-	var string_goal_16;
-	var string_goal_20;
-	var string_goal_24;
-	var string_goal_36;
-	var string_goal_48;
-	var string_goal_60;
-	var string_goal_72;
-	var string_goal_84;
-	var string_goal_96;
-	var string_goal_108;
-	var string_goal_120;
-	var string_goal_132;
-	var string_goal_144;
-	var string_goal_156;
-	var string_goal_168;
-	var string_goal_336;
-	var string_goal_504;
-	var string_goal_672;
 	
 	var string_summary;
 	var string_duration;
@@ -94,11 +78,16 @@ class ResourceManager {
 	var string_cancel_fast_title;
 	var string_goal_menu_title;
 	
+	var string_hour;
+	var string_hours;
+	var string_day;
+	var string_days;
+	var string_week;
+	var string_weeks;
 	var symbol_days;
 	var symbol_hours;
 	var symbol_minutes;
 	var symbol_seconds;
-	var string_days;
 	var string_date_format;
 	
 	function initialize() {
@@ -128,7 +117,23 @@ class ResourceManager {
 		default_page_goal = Application.AppBase.getProperty("default_page_goal");
 		default_page_no_goal = Application.AppBase.getProperty("default_page_no_goal");
 		
-		default_goal_index = Application.AppBase.getProperty("default_goal");
+		default_goal = Application.AppBase.getProperty("default_goal");
+		
+		custom_goal_1 = Application.AppBase.getProperty("custom_goal_1");
+		custom_goal_2 = Application.AppBase.getProperty("custom_goal_2");
+		custom_goal_3 = Application.AppBase.getProperty("custom_goal_3");
+		
+		if (custom_goal_1 != 0) {
+			goal_hours.add(custom_goal_1);
+		}
+		if (custom_goal_2 != 0) {
+			goal_hours.add(custom_goal_2);
+		}
+		if (custom_goal_3 != 0) {
+			goal_hours.add(custom_goal_3);
+		}
+		
+		toolbox.sort(goal_hours, 0, goal_hours.size() - 1);
 		
 		streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold") / 100.0;
 		streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold") / 100.0;
@@ -219,27 +224,6 @@ class ResourceManager {
 	//! Loads all necessary resources.
 	function loadResources() {
 		bitmap_burn = WatchUi.loadResource(Rez.Drawables.burn);
-		string_goal_8 = WatchUi.loadResource(Rez.Strings.goal_8);
-		string_goal_12 = WatchUi.loadResource(Rez.Strings.goal_12);
-		string_goal_14 = WatchUi.loadResource(Rez.Strings.goal_14);
-		string_goal_16 = WatchUi.loadResource(Rez.Strings.goal_16);
-		string_goal_20 = WatchUi.loadResource(Rez.Strings.goal_20);
-		string_goal_24 = WatchUi.loadResource(Rez.Strings.goal_24);
-		string_goal_36 = WatchUi.loadResource(Rez.Strings.goal_36);
-		string_goal_48 = WatchUi.loadResource(Rez.Strings.goal_48);
-		string_goal_60 = WatchUi.loadResource(Rez.Strings.goal_60);
-		string_goal_72 = WatchUi.loadResource(Rez.Strings.goal_72);
-		string_goal_84 = WatchUi.loadResource(Rez.Strings.goal_84);
-		string_goal_96 = WatchUi.loadResource(Rez.Strings.goal_96);
-		string_goal_108 = WatchUi.loadResource(Rez.Strings.goal_108);
-		string_goal_120 = WatchUi.loadResource(Rez.Strings.goal_120);
-		string_goal_132 = WatchUi.loadResource(Rez.Strings.goal_132);
-		string_goal_144 = WatchUi.loadResource(Rez.Strings.goal_144);
-		string_goal_156 = WatchUi.loadResource(Rez.Strings.goal_156);
-		string_goal_168 = WatchUi.loadResource(Rez.Strings.goal_168);
-		string_goal_336 = WatchUi.loadResource(Rez.Strings.goal_336);
-		string_goal_504 = WatchUi.loadResource(Rez.Strings.goal_504);
-		string_goal_672 = WatchUi.loadResource(Rez.Strings.goal_672);
 		
 		string_summary = WatchUi.loadResource(Rez.Strings.summary);
 		string_duration = WatchUi.loadResource(Rez.Strings.duration);
@@ -270,11 +254,16 @@ class ResourceManager {
 		string_cancel_fast_title = WatchUi.loadResource(Rez.Strings.cancel_fast_title);
 		string_goal_menu_title = WatchUi.loadResource(Rez.Strings.goal_menu_title);
 		
+		string_hour = WatchUi.loadResource(Rez.Strings.string_hour);
+		string_hours = WatchUi.loadResource(Rez.Strings.string_hours);
+		string_day = WatchUi.loadResource(Rez.Strings.string_day);
+		string_days = WatchUi.loadResource(Rez.Strings.string_days);
+		string_week = WatchUi.loadResource(Rez.Strings.string_week);
+		string_weeks = WatchUi.loadResource(Rez.Strings.string_weeks);
 		symbol_days = WatchUi.loadResource(Rez.Strings.symbol_days);
 		symbol_hours = WatchUi.loadResource(Rez.Strings.symbol_hours);
 		symbol_minutes = WatchUi.loadResource(Rez.Strings.symbol_minutes);
 		symbol_seconds = WatchUi.loadResource(Rez.Strings.symbol_seconds);
-		string_days = WatchUi.loadResource(Rez.Strings.days);
 		string_date_format = WatchUi.loadResource(Rez.Strings.default_date_format);
 	}
 }
