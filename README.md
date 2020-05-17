@@ -58,12 +58,13 @@ I try to support as many languages as possible, but require the help of voluntee
 If you want to provide a translation for the widget please feel free to edit the respective column in the [translation sheet](https://docs.google.com/spreadsheets/d/1SsTI2uS_bSHyEUOPEC_kIoC_L1SxvAgFt5AfdP6ME7Q/edit?usp=sharing).
 
 ## Settings
-* Long Press Threshold (ms): Set how long you have to hold the start button to open up the menus (Default: 2000 ms)
-* Initial Page (with goal): Set the startup page for when your fast has a goal (Default: Show time remaining)
-* Initial Page (without goal): Set the startup page for when your fast has no goal (Default: Show time elapsed)
+* Long press threshold (ms): Set how long you have to hold the start button to open up the menus (Default: 2000 ms)
+* Initial page (with goal): Set the startup page for when your fast has a goal (Default: Show time remaining)
+* Initial page (without goal): Set the startup page for when your fast has no goal (Default: Show time elapsed)
 * Default goal: Avoid having to scroll through the options by setting your default fast duration (Default: 36 hours)
+* Custom goals 1-3: Set up to 3 custom goal times by entering the amount of hours. Set to 0 to clear.
 * Activity level: Set your activity level to increase the accuracy of your calorie estimate (Default: Moderate)
-* Date of Birth: Set your date of birth to further increase the accuracy of your calorie estimate (Default: 30)
+* Date of birth: Set your date of birth to further increase the accuracy of your calorie estimate (Default: 30)
 * BMR calculation based on: Select from a variety of formulas (details below) for estimating your real-time calorie burn.
 * Body fat (%): Required by the Katch-McArdle formula (Default: 23%)
 * Reset streak below (% of completion): Count your fast as failed and reset your streak, if your fast does not reach a certain threshold of completion (Default: 50%)
