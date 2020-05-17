@@ -58,9 +58,11 @@
 	<string id="fast_type_menu_title">New Fast</string>
 	<string id="fast_set_goal">Set Goal</string>
 	<string id="fast_no_goal">No Goal</string>
-	<string id="end_fast_title">End Fast?</string>
-	<string id="cancel_fast_title">Cancel Fast?</string>
+	<string id="end_fast_title">End Fast</string>
+	<string id="cancel_fast_title">Cancel Fast</string>
 	<string id="goal_menu_title">Goal</string>
+	<string id="options_title">Options</string>
+	<string id="sure_title">Sure?</string>
 	<string id="yes">Yes</string>
 	<string id="no">No</string>
 

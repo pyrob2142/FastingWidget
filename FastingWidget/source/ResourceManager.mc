@@ -77,6 +77,8 @@ class ResourceManager {
 	var string_no;
 	var string_cancel_fast_title;
 	var string_goal_menu_title;
+	var string_options_title;
+	var string_sure_title;
 	
 	var string_hour;
 	var string_hours;
@@ -253,6 +255,8 @@ class ResourceManager {
 		string_no = WatchUi.loadResource(Rez.Strings.no);
 		string_cancel_fast_title = WatchUi.loadResource(Rez.Strings.cancel_fast_title);
 		string_goal_menu_title = WatchUi.loadResource(Rez.Strings.goal_menu_title);
+		string_options_title = WatchUi.loadResource(Rez.Strings.options_title);
+		string_sure_title = WatchUi.loadResource(Rez.Strings.sure_title);
 		
 		string_hour = WatchUi.loadResource(Rez.Strings.string_hour);
 		string_hours = WatchUi.loadResource(Rez.Strings.string_hours);

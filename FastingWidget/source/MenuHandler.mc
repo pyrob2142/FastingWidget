@@ -4,11 +4,13 @@ using Toybox.Math;
 class MenuHandler extends WatchUi.BehaviorDelegate {
 	var resource_manager;
 	var toolbox;
+	var fast_manager;
 	
 	function initialize() {
 		BehaviorDelegate.initialize();
 		resource_manager = Application.getApp().resource_manager;
 		toolbox = Application.getApp().toolbox;
+		fast_manager = Application.getApp().fast_manager;
 	}
 	
 	//! Opens the fast-type menu to the User.
@@ -40,7 +42,66 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		return true;
 	}
 	
+	//! Opens the options menu for open fasts
+	//! Allows a user to add a goal to an existing open fast
+	function openOptionsMenu() {
+		var menu = new WatchUi.Menu2({
+			:title => resource_manager.string_options_title
+		});
+			
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_end_fast_title,
+				null,
+				"end_fast",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_fast_set_goal,
+				null,
+				"add_goal",
+				{}
+			)
+		);
+		
+		WatchUi.pushView(menu, new OptionsMenuDelegate(), WatchUi.SLIDE_UP);
+		return true;
+	}
+	
 	//! Opens the finish menu.
+	//! A fast is considered finished once the target duration has been reached
+	//! or if no goal was set.
+	function openConfirmationMenu() {
+		var menu = new WatchUi.Menu2({
+			:title => resource_manager.string_sure_title
+		});
+			
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_yes,
+				null,
+				"item_yes",
+				{}
+			)
+		);
+		
+		menu.addItem(
+			new MenuItem(
+				resource_manager.string_no,
+				null,
+				"item_no",
+				{}
+			)
+		);
+		
+		WatchUi.pushView(menu, new EndFastMenuDelegate(), WatchUi.SLIDE_UP);
+		return true;
+	}
+	
+	//! Opens the confirmation menu.
 	//! A fast is considered finished once the target duration has been reached
 	//! or if no goal was set.
 	function openFinishMenu() {
@@ -69,6 +130,7 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 		WatchUi.pushView(menu, new EndFastMenuDelegate(), WatchUi.SLIDE_UP);
 		return true;
 	}
+	
 	
 	//! Opens the cancel menu.
 	//! A fast is considered cancelled, if it ends before the target duration has been reached.
@@ -115,18 +177,34 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 			if (resource_manager.goal_hours[i] >= resource_manager.show_days) {
 					label = toolbox.makeGoalHoursPretty(resource_manager.goal_hours[i]);
 			}
-		
-			menu.addItem(
-				new MenuItem(
-					label,
-					toolbox.calculateDate(resource_manager.goal_hours[i]),
-					id,
-					{}
-				)
-			);
 			
-			if (resource_manager.goal_hours[i] == resource_manager.default_goal) {
-				menu.setFocus(i);
+			if (fast_manager.fast.is_active) {
+				menu.addItem(
+					new MenuItem(
+						label,
+						toolbox.calculateEndDateFromMoment(resource_manager.goal_hours[i], fast_manager.fast.m_start),
+						id,
+						{}
+					)
+				);
+				
+				if (resource_manager.goal_hours[i] == resource_manager.default_goal) {
+					menu.setFocus(i);
+				}
+							
+			} else {
+				menu.addItem(
+					new MenuItem(
+						label,
+						toolbox.calculateEndDate(resource_manager.goal_hours[i]),
+						id,
+						{}
+					)
+				);
+				
+				if (resource_manager.goal_hours[i] == resource_manager.default_goal) {
+					menu.setFocus(i);
+				}
 			}
 		}
 		
@@ -178,8 +256,12 @@ class GoalMenuDelegate extends WatchUi.Menu2InputDelegate {
 		
 		var split_index = id.find("_");
 		var hours = id.substring(split_index + 1, id.length()).toNumber();
-	
-		fast_manager.startFast(hours);
+		
+		if (fast_manager.fast.is_active && fast_manager.fast.has_goal == false) {
+			fast_manager.addGoalToFast(hours);
+		} else {
+			fast_manager.startFast(hours);
+		}
 		onBack();
 	}
 }
@@ -202,6 +284,53 @@ class EndFastMenuDelegate extends WatchUi.Menu2InputDelegate {
 		
 		if (item.getId().equals("item_no")) {
 			onBack();
+		}
+	}
+}
+
+//! Handles user input during confirmation menu selections.
+class ConfirmationMenuDelegate extends WatchUi.Menu2InputDelegate {
+	var fast_manager;
+	
+	function initialize() {
+		Menu2InputDelegate.initialize();
+		fast_manager = Application.getApp().fast_manager;
+	}
+	
+	function onSelect(item) {
+		
+		if (item.getId().equals("item_yes")) {
+			fast_manager.endFast();
+			onBack();
+		}
+		
+		if (item.getId().equals("item_no")) {
+			onBack();
+		}
+	}
+}
+
+//! Handles user input during options menu selections.
+class OptionsMenuDelegate extends WatchUi.Menu2InputDelegate {
+	var fast_manager;
+	
+	function initialize() {
+		Menu2InputDelegate.initialize();
+		fast_manager = Application.getApp().fast_manager;
+	}
+	
+	function onSelect(item) {
+		
+		if (item.getId().equals("end_fast")) {
+			var menu = new MenuHandler();
+			WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+			menu.openConfirmationMenu();
+		}
+		
+		if (item.getId().equals("add_goal")) {
+			var menu = new MenuHandler();
+			WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+			menu.openGoalMenu();
 		}
 	}
 }

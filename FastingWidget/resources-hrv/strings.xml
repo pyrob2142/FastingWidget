@@ -58,9 +58,11 @@
 	<string id="fast_type_menu_title">Novi post</string>
 	<string id="fast_set_goal">Postavite cilj</string>
 	<string id="fast_no_goal">Nema cilja</string>
-	<string id="end_fast_title">Prestati post?</string>
-	<string id="cancel_fast_title">Prekinuti post?</string>
+	<string id="end_fast_title">Prestati post</string>
+	<string id="cancel_fast_title">Prekinuti post</string>
 	<string id="goal_menu_title">Cilj</string>
+	<string id="options_title">Opcije</string>
+	<string id="sure_title">Naravno?</string>
 	<string id="yes">Da</string>
 	<string id="no">Ne</string>
 

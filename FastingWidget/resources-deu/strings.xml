@@ -58,9 +58,11 @@
 	<string id="fast_type_menu_title">Neues Fasten</string>
 	<string id="fast_set_goal">Ziel setzen</string>
 	<string id="fast_no_goal">Kein Ziel</string>
-	<string id="end_fast_title">Fasten beenden?</string>
-	<string id="cancel_fast_title">Fasten abbrechen?</string>
+	<string id="end_fast_title">Fasten beenden</string>
+	<string id="cancel_fast_title">Fasten abbrechen</string>
 	<string id="goal_menu_title">Ziel</string>
+	<string id="options_title">Optionen</string>
+	<string id="sure_title">Sicher?</string>
 	<string id="yes">Ja</string>
 	<string id="no">Nein</string>
 

@@ -6,9 +6,10 @@ using Toybox.Math;
 //! into a certain class.
 class Toolbox {
 	var resource_manager;
-	
+	var fast_manager;
 	function initialize() {
-		
+		resource_manager = null;
+		fast_manager = null;
 	}
 	
 	//! Converts weight from grams to kilograms.
@@ -175,9 +176,16 @@ class Toolbox {
 	//! Calculates a Time.Moment a specific duration from Time.now() and returns it as a pretty string.
 	//! @param [Number] hours Duration to add to current time in hours.
 	//! @return [String] A pretty string representing a date in the future.
-	function calculateDate(hours) {
+	function calculateEndDate(hours) {
 		var duration = new Time.Duration(hours * 3600);
 		var date = Time.now().add(duration);
+		var date_info = Gregorian.info(date, Gregorian.FORMAT_MEDIUM); 
+		return date_info.day_of_week + " " + momentToString(date, false);
+	}
+	
+	function calculateEndDateFromMoment(hours, start) {
+		var duration = new Time.Duration(hours * 3600);
+		var date = start.add(duration);
 		var date_info = Gregorian.info(date, Gregorian.FORMAT_MEDIUM); 
 		return date_info.day_of_week + " " + momentToString(date, false);
 	}
@@ -190,12 +198,6 @@ class Toolbox {
 		var days = (value % 168) / 24;
 		var hours = (value % 168) % 24;
 		var result = "";
-		
-		System.println("Value: " + value);
-		System.println("Weeks: " + weeks);
-		System.println("Days: " + days);
-		System.println("Hours: " + hours);
-		System.println("\n");
 		
 		if (weeks != 0) {
 			result = weeks + " ";

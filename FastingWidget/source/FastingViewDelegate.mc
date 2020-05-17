@@ -60,8 +60,13 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
 		} else {
 		
 			if (fast_manager.fast.is_complete == true) {
-				var menu = new MenuHandler();
-				menu.openFinishMenu();
+				if (fast_manager.fast.has_goal == true) {
+					var menu = new MenuHandler();
+					menu.openFinishMenu();
+				} else {
+					var menu = new MenuHandler();
+					menu.openOptionsMenu();
+				}
 			} else {
 				var menu = new MenuHandler();
 				menu.openCancelMenu();

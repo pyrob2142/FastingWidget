@@ -36,6 +36,7 @@ class FastManager {
 		resource_manager = Application.getApp().resource_manager;
 		resource_manager.fast_manager = me;
 		toolbox = Application.getApp().toolbox;
+		toolbox.fast_manager = me;
 		streak = resource_manager.streak_data;
 		streak_old = streak;
 		
@@ -62,13 +63,19 @@ class FastManager {
 		
 		if (goal != -1) {
 			fast.start(goal);
-			current_page = ELAPSED;
+			current_page = resource_manager.default_page_goal;
 			WatchUi.requestUpdate();
 		} else {
 			fast.start(goal);
-			current_page = OPEN;
+			current_page = resource_manager.default_page_no_goal;
 			WatchUi.requestUpdate();
 		}	
+	}
+	
+	function addGoalToFast(goal) {
+		fast.addGoal(goal);
+		current_page = resource_manager.default_page_goal;
+		WatchUi.requestUpdate();
 	}
 	
 	//! Ends the current fast, determines if the streak should be reset and saves the new state.

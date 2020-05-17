@@ -54,6 +54,14 @@ class Fast {
 		update();
 	}
 	
+	//! Adds a goal to the active open fast. 
+	function addGoal(hours) {
+		d_goal = new Time.Duration(hours * 3600);
+		has_goal = true;
+		is_complete = false;
+		calculateProgress();
+	}
+	
 	//! Resumes a previously saved fast. 
 	//! Same as start expect that it starts from a specific moment.
 	//! @param [Number] start UNIX Epoch of when the fast was started.
