@@ -58,11 +58,12 @@ options = get_options()
 
 directory = 'FastingWidget'
 csv_file = options.input
+pandas.set_option('display.max_rows', None)
 data_frame = pandas.read_csv(csv_file)
 language = options.language
 lang_short = get_short(language)
 
-print(data_frame.head())
+print(data_frame[['String', language]])
 
 column = data_frame['%s' % (language)]
 column.tolist()
@@ -80,60 +81,63 @@ page_remaining = column[7]
 page_calories = column[8]
 
 default_goal_title = column[9]
-hours = column[10]
-days = column[11]
-week = column[12]
-weeks = column[13]
+custom_goal_title = column[10]
 
-activity_level_title = column[14]
-activity_level_0 = column[15]
-activity_level_1 = column[16]
-activity_level_2 = column[17]
-activity_level_3 = column[18]
-activity_level_4 = column[19]
+activity_level_title = column[11]
+activity_level_0 = column[12]
+activity_level_1 = column[13]
+activity_level_2 = column[14]
+activity_level_3 = column[15]
+activity_level_4 = column[16]
 
-birthday_title = column[20]
-bmr_formula_title = column[21]
-bmr_mifflin = column[22]
-bmr_harris = column[23]
-bmr_katch = column[24]
-body_fat_title = column[25]
+birthday_title = column[17]
+bmr_formula_title = column[18]
+bmr_mifflin = column[19]
+bmr_harris = column[20]
+bmr_katch = column[21]
+body_fat_title = column[22]
 
-streak_reset_threshold_title = column[26]
-streak_inc_threshold_title = column[27]
-streak_title = column[28]
-overwrite_date_format_title = column[29]
-time_format_title = column[30]
-show_days_title = column[31]
+streak_reset_threshold_title = column[23]
+streak_inc_threshold_title = column[24]
+streak_title = column[25]
+overwrite_date_format_title = column[26]
+time_format_title = column[27]
+show_days_title = column[28]
 
-summary = column[32]
-duration = column[33]
-calories = column[34]
-streak = column[35]
-fast_sg = column[36]
-fast_pl = column[37]
-nominalization = column[38]
-elapsed = column[39]
-remaining = column[40]
-since = column[41]
-until = column[42]
-kcal = column[43]
-overtime = column[44]
+summary = column[29]
+duration = column[30]
+calories = column[31]
+streak = column[32]
+fast_sg = column[33]
+fast_pl = column[34]
+nominalization = column[35]
+elapsed = column[36]
+remaining = column[37]
+since = column[38]
+until = column[39]
+kcal = column[40]
+overtime = column[41]
 
-fast_type_menu_title = column[45]
-fast_set_goal = column[46]
-fast_no_goal  = column[47]
-end_fast_title = column[48]
-cancel_fast_title = column[49]
-goal_menu_title = column[50]
-yes = column[51]
-no = column[52]
+fast_type_menu_title = column[42]
+fast_set_goal = column[43]
+fast_no_goal  = column[44]
+end_fast_title = column[45]
+cancel_fast_title = column[46]
+goal_menu_title = column[47]
+yes = column[48]
+no = column[49]
 
-symbol_days = column[53]
-symbol_hours = column[54]
-symbol_minutes = column[55]
-symbol_seconds = column[56]
-default_date_format = column[57]
+string_hour = column[50]
+string_hours = column[51]
+string_day = column[52]
+string_days = column[53]
+string_week = column[54]
+string_weeks = column[55]
+symbol_days = column[56]
+symbol_hours = column[57]
+symbol_minutes = column[58]
+symbol_seconds = column[59]
+default_date_format = column[60]
 
 time_format_1 = "x" + symbol_days + " x" + symbol_hours + " x" + symbol_minutes
 time_format_2 = symbol_days + ":" + symbol_hours + ":" + symbol_minutes 
@@ -159,27 +163,9 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\t<string id="page_calories">%s</string>\n' % (page_calories))
     f.write('\n')
     f.write('\t<string id="default_goal_title">%s</string>\n' % (default_goal_title))
-    f.write('\t<string id="goal_8">8 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_12">12 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_14">14 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_16">16 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_20">20 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_24">24 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_36">36 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_48">48 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_60">60 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_72">72 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_84">84 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_96">96 %s</string>\n' % (hours))
-    f.write('\t<string id="goal_108">4½ %s</string>\n' % (days))
-    f.write('\t<string id="goal_120">5 %s</string>\n' % (days))
-    f.write('\t<string id="goal_132">5½ %s</string>\n' % (days))
-    f.write('\t<string id="goal_144">6 %s</string>\n' % (days))
-    f.write('\t<string id="goal_156">6½ %s</string>\n' % (days))
-    f.write('\t<string id="goal_168">1 %s</string>\n' % (week))
-    f.write('\t<string id="goal_336">2 %s</string>\n' % (weeks))
-    f.write('\t<string id="goal_504">3 %s</string>\n' % (weeks))
-    f.write('\t<string id="goal_672">4 %s</string>\n' % (weeks))
+    f.write('\t<string id="custom_goal_title_1">%s</string>\n' % (custom_goal_title + " 1"))
+    f.write('\t<string id="custom_goal_title_2">%s</string>\n' % (custom_goal_title + " 2"))
+    f.write('\t<string id="custom_goal_title_3">%s</string>\n' % (custom_goal_title + " 3"))
     f.write('\n')
     f.write('\t<string id="activity_level_title">%s</string>\n' % (activity_level_title))
     f.write('\t<string id="activity_level_0">%s</string>\n' % (activity_level_0))
@@ -228,11 +214,16 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\t<string id="no">%s</string>\n' % (no))
     f.write('\n')
     f.write('\t<!-- Toolbox.mc -->\n')
+    f.write('\t<string id="string_hour">%s</string>\n' % (string_hour))
+    f.write('\t<string id="string_hours">%s</string>\n' % (string_hours))
+    f.write('\t<string id="string_day">%s</string>\n' % (string_day))
+    f.write('\t<string id="string_days">%s</string>\n' % (string_days))
+    f.write('\t<string id="string_week">%s</string>\n' % (string_week))
+    f.write('\t<string id="string_weeks">%s</string>\n' % (string_weeks))
     f.write('\t<string id="symbol_days">%s</string>\n' % (symbol_days))
     f.write('\t<string id="symbol_hours">%s</string>\n' % (symbol_hours))
     f.write('\t<string id="symbol_minutes">%s</string>\n' % (symbol_minutes))
     f.write('\t<string id="symbol_seconds">%s</string>\n' % (symbol_seconds))
-    f.write('\t<string id="days">%s</string>\n' % (days))
     f.write('\t<string id="default_date_format">%s</string>\n' % (default_date_format))
     f.write('\t<string id="time_format_1">%s</string>\n' % (time_format_1))
     f.write('\t<string id="time_format_2">%s</string>\n' % (time_format_2))

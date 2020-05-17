@@ -3,7 +3,10 @@
 		<property id="longpress_threshold" type="number">2000</property>
 		<property id="default_page_goal" type="number">2</property>
 		<property id="default_page_no_goal" type="number">3</property>
-		<property id="default_goal" type="number">6</property> 
+		<property id="default_goal" type="number">6</property>
+		<property id="custom_goal_1" type="number">0</property>
+		<property id="custom_goal_2" type="number">0</property>
+		<property id="custom_goal_3" type="number">0</property>
 		<property id="activity_level" type="number">2</property>
 		<property id="birthday" type="number">0</property>
 		<property id="bmr_formula" type="number">0</property>
@@ -39,31 +42,19 @@
 		</setting>
 		
 		<setting propertyKey="@Properties.default_goal" title="@Strings.default_goal_title">
-		<settingConfig type="list">
+		<settingConfig type="numeric" min="1" />
+		</setting>
 		
-		<listEntry value="0">@Strings.goal_8</listEntry>
-		<listEntry value="1">@Strings.goal_12</listEntry>
-		<listEntry value="2">@Strings.goal_14</listEntry>
-		<listEntry value="3">@Strings.goal_16</listEntry>
-		<listEntry value="4">@Strings.goal_20</listEntry>
-		<listEntry value="5">@Strings.goal_24</listEntry>
-		<listEntry value="6">@Strings.goal_36</listEntry>
-		<listEntry value="7">@Strings.goal_48</listEntry>
-		<listEntry value="8">@Strings.goal_60</listEntry>
-		<listEntry value="9">@Strings.goal_72</listEntry>
-		<listEntry value="10">@Strings.goal_84</listEntry>
-		<listEntry value="11">@Strings.goal_96</listEntry>
-		<listEntry value="12">@Strings.goal_108</listEntry>
-		<listEntry value="13">@Strings.goal_120</listEntry>
-		<listEntry value="14">@Strings.goal_132</listEntry>
-		<listEntry value="15">@Strings.goal_144</listEntry>
-		<listEntry value="16">@Strings.goal_156</listEntry>
-		<listEntry value="17">@Strings.goal_168</listEntry>
-		<listEntry value="18">@Strings.goal_336</listEntry>
-		<listEntry value="19">@Strings.goal_504</listEntry>
-		<listEntry value="20">@Strings.goal_672</listEntry>
+		<setting propertyKey="@Properties.custom_goal_1" title="@Strings.custom_goal_title_1">
+		<settingConfig type="numeric"></settingConfig>
+		</setting>
 		
-		</settingConfig>
+		<setting propertyKey="@Properties.custom_goal_2" title="@Strings.custom_goal_title_2">
+		<settingConfig type="numeric"></settingConfig>
+		</setting>
+		
+		<setting propertyKey="@Properties.custom_goal_3" title="@Strings.custom_goal_title_3">
+		<settingConfig type="numeric"></settingConfig>
 		</setting>
 		
 		<setting propertyKey="@Properties.activity_level" title="@Strings.activity_level_title">

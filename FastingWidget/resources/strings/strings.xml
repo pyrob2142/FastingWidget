@@ -14,27 +14,9 @@
 	<string id="page_calories">Calories</string>
 
 	<string id="default_goal_title">Default Goal</string>
-	<string id="goal_8">8 Hours</string>
-	<string id="goal_12">12 Hours</string>
-	<string id="goal_14">14 Hours</string>
-	<string id="goal_16">16 Hours</string>
-	<string id="goal_20">20 Hours</string>
-	<string id="goal_24">24 Hours</string>
-	<string id="goal_36">36 Hours</string>
-	<string id="goal_48">48 Hours</string>
-	<string id="goal_60">60 Hours</string>
-	<string id="goal_72">72 Hours</string>
-	<string id="goal_84">84 Hours</string>
-	<string id="goal_96">96 Hours</string>
-	<string id="goal_108">4½ Days</string>
-	<string id="goal_120">5 Days</string>
-	<string id="goal_132">5½ Days</string>
-	<string id="goal_144">6 Days</string>
-	<string id="goal_156">6½ Days</string>
-	<string id="goal_168">1 Week</string>
-	<string id="goal_336">2 Weeks</string>
-	<string id="goal_504">3 Weeks</string>
-	<string id="goal_672">4 Weeks</string>
+	<string id="custom_goal_title_1">Custom Goal (hours) 1</string>
+	<string id="custom_goal_title_2">Custom Goal (hours) 2</string>
+	<string id="custom_goal_title_3">Custom Goal (hours) 3</string>
 
 	<string id="activity_level_title">Activity Level</string>
 	<string id="activity_level_0">Sedentary (little to no exercise)</string>
@@ -83,11 +65,16 @@
 	<string id="no">No</string>
 
 	<!-- Toolbox.mc -->
+	<string id="string_hour">Hour</string>
+	<string id="string_hours">Hours</string>
+	<string id="string_day">Day</string>
+	<string id="string_days">Days</string>
+	<string id="string_week">Week</string>
+	<string id="string_weeks">Weeks</string>
 	<string id="symbol_days">D</string>
 	<string id="symbol_hours">H</string>
 	<string id="symbol_minutes">MIN</string>
 	<string id="symbol_seconds">S</string>
-	<string id="days">Days</string>
 	<string id="default_date_format">mm/dd/yy</string>
 	<string id="time_format_1">xD xH xMIN</string>
 	<string id="time_format_2">D:H:MIN</string>

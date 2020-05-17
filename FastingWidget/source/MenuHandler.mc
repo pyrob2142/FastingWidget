@@ -103,202 +103,33 @@ class MenuHandler extends WatchUi.BehaviorDelegate {
 	//! Opens the goal menu.
 	//! Users can choose from a variety of common fast durations.
 	function openGoalMenu() {
-		var default_goal_index = resource_manager.default_goal_index;
-		
 		var menu = new WatchUi.Menu2({
 			:title => Rez.Strings.goal_menu_title
 		});
 		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_8,
-				toolbox.calculateDate(8),
-				"hours_8",
-				{}
-			)
-		);
+		for (var i = 0; i < resource_manager.goal_hours.size(); i++) {
+			var label = resource_manager.goal_hours[i] + " " + resource_manager.string_hours;
+			var id = "hours_" + resource_manager.goal_hours[i];
+			
+			
+			if (resource_manager.goal_hours[i] >= resource_manager.show_days) {
+					label = toolbox.makeGoalHoursPretty(resource_manager.goal_hours[i]);
+			}
 		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_12,
-				toolbox.calculateDate(12),
-				"hours_12",
-				{}
-			)
-		);
+			menu.addItem(
+				new MenuItem(
+					label,
+					toolbox.calculateDate(resource_manager.goal_hours[i]),
+					id,
+					{}
+				)
+			);
+			
+			if (resource_manager.goal_hours[i] == resource_manager.default_goal) {
+				menu.setFocus(i);
+			}
+		}
 		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_14,
-				toolbox.calculateDate(14),
-				"hours_14",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_16,
-				toolbox.calculateDate(16),
-				"hours_16",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_20,
-				toolbox.calculateDate(20),
-				"hours_20",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_24,
-				toolbox.calculateDate(24),
-				"hours_24",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_36,
-				toolbox.calculateDate(36),
-				"hours_36",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_48,
-				toolbox.calculateDate(48),
-				"hours_48",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_60,
-				toolbox.calculateDate(60),
-				"hours_60",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_72,
-				toolbox.calculateDate(72),
-				"hours_72",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_84,
-				toolbox.calculateDate(84),
-				"hours_84",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_96,
-				toolbox.calculateDate(96),
-				"hours_96",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_108,
-				toolbox.calculateDate(108),
-				"hours_108",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_120,
-				toolbox.calculateDate(120),
-				"hours_120",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_132,
-				toolbox.calculateDate(132),
-				"hours_132",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_144,
-				toolbox.calculateDate(144),
-				"hours_144",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_156,
-				toolbox.calculateDate(156),
-				"hours_156",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_168,
-				toolbox.calculateDate(168),
-				"hours_168",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_336,
-				toolbox.calculateDate(336),
-				"hours_336",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_504,
-				toolbox.calculateDate(504),
-				"hours_504",
-				{}
-			)
-		);
-		
-		menu.addItem(
-			new MenuItem(
-				resource_manager.string_goal_672,
-				toolbox.calculateDate(672),
-				"hours_672",
-				{}
-			)
-		);
-		
-		menu.setFocus(default_goal_index);
 		WatchUi.pushView(menu, new GoalMenuDelegate(), WatchUi.SLIDE_UP);
 		return true;
 	}
