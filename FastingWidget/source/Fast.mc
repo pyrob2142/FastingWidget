@@ -59,6 +59,7 @@ class Fast {
 		d_goal = new Time.Duration(hours * 3600);
 		has_goal = true;
 		is_complete = false;
+		resource_manager.save();
 		calculateProgress();
 	}
 	
