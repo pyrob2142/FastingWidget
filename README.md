@@ -15,7 +15,7 @@ This Fasting Widget for Garmin devices allows you to keep track of your fast rig
 
 
 ## Features
-* Set yourself a goal by choosing from various popular fast lengths or fast freely without any commitment
+* Set yourself a goal by choosing from various popular fast lengths, set up to 3 personal goal durations or fast freely without any commitment
 * Keep track of your fast's duration and how long you have left until you meet your goal.
 * Get an estimate of your real-time calorie burn based on implementations of BMR and activity formulas (see section [Real-time Calories Estimation](https://github.com/pyrob2142/FastingWidget#real-time-calories-estimation) for details)
 * Keep yourself accountable by maintaining a streak
