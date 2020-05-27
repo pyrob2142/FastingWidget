@@ -3,7 +3,7 @@
 		<property id="longpress_threshold" type="number">2000</property>
 		<property id="default_page_goal" type="number">2</property>
 		<property id="default_page_no_goal" type="number">3</property>
-		<property id="default_goal" type="number">6</property>
+		<property id="default_goal" type="number">16</property>
 		<property id="custom_goal_1" type="number">0</property>
 		<property id="custom_goal_2" type="number">0</property>
 		<property id="custom_goal_3" type="number">0</property>
