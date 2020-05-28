@@ -46,14 +46,45 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
 		return true; 
 	}
 	
-	//! Handles key held events.
-	//! If no fast is active, the users gets to start a new fast.
-	//! If a fast is active, we present options to finish or cancel the fast 
-	//! depending on its current progress.
+	//! Triggered when a key is held
 	function onKeyHeld(evt) {
 		var key = evt.getKey();
 		keys[key] = null;
 		
+		handleLongPress();
+	}
+	
+	//! If the key is released, we can assume that the timer has not 
+	//! been triggered and ask the fast_manager for the next page.
+	function onKeyReleased(evt) {
+		var key = evt.getKey();
+		
+		if (keys[key] == null) {
+			return true;
+		}
+		
+		keys[key] = null;
+		
+		timer.stop();
+		
+		fast_manager.nextPage();
+		
+		return true;
+	}
+	
+	function onTap(evt) {
+		fast_manager.nextPage();
+	}
+	
+	function onMenu() {
+		handleLongPress();
+	}
+	
+	//! Handles long press events.
+	//! If no fast is active, the users gets to start a new fast.
+	//! If a fast is active, we present options to finish or cancel the fast 
+	//! depending on its current progress.
+	function handleLongPress() {
 		if (fast_manager.fast.is_active == false) {
 			var menu = new MenuHandler();
 			menu.openFastTypeMenu();
@@ -73,23 +104,5 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
 			}
 		
 		}
-	}
-	
-	//! If the key is released, we can assume that the timer has not 
-	//! been triggered and ask the fast_manager for the next page.
-	function onKeyReleased(evt) {
-		var key = evt.getKey();
-		
-		if (keys[key] == null) {
-			return true;
-		}
-		
-		keys[key] = null;
-		
-		timer.stop();
-		
-		fast_manager.nextPage();
-		
-		return true;
 	}
 }
