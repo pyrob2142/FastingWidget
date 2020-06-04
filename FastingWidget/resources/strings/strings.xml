@@ -52,7 +52,7 @@
 	<string id="since">Since</string>
 	<string id="until">Until</string>
 	<string id="kcal">kcal</string>
-	<string id="overtime">Overtime</string>
+	<string id="overtime" scope="glance">Overtime</string>
 
 	<!-- MenuHandler.mc -->
 	<string id="fast_type_menu_title">New Fast</string>

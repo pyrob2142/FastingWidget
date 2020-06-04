@@ -203,7 +203,7 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\t<string id="since">%s</string>\n' % (since))
     f.write('\t<string id="until">%s</string>\n' % (until))
     f.write('\t<string id="kcal">%s</string>\n' % (kcal))
-    f.write('\t<string id="overtime">%s</string>\n' % (overtime))
+    f.write('\t<string id="overtime" scope="glance">%s</string>\n' % (overtime))
     f.write('\n')
     f.write('\t<!-- MenuHandler.mc -->\n')
     f.write('\t<string id="fast_type_menu_title">%s</string>\n' % (fast_type_menu_title))

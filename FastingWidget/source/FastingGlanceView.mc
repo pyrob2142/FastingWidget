@@ -17,6 +17,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
 	var string_streak;
 	var string_elapsed;
 	var string_remaining;
+	var string_overtime;
 	var time_format;
 	var show_days;
 	var symbol_days;
@@ -48,7 +49,16 @@ class FastingGlanceView extends WatchUi.GlanceView {
 			
 			if (goal_data != -1) {
 				remaining = d_goal.subtract(elapsed);
-				dc.drawText(0, 5, Graphics.FONT_XTINY, string_remaining + ":", Graphics.TEXT_JUSTIFY_LEFT);
+				var mode_label = string_remaining;
+				
+				var m_goal = m_start.add(d_goal);
+				
+				if (m_now.greaterThan(m_goal)) {
+					mode_label = string_overtime;
+				}
+			
+				
+				dc.drawText(0, 5, Graphics.FONT_XTINY, mode_label + ":", Graphics.TEXT_JUSTIFY_LEFT);
 				dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SMALL), Graphics.FONT_TINY, convertSeconds(remaining.value()), Graphics.TEXT_JUSTIFY_LEFT);
 				
 			} else {	
@@ -75,7 +85,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
 		}
 		
 		goal_data = Storage.getValue("goal_data");
-		System.println(goal_data);
+		
 		if (goal_data == -1 || goal_data == null) {
 			goal_data = -1;
 		} else {
@@ -85,6 +95,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
 		string_streak = WatchUi.loadResource(Rez.Strings.streak);
 		string_elapsed = WatchUi.loadResource(Rez.Strings.elapsed);
 		string_remaining = WatchUi.loadResource(Rez.Strings.remaining);
+		string_overtime = WatchUi.loadResource(Rez.Strings.overtime);
 		time_format = Application.AppBase.getProperty("time_format");
 		show_days = Application.AppBase.getProperty("show_days");
 		symbol_days = WatchUi.loadResource(Rez.Strings.symbol_days);
@@ -149,7 +160,6 @@ class FastingGlanceView extends WatchUi.GlanceView {
 	}
 	
 	function update() {
-		System.println("Time.");
 		WatchUi.requestUpdate();
 	}
 }

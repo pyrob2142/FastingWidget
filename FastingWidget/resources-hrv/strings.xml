@@ -52,7 +52,7 @@
 	<string id="since">Od</string>
 	<string id="until">Do</string>
 	<string id="kcal">kcal</string>
-	<string id="overtime">Prekovremeno</string>
+	<string id="overtime" scope="glance">Prekovremeno</string>
 
 	<!-- MenuHandler.mc -->
 	<string id="fast_type_menu_title">Novi post</string>

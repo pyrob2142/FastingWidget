@@ -52,7 +52,7 @@
 	<string id="since">seit</string>
 	<string id="until">bis</string>
 	<string id="kcal">kcal</string>
-	<string id="overtime">Überzeit</string>
+	<string id="overtime" scope="glance">Überzeit</string>
 
 	<!-- MenuHandler.mc -->
 	<string id="fast_type_menu_title">Neues Fasten</string>
