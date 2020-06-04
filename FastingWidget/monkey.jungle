@@ -1,1 +1,22 @@
 project.manifest = manifest.xml
+
+# Reset base source path to include only source files in the source folder
+base.sourcePath = source/*.mc
+
+# For an optimal user experience we want to adapt FastingView.mc to different target devices
+
+# round-218x218
+round-218x218.sourcePath = $(base.sourcePath); round-218x218-source/FastingView.mc
+
+# round-240x240
+round-240x240.sourcePath = $(base.sourcePath); round-240x240-source/FastingView.mc
+
+# round-260x260
+round-260x260.sourcePath = $(base.sourcePath); round-260x260-source/FastingView.mc
+
+# round-280x280
+round-280x280.sourcePath = $(base.sourcePath); round-280x280-source/FastingView.mc
+
+# round-390x390
+round-390x390.sourcePath = $(base.sourcePath); round-390x390-source/FastingView.mc
+  

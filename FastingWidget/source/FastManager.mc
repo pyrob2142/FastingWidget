@@ -122,7 +122,7 @@ class FastManager {
 	//! If the reset threshold has not been surpassed the next page will be STREAKRES.
 	//! If neither happens the user will be brought back to the STREAK immediately. 
 	//! Otherwise he will get to STREAK after acknowledging the changes to the streak.
-	function nextPage() {	
+	function nextPage() {
 		if (fast.is_active == true && current_page != SUMMARY) {
 			
 			current_page++;
