@@ -43,12 +43,12 @@
 	<string id="summary">Summary</string>
 	<string id="duration">Duration</string>
 	<string id="calories">Calories</string>
-	<string id="streak">Streak</string>
+	<string id="streak" scope="glance">Streak</string>
 	<string id="fast_sg">Fast</string>
 	<string id="fast_pl">Fasts</string>
 	<string id="nominalization">n</string>
-	<string id="elapsed">Elapsed</string>
-	<string id="remaining">Remaining</string>
+	<string id="elapsed" scope="glance">Elapsed</string>
+	<string id="remaining" scope="glance">Remaining</string>
 	<string id="since">Since</string>
 	<string id="until">Until</string>
 	<string id="kcal">kcal</string>
@@ -73,10 +73,10 @@
 	<string id="string_days">Days</string>
 	<string id="string_week">Week</string>
 	<string id="string_weeks">Weeks</string>
-	<string id="symbol_days">D</string>
-	<string id="symbol_hours">H</string>
-	<string id="symbol_minutes">MIN</string>
-	<string id="symbol_seconds">S</string>
+	<string id="symbol_days" scope="glance">D</string>
+	<string id="symbol_hours" scope="glance">H</string>
+	<string id="symbol_minutes" scope="glance">MIN</string>
+	<string id="symbol_seconds" scope="glance">S</string>
 	<string id="default_date_format">mm/dd/yy</string>
 	<string id="time_format_1">xD xH xMIN</string>
 	<string id="time_format_2">D:H:MIN</string>

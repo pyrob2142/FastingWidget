@@ -1,7 +1,5 @@
 using Toybox.Application;
 
-	
-
 class FastingWidgetApp extends Application.AppBase {
 	static var fast_manager;
 	static var resource_manager;
@@ -9,9 +7,6 @@ class FastingWidgetApp extends Application.AppBase {
 	
     function initialize() {
         AppBase.initialize();
-        toolbox = new Toolbox();
-        resource_manager = new ResourceManager();
-        fast_manager = new FastManager();
     }
 
     // onStart() is called on application start up
@@ -26,6 +21,9 @@ class FastingWidgetApp extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() {
+    	toolbox = new Toolbox();
+        resource_manager = new ResourceManager();
+        fast_manager = new FastManager();
         return [ new FastingView(), new FastingViewDelegate() ];
     }
     
@@ -33,6 +31,11 @@ class FastingWidgetApp extends Application.AppBase {
     	resource_manager.loadResources();
     	resource_manager.loadSettings();
     	WatchUi.requestUpdate();
+    }
+    
+    (:glance)
+    function getGlanceView() {
+    	return [ new FastingGlanceView() ];
     }
 
 }

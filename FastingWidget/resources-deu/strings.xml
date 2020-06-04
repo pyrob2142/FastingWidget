@@ -43,12 +43,12 @@
 	<string id="summary">Überblick</string>
 	<string id="duration">Zeit</string>
 	<string id="calories">Kalorien</string>
-	<string id="streak">Serie</string>
+	<string id="streak" scope="glance">Serie</string>
 	<string id="fast_sg">Fasten</string>
 	<string id="fast_pl">Fasten</string>
 	<string id="nominalization">y</string>
-	<string id="elapsed">Vergangen</string>
-	<string id="remaining">Verbleibend</string>
+	<string id="elapsed" scope="glance">Vergangen</string>
+	<string id="remaining" scope="glance">Verbleibend</string>
 	<string id="since">seit</string>
 	<string id="until">bis</string>
 	<string id="kcal">kcal</string>
@@ -73,10 +73,10 @@
 	<string id="string_days">Tage</string>
 	<string id="string_week">Woche</string>
 	<string id="string_weeks">Wochen</string>
-	<string id="symbol_days">T</string>
-	<string id="symbol_hours">H</string>
-	<string id="symbol_minutes">MIN</string>
-	<string id="symbol_seconds">S</string>
+	<string id="symbol_days" scope="glance">T</string>
+	<string id="symbol_hours" scope="glance">H</string>
+	<string id="symbol_minutes" scope="glance">MIN</string>
+	<string id="symbol_seconds" scope="glance">S</string>
 	<string id="default_date_format">dd.mm.yy</string>
 	<string id="time_format_1">xT xH xMIN</string>
 	<string id="time_format_2">T:H:MIN</string>

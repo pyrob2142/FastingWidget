@@ -43,12 +43,12 @@
 	<string id="summary">Sažetak</string>
 	<string id="duration">Trajanje</string>
 	<string id="calories">Kalorije</string>
-	<string id="streak">Red</string>
+	<string id="streak" scope="glance">Red</string>
 	<string id="fast_sg">Post</string>
 	<string id="fast_pl">Postovi</string>
 	<string id="nominalization">n</string>
-	<string id="elapsed">Proteklo</string>
-	<string id="remaining">Ostalo</string>
+	<string id="elapsed" scope="glance">Proteklo</string>
+	<string id="remaining" scope="glance">Ostalo</string>
 	<string id="since">Od</string>
 	<string id="until">Do</string>
 	<string id="kcal">kcal</string>
@@ -73,10 +73,10 @@
 	<string id="string_days">Dani</string>
 	<string id="string_week">Tjedan</string>
 	<string id="string_weeks">Tjedni</string>
-	<string id="symbol_days">D</string>
-	<string id="symbol_hours">H</string>
-	<string id="symbol_minutes">MIN</string>
-	<string id="symbol_seconds">S</string>
+	<string id="symbol_days" scope="glance">D</string>
+	<string id="symbol_hours" scope="glance">H</string>
+	<string id="symbol_minutes" scope="glance">MIN</string>
+	<string id="symbol_seconds" scope="glance">S</string>
 	<string id="default_date_format">dd.mm.yy</string>
 	<string id="time_format_1">xD xH xMIN</string>
 	<string id="time_format_2">D:H:MIN</string>
