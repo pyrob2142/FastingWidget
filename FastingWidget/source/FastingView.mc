@@ -24,7 +24,6 @@ class FastingView extends WatchUi.View {
 
     // Load your resources here
     function onLayout(dc) {
-        setLayout(Rez.Layouts.MainLayout(dc));
         center_x = dc.getWidth() / 2;
         center_y = dc.getHeight() / 2;
     }
