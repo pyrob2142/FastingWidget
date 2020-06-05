@@ -233,8 +233,8 @@ class FastingViewLayoutDummy extends WatchUi.View {
 		
 		var calories_label = 15235.8.format("%.1f");
 		
-		dc.drawText(center_x, center_y + 10, Graphics.FONT_NUMBER_HOT, calories_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawBitmap(center_x - 32, center_y - 140, resource_manager.bitmap_burn);
+		dc.drawText(center_x, center_y + 29, Graphics.FONT_NUMBER_HOT, calories_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawBitmap(center_x - 52, center_y - 140, resource_manager.bitmap_burn);
 		dc.drawText(center_x, center_y + 115, Graphics.FONT_MEDIUM, resource_manager.string_kcal.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	}
 	

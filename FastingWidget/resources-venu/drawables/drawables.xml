@@ -1,0 +1,4 @@
+<drawables>
+    <bitmap id="LauncherIcon" filename="launcher_icon_60x60.png" />
+    <bitmap id="burn" filename="fire_100x100.png" />
+</drawables>
