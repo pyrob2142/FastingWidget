@@ -28,26 +28,47 @@ You can get the widget from the [ConnectIQ store](https://apps.garmin.com/en-US/
 ## Supported devices
 Due to the differences in display, memory and button configurations only the following devices are supported at the moment:
 
+* Captain Marvel
 * D2™ Charlie
 * D2™ Delta
 * D2™ Delta PX
 * D2™ Delta S
+* Darth Vader™
 * Descent™ Mk1
 * fēnix® 5 / quatix® 5
 * fēnix® 5 Plus
+* fēnix® 5S
 * fēnix® 5S Plus
 * fēnix® 5X / tactix® Charlie
 * fēnix® 5X Plus
+* fēnix® 6
+* fēnix® 6 Pro
+* fēnix® 6S
+* fēnix® 6S Pro
+* fēnix® 6X Pro
+* fēnix® Chronos
+* First Avenger
 * Forerunner® 245
 * Forerunner® 245 Music
 * Forerunner® 645
 * Forerunner® 645 Music
 * Forerunner® 935
 * Forerunner® 945
+* MARQ™ Adventurer
+* MARQ™ Athlete
+* MARQ™ Aviator
+* MARQ™ Captain
+* MARQ™ Commander
+* MARQ™ Driver
+* MARQ™ Expedition
+* Rey™
+* Venu
 * vívoactive® 3
 * vívoactive® 3 Mercedes-Benz® Collection
 * vívoactive® 3 Music
 * vívoactive® 3 Music LTE
+* vívoactive® 4
+* vívoactive® 4S
 
 ## Supported Languages:
 I try to support as many languages as possible, but require the help of volunteers to provide translations. For now the widget is available in the following languages:
