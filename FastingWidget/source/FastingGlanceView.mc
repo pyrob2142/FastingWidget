@@ -3,7 +3,6 @@ using Toybox.Graphics;
 using Toybox.Application.Storage;
 using Toybox.Time;
 using Toybox.Timer;
-using Toybox.System as Sys;
 
 (:glance)
 class FastingGlanceView extends WatchUi.GlanceView {
@@ -49,6 +48,8 @@ class FastingGlanceView extends WatchUi.GlanceView {
         } else {
             m_now = Time.now();
             elapsed = m_now.subtract(m_start);
+            // display FASTING title
+            dc.drawText(0, -5, Graphics.FONT_SYSTEM_TINY, string_fasting, Graphics.TEXT_JUSTIFY_LEFT);
 
             if (goal_data != -1) {
                 remaining = d_goal.subtract(elapsed);
@@ -62,22 +63,25 @@ class FastingGlanceView extends WatchUi.GlanceView {
                     mode_label = string_overtime;
                 }
 
-                dc.drawText(0, -5, Graphics.FONT_SYSTEM_TINY, string_fasting, Graphics.TEXT_JUSTIFY_LEFT);
                 dc.drawText(dc.getWidth(), -5, Graphics.FONT_SYSTEM_TINY, (progress * 100).toNumber(), Graphics.TEXT_JUSTIFY_RIGHT);
 
                 dc.setColor(Graphics.COLOR_LT_GRAY  , Graphics.COLOR_BLACK);
                 dc.fillRectangle(0, dc.getHeight()/2 - 1, dc.getWidth(), 2 );
 
                 dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLACK);
-                dc.fillRectangle(0, dc.getHeight()/2 - 3, dc.getWidth() * progress, 6 );
+                dc.fillRectangle(0, dc.getHeight()/2 - 4, dc.getWidth() * progress, 8 );
 
                 dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
                 dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, mode_label + ": ", Graphics.TEXT_JUSTIFY_LEFT);
                 dc.drawText(dc.getWidth(), dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(remaining.value()), Graphics.TEXT_JUSTIFY_RIGHT);
 
             } else {
-                dc.drawText(0, 5, Graphics.FONT_SYSTEM_XTINY, string_elapsed + ":", Graphics.TEXT_JUSTIFY_LEFT);
-                dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_SMALL), Graphics.FONT_SYSTEM_TINY, convertSeconds(elapsed.value()), Graphics.TEXT_JUSTIFY_LEFT);
+                //dc.drawText(0, 5, Graphics.FONT_SYSTEM_TINY, string_elapsed + ":", Graphics.TEXT_JUSTIFY_LEFT);
+                //dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_TINY), Graphics.FONT_SYSTEM_TINY, convertSeconds(elapsed.value()), Graphics.TEXT_JUSTIFY_LEFT);
+
+                dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, string_elapsed + ": ", Graphics.TEXT_JUSTIFY_LEFT);
+                dc.drawRectangle(0, dc.getHeight()/2 - 4, dc.getWidth(), 8 );
+                dc.drawText(dc.getWidth(), dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(elapsed.value()), Graphics.TEXT_JUSTIFY_RIGHT);
 
             }
         }
