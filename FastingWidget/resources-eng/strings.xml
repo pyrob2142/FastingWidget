@@ -47,6 +47,7 @@
 	<string id="fast_sg">Fast</string>
 	<string id="fast_pl">Fasts</string>
 	<string id="nominalization">n</string>
+	<string id="fasting_title" scope="glance">FASTING</string>
 	<string id="elapsed" scope="glance">Elapsed</string>
 	<string id="remaining" scope="glance">Remaining</string>
 	<string id="since">Since</string>
