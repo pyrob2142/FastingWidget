@@ -244,20 +244,19 @@ class FastingView extends WatchUi.View {
 	function drawProgressArc(dc) {
 		var has_goal = fast_manager.fast.has_goal;
 		var percent = 1.0;
-		var degrees;
+		var degrees_arc_start;
+		var arc_start = 0;
+		var degrees_progress;
 		var degrees_overtime = 0;
 		var arc_end;
 		var arc_end_overtime = null;
 		var arc_color;
 		
 		if (has_goal == true) {
+		
 			percent = fast_manager.getProgress();
 			
-			degrees = 360 * percent;
-			
 			if (percent > 1.0) {
-				degrees = 360;
-				
 				degrees_overtime = 360 * (percent - 1.0);
 				
 				if (percent > 2.0) {
@@ -269,41 +268,83 @@ class FastingView extends WatchUi.View {
 				} else {
 					arc_end_overtime = 360 - (degrees_overtime - 90);
 				}
-			}
-			
-			if (percent == 0.0) {
-				degrees = 1;
-			}
-			
-			if (degrees < 90) {
-				arc_end = 90 - degrees;
+				
+				dc.setPenWidth(6);
+				dc.setColor(Graphics.COLOR_DK_GREEN, Graphics.COLOR_BLACK);
+				dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, 90);
+				
+				dc.setPenWidth(16);
+				dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+				dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end_overtime);	
 			} else {
-				arc_end = 360 - (degrees - 90);
+				
+				if (percent == 0.0) {
+					degrees_progress = 1;
+				}
+				
+				degrees_progress = 360 * percent;
+				
+				if (degrees_progress < 90) {
+					arc_end = 90 - degrees_progress;
+				} else {
+					arc_end = 360 - (degrees_progress - 90);
+				}
+				
+				dc.setPenWidth(6);
+				dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_BLACK);
+				dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
+				
+				if (percent >= streak_reset_threshold) {
+					degrees_progress = 360 * (percent - streak_reset_threshold);
+					
+					degrees_arc_start = 360 * streak_reset_threshold;
+					arc_start;
+					
+					if (degrees_arc_start < 90) {
+						arc_start = 90 - degrees_arc_start;
+					} else {
+						arc_start = 360 - (degrees_arc_start - 90);
+					}
+					
+					if (degrees_arc_start + degrees_progress < 90) {
+						arc_end = 90 - (degrees_arc_start + degrees_progress);
+					} else {
+						arc_end = 360 - (degrees_arc_start + degrees_progress - 90);
+					}
+					
+					dc.setPenWidth(6);
+					dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
+					dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
+				}
+				
+				if (percent >= streak_inc_threshold) {
+					degrees_progress = 360 * (percent - streak_inc_threshold);
+					
+					degrees_arc_start = 360 * streak_inc_threshold;
+					arc_start;
+					
+					if (degrees_arc_start < 90) {
+						arc_start = 90 - degrees_arc_start;
+					} else {
+						arc_start = 360 - (degrees_arc_start - 90);
+					}
+					
+					if (degrees_arc_start + degrees_progress < 90) {
+						arc_end = 90 - (degrees_arc_start + degrees_progress);
+					} else {
+						arc_end = 360 - (degrees_arc_start + degrees_progress - 90);
+					}
+					
+					dc.setPenWidth(6);
+					dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+					dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
+				}
 			}
 		
-			if (percent > 1.0) {
-				arc_color = Graphics.COLOR_DK_GREEN;
-			} else if (percent >= streak_inc_threshold) {
-				arc_color = Graphics.COLOR_GREEN;
-			} else if (percent >= streak_reset_threshold) {
-				arc_color = Graphics.COLOR_YELLOW;
-			} else {
-				arc_color = Graphics.COLOR_RED;
-			}
-			
 		} else {
-			arc_end = 90;
-			arc_color = Graphics.COLOR_BLUE;
-		}
-		
-		dc.setPenWidth(6);
-		dc.setColor(arc_color, Graphics.COLOR_BLACK);
-		dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
-		
-		if (degrees_overtime != 0) {
-			dc.setPenWidth(16);
-			dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
-			dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end_overtime);
+			dc.setPenWidth(6);
+			dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLACK);
+			dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, 90);
 		}
 	}
 }
