@@ -30,8 +30,6 @@ class FastingGlanceView extends WatchUi.GlanceView {
     var symbol_seconds;
     var m_now;
     var timer;
-    var streak_inc_threshold;
-    var streak_reset_threshold;
 
     function initialize() {
         GlanceView.initialize();
@@ -47,6 +45,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
         var center_y = dc.getHeight() / 2;
         var bar_color;
         var percent;
+        
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 
         if (is_active == false) {
@@ -60,7 +59,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
             if (goal_data != -1) {
                 remaining = d_goal.subtract(elapsed);
                 progress  = elapsed.value() / d_goal.value().toFloat();
-                percent = (progress * 100).toNumber();
+				percent = (progress * 100).toNumber();
 
                 var mode_label = string_remaining;
                 var m_goal = m_start.add(d_goal);
@@ -76,22 +75,23 @@ class FastingGlanceView extends WatchUi.GlanceView {
                 dc.fillRectangle(0, dc.getHeight() / 2, dc.getWidth(), 2);
                 
                 if (progress < 1.0) {
+					
 					bar_color = Graphics.COLOR_RED;
 					dc.setColor(bar_color, Graphics.COLOR_BLACK);
 					dc.fillRectangle(0, center_y - 3, dc.getWidth() * progress, 7);
 										
-					if (percent > streak_reset_threshold) {
+					if (progress >= streak_reset_threshold) {
 						bar_color = Graphics.COLOR_YELLOW;
 						dc.setColor(bar_color, Graphics.COLOR_BLACK);
-						dc.fillRectangle(dc.getWidth() * streak_reset_threshold / 100, center_y - 3, dc.getWidth() * progress, 7);
+						dc.fillRectangle(dc.getWidth() * streak_reset_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_reset_threshold), 7);
 					} 
 					
-					if (percent > streak_inc_threshold) {
+					if (progress >= streak_inc_threshold) {
 						bar_color = Graphics.COLOR_GREEN;
 						dc.setColor(bar_color, Graphics.COLOR_BLACK);
-						dc.fillRectangle(dc.getWidth() * streak_inc_threshold / 100, center_y - 3, dc.getWidth() * progress, 7);
+						dc.fillRectangle(dc.getWidth() * streak_inc_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_inc_threshold), 7);
 					}
-                } else (progress > 1.0) {
+                } else {
 					bar_color = Graphics.COLOR_DK_GREEN;
                     dc.setColor(bar_color, Graphics.COLOR_BLACK);
                     dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth(), 8);
@@ -104,7 +104,6 @@ class FastingGlanceView extends WatchUi.GlanceView {
                 dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
                 dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, mode_label + ": ", Graphics.TEXT_JUSTIFY_LEFT);
                 dc.drawText(dc.getWidth(), dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(remaining.value()), Graphics.TEXT_JUSTIFY_RIGHT);
-
             } else {
                 dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, string_elapsed + ": ", Graphics.TEXT_JUSTIFY_LEFT);
                 dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLACK);
