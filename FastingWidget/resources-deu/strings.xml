@@ -47,7 +47,7 @@
 	<string id="fast_sg">Fasten</string>
 	<string id="fast_pl">Fasten</string>
 	<string id="nominalization">y</string>
-	<string id="fasting_title" scope="glance">FASTEN</string>
+	<string id="fasting_title" scope="glance">Fasten</string>
 	<string id="elapsed" scope="glance">Vergangen</string>
 	<string id="remaining" scope="glance">Verbleibend</string>
 	<string id="since">seit</string>
@@ -79,6 +79,6 @@
 	<string id="symbol_minutes" scope="glance">m</string>
 	<string id="symbol_seconds" scope="glance">s</string>
 	<string id="default_date_format">dd.mm.yy</string>
-	<string id="time_format_1">xT xH xMIN</string>
-	<string id="time_format_2">T:H:MIN</string>
+	<string id="time_format_1">xt xh xm</string>
+	<string id="time_format_2">t:h:m</string>
 </resources>

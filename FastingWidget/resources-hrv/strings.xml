@@ -47,6 +47,7 @@
 	<string id="fast_sg">Post</string>
 	<string id="fast_pl">Postovi</string>
 	<string id="nominalization">n</string>
+	<string id="fasting_title" scope="glance">Post</string>
 	<string id="elapsed" scope="glance">Proteklo</string>
 	<string id="remaining" scope="glance">Ostalo</string>
 	<string id="since">Od</string>
@@ -73,11 +74,11 @@
 	<string id="string_days">Dani</string>
 	<string id="string_week">Tjedan</string>
 	<string id="string_weeks">Tjedni</string>
-	<string id="symbol_days" scope="glance">D</string>
-	<string id="symbol_hours" scope="glance">H</string>
-	<string id="symbol_minutes" scope="glance">MIN</string>
-	<string id="symbol_seconds" scope="glance">S</string>
+	<string id="symbol_days" scope="glance">d</string>
+	<string id="symbol_hours" scope="glance">h</string>
+	<string id="symbol_minutes" scope="glance">m</string>
+	<string id="symbol_seconds" scope="glance">s</string>
 	<string id="default_date_format">dd.mm.yy</string>
-	<string id="time_format_1">xD xH xMIN</string>
-	<string id="time_format_2">D:H:MIN</string>
+	<string id="time_format_1">xd xh xm</string>
+	<string id="time_format_2">d:h:m</string>
 </resources>
