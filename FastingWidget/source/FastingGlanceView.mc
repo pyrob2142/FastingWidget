@@ -30,6 +30,8 @@ class FastingGlanceView extends WatchUi.GlanceView {
     var symbol_seconds;
     var m_now;
     var timer;
+    var streak_inc_threshold;
+    var streak_reset_threshold;
 
     function initialize() {
         GlanceView.initialize();
@@ -43,6 +45,8 @@ class FastingGlanceView extends WatchUi.GlanceView {
 
     function onUpdate(dc) {
         var center_y = dc.getHeight() / 2;
+        var bar_color;
+        var percent;
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 
         if (is_active == false) {
@@ -56,6 +60,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
             if (goal_data != -1) {
                 remaining = d_goal.subtract(elapsed);
                 progress  = elapsed.value() / d_goal.value().toFloat();
+                percent = (progress * 100).toNumber();
 
                 var mode_label = string_remaining;
                 var m_goal = m_start.add(d_goal);
@@ -64,29 +69,37 @@ class FastingGlanceView extends WatchUi.GlanceView {
                 if (m_now.greaterThan(m_goal)) {
                     mode_label = string_overtime;
                 }
-                
-	            if (progress > 1.0) {
-					bar_color = Graphics.COLOR_DK_GREEN;
-				} else if (progress >= streak_inc_threshold) {
-					bar_color = Graphics.COLOR_GREEN;
-				} else if (progress >= streak_reset_threshold) {
-					bar_color = Graphics.COLOR_YELLOW;
-				} else {
-					bar_color = Graphics.COLOR_RED;
-				}
 
                 dc.drawText(dc.getWidth(), -5, Graphics.FONT_SYSTEM_TINY, (progress * 100.0).format("%.1f") + "%", Graphics.TEXT_JUSTIFY_RIGHT);
 
                 dc.setColor(Graphics.COLOR_LT_GRAY  , Graphics.COLOR_BLACK);
                 dc.fillRectangle(0, dc.getHeight() / 2, dc.getWidth(), 2);
-
-                dc.setColor(bar_color, Graphics.COLOR_BLACK);
-                dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth() * progress, 8);
                 
-                if (progress > 1.0) {
-                	dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+                if (progress < 1.0) {
+					bar_color = Graphics.COLOR_RED;
+					dc.setColor(bar_color, Graphics.COLOR_BLACK);
+					dc.fillRectangle(0, center_y - 3, dc.getWidth() * progress, 7);
+										
+					if (percent > streak_reset_threshold) {
+						bar_color = Graphics.COLOR_YELLOW;
+						dc.setColor(bar_color, Graphics.COLOR_BLACK);
+						dc.fillRectangle(dc.getWidth() * streak_reset_threshold / 100, center_y - 3, dc.getWidth() * progress, 7);
+					} 
+					
+					if (percent > streak_inc_threshold) {
+						bar_color = Graphics.COLOR_GREEN;
+						dc.setColor(bar_color, Graphics.COLOR_BLACK);
+						dc.fillRectangle(dc.getWidth() * streak_inc_threshold / 100, center_y - 3, dc.getWidth() * progress, 7);
+					}
+                } else (progress > 1.0) {
+					bar_color = Graphics.COLOR_DK_GREEN;
+                    dc.setColor(bar_color, Graphics.COLOR_BLACK);
+                    dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth(), 8);
+                    
+                    dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
                 	dc.fillRectangle(0, dc.getHeight() / 2 - 5, dc.getWidth() * (progress - 1.0), 12);
-                }
+				}
+                
 
                 dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
                 dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, mode_label + ": ", Graphics.TEXT_JUSTIFY_LEFT);
@@ -104,6 +117,8 @@ class FastingGlanceView extends WatchUi.GlanceView {
 
     function load() {
         streak_data = Application.AppBase.getProperty("streak_data").toNumber();
+        streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold");
+        streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold");
 
         is_active = Storage.getValue("is_active");
         if (is_active == null) {
@@ -138,7 +153,6 @@ class FastingGlanceView extends WatchUi.GlanceView {
         symbol_hours = WatchUi.loadResource(Rez.Strings.symbol_hours);
         symbol_minutes = WatchUi.loadResource(Rez.Strings.symbol_minutes);
         symbol_seconds = WatchUi.loadResource(Rez.Strings.symbol_seconds);
-
     }
 
     function convertSeconds(value) {
