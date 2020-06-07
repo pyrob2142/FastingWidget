@@ -246,7 +246,9 @@ class FastingView extends WatchUi.View {
 		var has_goal = fast_manager.fast.has_goal;
 		var percent = 1.0;
 		var degrees;
+		var degrees_overtime = 0;
 		var arc_end;
+		var arc_end_overtime = null;
 		var arc_color;
 		
 		if (has_goal == true) {
@@ -256,6 +258,18 @@ class FastingView extends WatchUi.View {
 			
 			if (percent > 1.0) {
 				degrees = 360;
+				
+				degrees_overtime = 360 * (percent - 1.0);
+				
+				if (percent > 2.0) {
+					degrees_overtime = 360;
+				}
+				
+				if (degrees_overtime < 90) {
+					arc_end_overtime = 90 - degrees_overtime;
+				} else {
+					arc_end_overtime = 360 - (degrees_overtime - 90);
+				}
 			}
 			
 			if (percent == 0.0) {
@@ -268,13 +282,16 @@ class FastingView extends WatchUi.View {
 				arc_end = 360 - (degrees - 90);
 			}
 		
-			if (percent >= streak_inc_threshold) {
+			if (percent > 1.0) {
+				arc_color = Graphics.COLOR_DK_GREEN;
+			} else if (percent >= streak_inc_threshold) {
 				arc_color = Graphics.COLOR_GREEN;
 			} else if (percent >= streak_reset_threshold) {
 				arc_color = Graphics.COLOR_YELLOW;
 			} else {
 				arc_color = Graphics.COLOR_RED;
 			}
+			
 		} else {
 			arc_end = 90;
 			arc_color = Graphics.COLOR_BLUE;
@@ -283,5 +300,11 @@ class FastingView extends WatchUi.View {
 		dc.setPenWidth(12);
 		dc.setColor(arc_color, Graphics.COLOR_BLACK);
 		dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
+		
+		if (degrees_overtime != 0) {
+			dc.setPenWidth(25);
+			dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+			dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end_overtime);
+		}
 	}
 }
