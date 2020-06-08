@@ -226,7 +226,6 @@ class ResourceManager {
 		}
 		
 		start_data = Storage.getValue("start_data");
-		start_data = 1591597780;
 		if (start_data == -1 || start_data == null) {
 			start_data = -1;
 		}
