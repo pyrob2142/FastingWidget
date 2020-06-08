@@ -46,7 +46,6 @@ class FastingGlanceView extends WatchUi.GlanceView {
     function onUpdate(dc) {
         var center_y = dc.getHeight() / 2;
         var bar_color;
-        var percent;
         
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 
@@ -61,7 +60,6 @@ class FastingGlanceView extends WatchUi.GlanceView {
             if (goal_data != -1) {
                 remaining = d_goal.subtract(elapsed);
                 progress  = elapsed.value() / d_goal.value().toFloat();
-				percent = (progress * 100).toNumber();
 
                 var mode_label = string_remaining;
                 var m_goal = m_start.add(d_goal);
@@ -122,7 +120,9 @@ class FastingGlanceView extends WatchUi.GlanceView {
     		"006-B3289-00", // Fenix 6 
     		"006-B3514-00", // Fenix 6 APAC
     		"006-B3287-00", // Fenix 6S
-    		"006-B3512-00"  // Fenix 6S APAC
+    		"006-B3512-00", // Fenix 6S APAC (not enough space)
+    		"006-B3288-00", // Fenix 6S Pro
+    		"006-B3513-00"  // Fenix 6S Pro APAC (not enough space)
     	];
     	
     	if (unsupported_devices.indexOf(part_number) != -1) {
