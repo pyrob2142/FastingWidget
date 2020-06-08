@@ -5,6 +5,7 @@
 
 	<!-- USER SETTINGS -->
 	<string id="longpress_threshold_title">Langer Druck ab (ms)</string>
+	<string id="show_seconds_title">Sekunden anzeigen</string>
 
 	<string id="default_page_goal_title">Startseite (mit Ziel)</string>
 	<string id="default_page_no_goal_title">Startseite (ohne Ziel)</string>

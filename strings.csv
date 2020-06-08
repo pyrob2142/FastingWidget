@@ -1,7 +1,8 @@
 String,Notes,Character Limit,Arabic,Bulgarian,Chinese (Simplified),Chinese (Traditional),Croatian,Czech,Danish,Dutch,English,Estonian,Finnish,French,German,Greek,Hebrew,Hungarian,Indonesian,Italian,Japanese,Korean,Latvian,Lithuanian,Norwegian,Polish,Portuguese,Romanian,Russian,Slovak,Slovenian,Spanish,Standard (Bahasa) Malay,Swedish,Thai,Turkish,Ukrainian,Vietnamese
-Translator,[optional] for the credits section on GitHub,within reason,,,,,notefolio,,,,pyrob2142,,,,pyrob2142,,,,,,,,,,,,,,,,,,,,,,,
+Translator,[optional] for the credits section on GitHub,within reason,,,,,notefolio,,,,pyrob2142,,,,pyrob2142,,,,,,,,,,,,,,Oleksiy Mishchenko,,,,,,,,,
 AppName,,within reason,,,,,Widget za post,,,,Fasting Widget,,,,Fasten Widget,,,,,,,,,,,,,,,,,,,,,,,
 longpress_threshold_title,,within reason,,,,,Prag dugog pritiska (ms),,,,Long Press Threshold (ms),,,,Langer Druck ab (ms),,,,,,,,,,,,,,,,,,,,,,,
+show_seconds_title,,within reason,,,,,Pokaži sekunde,,,,Show seconds,,,,Sekunden anzeigen,,,,,,,,,,,,,,,,,,,,,,,
 default_page_goal_title,,within reason,,,,,Početna stranica (s ciljem),,,,Initial Page (with goal),,,,Startseite (mit Ziel),,,,,,,,,,,,,,,,,,,,,,,
 default_page_no_goal_title,,within reason,,,,,Početna stranica (bez cilja),,,,Initial Page (without goal),,,,Startseite (ohne Ziel),,,,,,,,,,,,,,,,,,,,,,,
 page_streak,,within reason,,,,,Red,,,,Streak,,,,Serie,,,,,,,,,,,,,,,,,,,,,,,

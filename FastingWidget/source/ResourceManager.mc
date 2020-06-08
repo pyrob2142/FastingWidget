@@ -21,6 +21,8 @@ class ResourceManager {
 	
 	//! Settings
 	var longpress_threshold;
+	var show_seconds;
+	var update_rate;
 	var default_page_goal;
 	var default_page_no_goal;
 	var default_goal_hours;
@@ -115,6 +117,12 @@ class ResourceManager {
 	//! Loads the user settings.
 	function loadSettings() {
 		longpress_threshold = Application.AppBase.getProperty("longpress_threshold");
+		show_seconds = Application.AppBase.getProperty("show_seconds");
+		if (show_seconds == true) {
+			update_rate = 1000;
+		} else {
+			update_rate = 60000;
+		}
 		
 		default_page_goal = Application.AppBase.getProperty("default_page_goal");
 		default_page_no_goal = Application.AppBase.getProperty("default_page_no_goal");

@@ -5,6 +5,7 @@
 
 	<!-- USER SETTINGS -->
 	<string id="longpress_threshold_title">Long Press Threshold (ms)</string>
+	<string id="show_seconds_title">Show seconds</string>
 
 	<string id="default_page_goal_title">Initial Page (with goal)</string>
 	<string id="default_page_no_goal_title">Initial Page (without goal)</string>

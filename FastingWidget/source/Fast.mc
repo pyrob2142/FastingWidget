@@ -48,7 +48,7 @@ class Fast {
 		}
 		
 		me.m_start = Time.now();
-		timer.start(me.method(:update), 1000, true);
+		timer.start(me.method(:update), resource_manager.update_rate, true);
 		is_active = true;
 		resource_manager.save();
 		update();
@@ -76,7 +76,7 @@ class Fast {
 		}
 		
 		m_start = new Time.Moment(start);
-		timer.start(me.method(:update), 1000, true);
+		timer.start(me.method(:update), resource_manager.update_rate, true);
 		is_active = true;
 		update();
 	}

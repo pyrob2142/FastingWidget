@@ -5,6 +5,7 @@
 
 	<!-- USER SETTINGS -->
 	<string id="longpress_threshold_title">Prag dugog pritiska (ms)</string>
+	<string id="show_seconds_title">Pokaži sekunde</string>
 
 	<string id="default_page_goal_title">Početna stranica (s ciljem)</string>
 	<string id="default_page_no_goal_title">Početna stranica (bez cilja)</string>
