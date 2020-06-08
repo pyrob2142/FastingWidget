@@ -80,6 +80,7 @@ If you want to provide a translation for the widget please feel free to edit the
 
 ## Settings
 * Long press threshold (ms): Set how long you have to hold the start button to open up the menus (Default: 2000 ms)
+* Show seconds: If you disable this seconds will not be displayed and the update rate will switch to once per minute. May save power (Default: true)
 * Initial page (with goal): Set the startup page for when your fast has a goal (Default: Show time remaining)
 * Initial page (without goal): Set the startup page for when your fast has no goal (Default: Show time elapsed)
 * Default goal: Avoid having to scroll through the options by setting your default fast duration (Default: 16 hours)
@@ -87,9 +88,11 @@ If you want to provide a translation for the widget please feel free to edit the
 * Activity level: Set your activity level to increase the accuracy of your calorie estimate (Default: Moderate)
 * Date of birth: Set your date of birth to further increase the accuracy of your calorie estimate (Default: 30)
 * BMR calculation based on: Select from a variety of formulas (details below) for estimating your real-time calorie burn.
+* Custom BMR (kcal): If you know your BMR (e.g. if you had it professionally measured) you can enter the value here. If set to 0 the widget will estimate your BMR by using the chosen formula (Default: 0)
 * Body fat (%): Required by the Katch-McArdle formula (Default: 23%)
 * Reset streak below (% of completion): Count your fast as failed and reset your streak, if your fast does not reach a certain threshold of completion (Default: 50%)
 * Increase streak above(% of completion): Count your fast as successful and increase your streak, if you reached at least this threshold of completion (Default: 75%)
+* Single-color progress indicator: Switch between stacking colors or a single color for the progress indicator (Default: false)
 * Overwrite Streak: Allows you to overwrite the streak in case the settings get reset. Don't cheat!
 * Overwrite date format: While we provide a default format for your language, you are always free to customize it. Simply enter your desired format as a string: e.g. dd.mm.yy, mm/dd/yy, yy|mm|dd, ...
 * Time format: Choose if you want the labels for elapsed and remaining time shown with time units or in regular clock style
@@ -136,6 +139,8 @@ Your activity level is determined as follows:
 
 ## Credits
 fire.png made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](www.flaticon.com).
+
+Oleksiy Mishchenko (axl13) for his amazing contributions to the glance view and stacking progress indicators. You're awesome!
 
 Translators are credited next to their respective languages.
 
