@@ -65,7 +65,6 @@ class Toolbox {
 				var minutes = n / 60;
 				n = n % 60;
 				
-				var seconds = n;
 				return days.format("%02d") + resource_manager.symbol_days + " " + hours.format("%02d") 
 					+ resource_manager.symbol_hours + " " + minutes.format("%02d") + resource_manager.symbol_minutes;
 			} else {
@@ -75,9 +74,14 @@ class Toolbox {
 				var minutes = n / 60;
 				n = n % 60;
 				
-				var seconds = n;
-				return hours.format("%02d") + resource_manager.symbol_hours + " " + minutes.format("%02d") 
-					+ resource_manager.symbol_minutes + " " + seconds.format("%02d") + resource_manager.symbol_seconds;
+				if (resource_manager.show_seconds == true) {
+					var seconds = n;
+					return hours.format("%02d") + resource_manager.symbol_hours + " " + minutes.format("%02d") 
+						+ resource_manager.symbol_minutes + " " + seconds.format("%02d") + resource_manager.symbol_seconds;
+				} else {
+					return hours.format("%02d") + resource_manager.symbol_hours + " " + minutes.format("%02d") 
+						+ resource_manager.symbol_minutes;
+				}
 			}
 		} else {
 			if (n / 3600 >= resource_manager.show_days) {
@@ -90,8 +94,7 @@ class Toolbox {
 				var minutes = n / 60;
 				n = n % 60;
 				
-				var seconds = n;
-				return days.format("%02d") + ":" + hours.format("%02d") + ":" + minutes.format("%02d") + ":" + seconds.format("%02d");
+				return days.format("%02d") + ":" + hours.format("%02d") + ":" + minutes.format("%02d");
 			} else {
 				var hours = n / 3600;
 				n = n % 3600;
@@ -99,8 +102,12 @@ class Toolbox {
 				var minutes = n / 60;
 				n = n % 60;
 				
-				var seconds = n;
-				return hours.format("%02d") + ":" + minutes.format("%02d") + ":" + seconds.format("%02d");
+				if (resource_manager.show_seconds == true) {
+					var seconds = n;
+					return hours.format("%02d") + ":" + minutes.format("%02d") + ":" + seconds.format("%02d");
+				} else {
+					return hours.format("%02d") + ":" + minutes.format("%02d");
+				}
 			}
 		}
 	}

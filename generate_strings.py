@@ -7,6 +7,13 @@ import sys
 import argparse
 import pandas
 
+index = 0
+
+def inc_i():
+    global index
+    index = index + 1
+    return index
+
 def get_options(args=sys.argv[1:]):
     parser = argparse.ArgumentParser(description="Parses command.")
     parser.add_argument("-i", "--input", help="The csv file to convert.")
@@ -69,78 +76,79 @@ column = data_frame['%s' % (language)]
 column.tolist()
 
 translator = column[0]
-app_name = column[1]
+app_name = column[inc_i()]
 
-long_press_threshold_title = column[2]
+long_press_threshold_title = column[inc_i()]
+show_seconds_title = column[inc_i()]
 
-default_page_goal_title = column[3]
-default_page_no_goal_title = column[4]
-page_streak = column[5]
-page_elapsed = column[6]
-page_remaining = column[7]
-page_calories = column[8]
+default_page_goal_title = column[inc_i()]
+default_page_no_goal_title = column[inc_i()]
+page_streak = column[inc_i()]
+page_elapsed = column[inc_i()]
+page_remaining = column[inc_i()]
+page_calories = column[inc_i()]
 
-default_goal_title = column[9]
-custom_goal_title = column[10]
+default_goal_title = column[inc_i()]
+custom_goal_title = column[inc_i()]
 
-activity_level_title = column[11]
-activity_level_0 = column[12]
-activity_level_1 = column[13]
-activity_level_2 = column[14]
-activity_level_3 = column[15]
-activity_level_4 = column[16]
+activity_level_title = column[inc_i()]
+activity_level_0 = column[inc_i()]
+activity_level_1 = column[inc_i()]
+activity_level_2 = column[inc_i()]
+activity_level_3 = column[inc_i()]
+activity_level_4 = column[inc_i()]
 
-birthday_title = column[17]
-bmr_formula_title = column[18]
-bmr_mifflin = column[19]
-bmr_harris = column[20]
-bmr_katch = column[21]
-body_fat_title = column[22]
+birthday_title = column[inc_i()]
+bmr_formula_title = column[inc_i()]
+bmr_mifflin = column[inc_i()]
+bmr_harris = column[inc_i()]
+bmr_katch = column[inc_i()]
+body_fat_title = column[inc_i()]
 
-streak_reset_threshold_title = column[23]
-streak_inc_threshold_title = column[24]
-streak_title = column[25]
-overwrite_date_format_title = column[26]
-time_format_title = column[27]
-show_days_title = column[28]
+streak_reset_threshold_title = column[inc_i()]
+streak_inc_threshold_title = column[inc_i()]
+streak_title = column[inc_i()]
+overwrite_date_format_title = column[inc_i()]
+time_format_title = column[inc_i()]
+show_days_title = column[inc_i()]
 
-summary = column[29]
-duration = column[30]
-calories = column[31]
-streak = column[32]
-fast_sg = column[33]
-fast_pl = column[34]
-nominalization = column[35]
-fasting_title = column[36]
-elapsed = column[37]
-remaining = column[38]
-since = column[39]
-until = column[40]
-kcal = column[41]
-overtime = column[42]
+summary = column[inc_i()]
+duration = column[inc_i()]
+calories = column[inc_i()]
+streak = column[inc_i()]
+fast_sg = column[inc_i()]
+fast_pl = column[inc_i()]
+nominalization = column[inc_i()]
+fasting_title = column[inc_i()]
+elapsed = column[inc_i()]
+remaining = column[inc_i()]
+since = column[inc_i()]
+until = column[inc_i()]
+kcal = column[inc_i()]
+overtime = column[inc_i()]
 
-fast_type_menu_title = column[43]
-fast_set_goal = column[44]
-fast_no_goal  = column[45]
-end_fast_title = column[46]
-cancel_fast_title = column[47]
-goal_menu_title = column[48]
-options_title = column[49]
-sure_title = column[50]
-yes = column[51]
-no = column[52]
+fast_type_menu_title = column[inc_i()]
+fast_set_goal = column[inc_i()]
+fast_no_goal  = column[inc_i()]
+end_fast_title = column[inc_i()]
+cancel_fast_title = column[inc_i()]
+goal_menu_title = column[inc_i()]
+options_title = column[inc_i()]
+sure_title = column[inc_i()]
+yes = column[inc_i()]
+no = column[inc_i()]
 
-string_hour = column[53]
-string_hours = column[54]
-string_day = column[55]
-string_days = column[56]
-string_week = column[57]
-string_weeks = column[58]
-symbol_days = column[59]
-symbol_hours = column[60]
-symbol_minutes = column[61]
-symbol_seconds = column[62]
-default_date_format = column[63]
+string_hour = column[inc_i()]
+string_hours = column[inc_i()]
+string_day = column[inc_i()]
+string_days = column[inc_i()]
+string_week = column[inc_i()]
+string_weeks = column[inc_i()]
+symbol_days = column[inc_i()]
+symbol_hours = column[inc_i()]
+symbol_minutes = column[inc_i()]
+symbol_seconds = column[inc_i()]
+default_date_format = column[inc_i()]
 
 time_format_1 = "x" + symbol_days + " x" + symbol_hours + " x" + symbol_minutes
 time_format_2 = symbol_days + ":" + symbol_hours + ":" + symbol_minutes 
@@ -157,6 +165,7 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\n')
     f.write('\t<!-- USER SETTINGS -->\n')
     f.write('\t<string id="longpress_threshold_title">%s</string>\n' % (long_press_threshold_title))
+    f.write('\t<string id="show_seconds_title">%s</string>\n' % (show_seconds_title))
     f.write('\n')
     f.write('\t<string id="default_page_goal_title">%s</string>\n' % (default_page_goal_title))
     f.write('\t<string id="default_page_no_goal_title">%s</string>\n' % (default_page_no_goal_title))

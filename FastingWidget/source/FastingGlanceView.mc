@@ -30,6 +30,8 @@ class FastingGlanceView extends WatchUi.GlanceView {
     var symbol_seconds;
     var m_now;
     var timer;
+    var show_seconds;
+    var update_rate;
 
     function initialize() {
         GlanceView.initialize();
@@ -37,7 +39,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
 
         if (is_active == true) {
             timer = new Timer.Timer();
-            timer.start(me.method(:update), 1000, true);
+            timer.start(me.method(:update), update_rate, true);
         }
     }
 
@@ -99,8 +101,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
                     dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
                 	dc.fillRectangle(0, dc.getHeight() / 2 - 5, dc.getWidth() * (progress - 1.0), 12);
 				}
-                
-
+               	
                 dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
                 dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, mode_label + ": ", Graphics.TEXT_JUSTIFY_LEFT);
                 dc.drawText(dc.getWidth(), dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(remaining.value()), Graphics.TEXT_JUSTIFY_RIGHT);
@@ -115,6 +116,29 @@ class FastingGlanceView extends WatchUi.GlanceView {
     }
 
     function load() {
+  		// Lower the update rate and hide seconds due to hardware limitations
+    	var part_number = System.getDeviceSettings().partNumber;
+    	var unsupported_devices = [
+    		"006-B3289-00", // Fenix 6 
+    		"006-B3514-00", // Fenix 6 APAC
+    		"006-B3287-00", // Fenix 6S
+    		"006-B3512-00"  // Fenix 6S APAC
+    	];
+    	
+    	if (unsupported_devices.indexOf(part_number) != -1) {
+    		System.println("Unsupported");
+    		show_seconds = false;
+    		update_rate = 60000;
+    	} else {
+	    	show_seconds = Application.AppBase.getProperty("show_seconds");
+			
+			if (show_seconds == true) {
+				update_rate = 1000;
+			} else {
+				update_rate = 60000;
+			}
+		}
+    
         streak_data = Application.AppBase.getProperty("streak_data").toNumber();
         streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold");
         streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold");
@@ -167,10 +191,10 @@ class FastingGlanceView extends WatchUi.GlanceView {
 
                 var minutes = n / 60;
                 n = n % 60;
-
-                var seconds = n;
-                return days.format("%d") + symbol_days + " " + hours.format("%d")
-                    + symbol_hours + " " + minutes.format("%02d") + symbol_minutes;
+				
+				
+	            return days.format("%d") + symbol_days + " " + hours.format("%d")
+	            	+ symbol_hours + " " + minutes.format("%02d") + symbol_minutes;
             } else {
                 var hours = n / 3600;
                 n = n % 3600;
@@ -178,9 +202,14 @@ class FastingGlanceView extends WatchUi.GlanceView {
                 var minutes = n / 60;
                 n = n % 60;
 
-                var seconds = n;
-                return hours.format("%d") + symbol_hours + " " + minutes.format("%02d")
-                    + symbol_minutes + " " + seconds.format("%02d") + symbol_seconds;
+				if (show_seconds == true) {
+                	var seconds = n;
+                	return hours.format("%d") + symbol_hours + " " + minutes.format("%02d")
+                    	+ symbol_minutes + " " + seconds.format("%02d") + symbol_seconds;
+                } else {
+                	return hours.format("%d") + symbol_hours + " " + minutes.format("%02d")
+                    	+ symbol_minutes;
+                }
             }
         } else {
             if (n / 3600 >= show_days) {
@@ -193,8 +222,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
                 var minutes = n / 60;
                 n = n % 60;
 
-                var seconds = n;
-                return days.format("%02d") + ":" + hours.format("%02d") + ":" + minutes.format("%02d") + ":" + seconds.format("%02d");
+                return days.format("%02d") + ":" + hours.format("%02d") + ":" + minutes.format("%02d");
             } else {
                 var hours = n / 3600;
                 n = n % 3600;
@@ -202,8 +230,12 @@ class FastingGlanceView extends WatchUi.GlanceView {
                 var minutes = n / 60;
                 n = n % 60;
 
-                var seconds = n;
-                return hours.format("%02d") + ":" + minutes.format("%02d") + ":" + seconds.format("%02d");
+				if (show_seconds == true) {
+                	var seconds = n;
+                	return hours.format("%02d") + ":" + minutes.format("%02d") + ":" + seconds.format("%02d");
+               	} else {
+               		return hours.format("%02d") + ":" + minutes.format("%02d");
+               	}
             }
         }
     }
