@@ -4,6 +4,7 @@
 	<string id="AppName">Fasting Widget</string>
 
 	<!-- USER SETTINGS -->
+	<string id="readme_string">You can find information for these settings in the README</string>
 	<string id="longpress_threshold_title">Long Press Threshold (ms)</string>
 	<string id="show_seconds_title">Show seconds</string>
 

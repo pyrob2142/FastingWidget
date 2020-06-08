@@ -78,6 +78,7 @@ column.tolist()
 translator = column[0]
 app_name = column[inc_i()]
 
+readme_string = column[inc_i()]
 long_press_threshold_title = column[inc_i()]
 show_seconds_title = column[inc_i()]
 
@@ -165,6 +166,7 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\t<string id="AppName">%s</string>\n' % (app_name))
     f.write('\n')
     f.write('\t<!-- USER SETTINGS -->\n')
+    f.write('\t<string id="readme_string">%s</string>\n' % (readme_string))
     f.write('\t<string id="longpress_threshold_title">%s</string>\n' % (long_press_threshold_title))
     f.write('\t<string id="show_seconds_title">%s</string>\n' % (show_seconds_title))
     f.write('\n')

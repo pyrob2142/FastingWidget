@@ -1,5 +1,6 @@
 <resources>
 	<properties>
+		<property id="help" type="string"></property>
 		<property id="longpress_threshold" type="number">2000</property>
 		<property id="show_seconds" type="boolean">true</property>
 		<property id="default_page_goal" type="number">2</property>
@@ -22,6 +23,10 @@
 	</properties>
 
 	<settings>
+		<setting propertyKey="@Properties.help" title="@Strings.readme_string" helpUrl="https://github.com/pyrob2142/FastingWidget#settings">
+		<settingConfig type="alphaNumeric" readonly="true" />
+		</setting>
+		
 		<setting propertyKey="@Properties.longpress_threshold" title="@Strings.longpress_threshold_title">
 		<settingConfig type="numeric" min="1000" />
 		</setting>

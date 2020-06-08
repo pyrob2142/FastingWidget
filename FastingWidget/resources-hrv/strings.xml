@@ -4,6 +4,7 @@
 	<string id="AppName">Widget za post</string>
 
 	<!-- USER SETTINGS -->
+	<string id="readme_string">Informacije o tim postavkama možete pronaći u README</string>
 	<string id="longpress_threshold_title">Prag dugog pritiska (ms)</string>
 	<string id="show_seconds_title">Pokaži sekunde</string>
 

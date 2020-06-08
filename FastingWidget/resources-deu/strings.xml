@@ -4,6 +4,7 @@
 	<string id="AppName">Fasten Widget</string>
 
 	<!-- USER SETTINGS -->
+	<string id="readme_string">Informationen zu diesen Einstellungen findest du in der README</string>
 	<string id="longpress_threshold_title">Langer Druck ab (ms)</string>
 	<string id="show_seconds_title">Sekunden anzeigen</string>
 
