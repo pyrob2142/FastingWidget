@@ -37,6 +37,7 @@
 
 	<string id="streak_reset_threshold_title">Reset streak below (percent of completion)</string>
 	<string id="streak_inc_threshold_title">Increase streak above (percent of completion)</string>
+	<string id="single_color_progress_title">Single-color progress indicator</string>
 	<string id="streak_title">Overwrite Streak</string>
 	<string id="overwrite_date_format_title">Overwrite date format</string>
 	<string id="time_format_title">Time format</string>

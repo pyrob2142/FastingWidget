@@ -248,7 +248,7 @@ class FastingViewLayoutDummy extends WatchUi.View {
 		var percent = 1.0;
 		var degrees_arc_start;
 		var arc_start = 0;
-		var degrees_progress;
+		var degrees_progress = 0;
 		var degrees_overtime = 0;
 		var arc_end;
 		var arc_end_overtime = null;
@@ -280,69 +280,96 @@ class FastingViewLayoutDummy extends WatchUi.View {
 				dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end_overtime);	
 			} else {
 				
-				if (percent == 0.0) {
-					degrees_progress = 1;
-				}
-				
-				degrees_progress = 360 * percent;
-				
-				if (degrees_progress < 90) {
-					arc_end = 90 - degrees_progress;
+				if (resource_manager.single_color_progress == false) {
+					if (percent == 0.0) {
+						degrees_progress = 1;
+					}
+					
+					degrees_progress = 360 * percent;
+					
+					if (degrees_progress < 90) {
+						arc_end = 90 - degrees_progress;
+					} else {
+						arc_end = 360 - (degrees_progress - 90);
+					}
+					
+					dc.setPenWidth(6);
+					dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_BLACK);
+					dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
+					
+					if (percent >= streak_reset_threshold) {
+						degrees_progress = 360 * (percent - streak_reset_threshold);
+						
+						degrees_arc_start = 360 * streak_reset_threshold;
+						arc_start;
+						
+						if (degrees_arc_start < 90) {
+							arc_start = 90 - degrees_arc_start;
+						} else {
+							arc_start = 360 - (degrees_arc_start - 90);
+						}
+						
+						if (degrees_arc_start + degrees_progress < 90) {
+							arc_end = 90 - (degrees_arc_start + degrees_progress);
+						} else {
+							arc_end = 360 - (degrees_arc_start + degrees_progress - 90);
+						}
+						
+						dc.setPenWidth(6);
+						dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
+						dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
+					}
+					
+					if (percent >= streak_inc_threshold) {
+						degrees_progress = 360 * (percent - streak_inc_threshold);
+						
+						degrees_arc_start = 360 * streak_inc_threshold;
+						arc_start;
+						
+						if (degrees_arc_start < 90) {
+							arc_start = 90 - degrees_arc_start;
+						} else {
+							arc_start = 360 - (degrees_arc_start - 90);
+						}
+						
+						if (degrees_arc_start + degrees_progress < 90) {
+							arc_end = 90 - (degrees_arc_start + degrees_progress);
+						} else {
+							arc_end = 360 - (degrees_arc_start + degrees_progress - 90);
+						}
+						
+						dc.setPenWidth(6);
+						dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+						dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
+					}
 				} else {
-					arc_end = 360 - (degrees_progress - 90);
-				}
-				
-				dc.setPenWidth(6);
-				dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_BLACK);
-				dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
-				
-				if (percent >= streak_reset_threshold) {
-					degrees_progress = 360 * (percent - streak_reset_threshold);
-					
-					degrees_arc_start = 360 * streak_reset_threshold;
-					arc_start;
-					
-					if (degrees_arc_start < 90) {
-						arc_start = 90 - degrees_arc_start;
-					} else {
-						arc_start = 360 - (degrees_arc_start - 90);
+					if (percent == 0.0) {
+						degrees_progress = 1;
 					}
 					
-					if (degrees_arc_start + degrees_progress < 90) {
-						arc_end = 90 - (degrees_arc_start + degrees_progress);
+					degrees_progress = 360 * percent;
+					
+					if (degrees_progress < 90) {
+						arc_end = 90 - degrees_progress;
 					} else {
-						arc_end = 360 - (degrees_arc_start + degrees_progress - 90);
+						arc_end = 360 - (degrees_progress - 90);
+					}
+				
+					if (percent > 1.0) {
+						arc_color = Graphics.COLOR_DK_GREEN;
+					} else if (percent >= streak_inc_threshold) {
+						arc_color = Graphics.COLOR_GREEN;
+					} else if (percent >= streak_reset_threshold) {
+						arc_color = Graphics.COLOR_YELLOW;
+					} else {
+						arc_color = Graphics.COLOR_RED;
 					}
 					
 					dc.setPenWidth(6);
-					dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
-					dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
-				}
-				
-				if (percent >= streak_inc_threshold) {
-					degrees_progress = 360 * (percent - streak_inc_threshold);
-					
-					degrees_arc_start = 360 * streak_inc_threshold;
-					arc_start;
-					
-					if (degrees_arc_start < 90) {
-						arc_start = 90 - degrees_arc_start;
-					} else {
-						arc_start = 360 - (degrees_arc_start - 90);
-					}
-					
-					if (degrees_arc_start + degrees_progress < 90) {
-						arc_end = 90 - (degrees_arc_start + degrees_progress);
-					} else {
-						arc_end = 360 - (degrees_arc_start + degrees_progress - 90);
-					}
-					
-					dc.setPenWidth(6);
-					dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
-					dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
+					dc.setColor(arc_color, Graphics.COLOR_BLACK);
+					dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
 				}
 			}
-		
 		} else {
 			dc.setPenWidth(6);
 			dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLACK);

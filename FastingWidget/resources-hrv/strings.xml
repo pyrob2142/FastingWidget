@@ -37,6 +37,7 @@
 
 	<string id="streak_reset_threshold_title">Poništi red ispod (% završetka)</string>
 	<string id="streak_inc_threshold_title">Povećajte red iznad (% završetka)</string>
+	<string id="single_color_progress_title">Jednobojni indikator napretka</string>
 	<string id="streak_title">Prepiši red</string>
 	<string id="overwrite_date_format_title">Prepisati format datuma</string>
 	<string id="time_format_title">Vremenski format</string>

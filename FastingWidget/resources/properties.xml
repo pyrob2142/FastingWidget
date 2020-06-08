@@ -16,6 +16,7 @@
 		<property id="body_fat" type="number">23</property>
 		<property id="streak_reset_threshold" type="number">50</property>
 		<property id="streak_inc_threshold" type="number">75</property>
+		<property id="single_color_progress" type="boolean">false</property>
 		<property id="streak_data" type="number">0</property>
 		<property id="overwrite_date_format" type="string"></property>
 		<property id="time_format" type="number">0</property>
@@ -104,6 +105,10 @@
 		
 		<setting propertyKey="@Properties.streak_inc_threshold" title="@Strings.streak_inc_threshold_title">
 		<settingConfig type="numeric" min="1" max="100" />
+		</setting>
+		
+		<setting propertyKey="@Properties.single_color_progress" title="@Strings.single_color_progress_title">
+		<settingConfig type="boolean" />
 		</setting>
 		
 		<setting propertyKey="@Properties.streak_data" title="@Strings.streak_title">

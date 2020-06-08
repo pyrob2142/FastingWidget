@@ -109,6 +109,7 @@ body_fat_title = column[inc_i()]
 
 streak_reset_threshold_title = column[inc_i()]
 streak_inc_threshold_title = column[inc_i()]
+single_color_progress_title = column[inc_i()]
 streak_title = column[inc_i()]
 overwrite_date_format_title = column[inc_i()]
 time_format_title = column[inc_i()]
@@ -199,6 +200,7 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\n')
     f.write('\t<string id="streak_reset_threshold_title">%s</string>\n' % (streak_reset_threshold_title))
     f.write('\t<string id="streak_inc_threshold_title">%s</string>\n' % (streak_inc_threshold_title))
+    f.write('\t<string id="single_color_progress_title">%s</string>\n' % (single_color_progress_title))
     f.write('\t<string id="streak_title">%s</string>\n' % (streak_title))
     f.write('\t<string id="overwrite_date_format_title">%s</string>\n' % (overwrite_date_format_title))
     f.write('\t<string id="time_format_title">%s</string>\n' % (time_format_title))

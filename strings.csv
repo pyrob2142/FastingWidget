@@ -27,6 +27,7 @@ custom_bmr_title,,within reason,,,,,Prilagođeni BMR (kcal),,,,Custom BMR (kcal)
 body_fat_title,,within reason,,,,,Tjelesna masnoća (%),,,,Body fat (%),,,,Körperfettanteil (%),,,,,,,,,,,,,,,,,,,,,,,
 streak_reset_threshold_title,,within reason,,,,,Poništi red ispod (% završetka),,,,Reset streak below (percent of completion),,,,Serie zurücksetzen unter (% Fortschritt),,,,,,,,,,,,,,,,,,,,,,,
 streak_inc_threshold_title,,within reason,,,,,Povećajte red iznad (% završetka),,,,Increase streak above (percent of completion),,,,Serie erhöhen (% Fortschritt),,,,,,,,,,,,,,,,,,,,,,,
+single_color_progress_title,,within reason,,,,,Jednobojni indikator napretka,,,,Single-color progress indicator,,,,Einfärbige Fortschrittsanzeige,,,,,,,,,,,,,,,,,,,,,,,
 streak_title,,within reason,,,,,Prepiši red,,,,Overwrite Streak,,,,Serie überschreiben,,,,,,,,,,,,,,,,,,,,,,,
 overwrite_date_format_title,,within reason,,,,,Prepisati format datuma,,,,Overwrite date format,,,,Datumsformat überschreiben,,,,,,,,,,,,,,,,,,,,,,,
 time_format_title,,within reason,,,,,Vremenski format,,,,Time format,,,,Zeitdarstellung,,,,,,,,,,,,,,,,,,,,,,,

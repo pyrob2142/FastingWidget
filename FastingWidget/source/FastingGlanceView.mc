@@ -17,6 +17,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
     var progress;
     var streak_reset_threshold;
     var streak_inc_threshold;
+    var single_color_progress;
     var string_streak;
     var string_elapsed;
     var string_remaining;
@@ -74,30 +75,51 @@ class FastingGlanceView extends WatchUi.GlanceView {
                 dc.setColor(Graphics.COLOR_LT_GRAY  , Graphics.COLOR_BLACK);
                 dc.fillRectangle(0, dc.getHeight() / 2, dc.getWidth(), 2);
                 
-                if (progress < 1.0) {
-					
-					bar_color = Graphics.COLOR_RED;
-					dc.setColor(bar_color, Graphics.COLOR_BLACK);
-					dc.fillRectangle(0, center_y - 3, dc.getWidth() * progress, 7);
-										
-					if (progress >= streak_reset_threshold) {
-						bar_color = Graphics.COLOR_YELLOW;
+                
+                if (single_color_progress == false) {
+	                if (progress < 1.0) {
+						
+						bar_color = Graphics.COLOR_RED;
 						dc.setColor(bar_color, Graphics.COLOR_BLACK);
-						dc.fillRectangle(dc.getWidth() * streak_reset_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_reset_threshold), 7);
-					} 
-					
-					if (progress >= streak_inc_threshold) {
-						bar_color = Graphics.COLOR_GREEN;
-						dc.setColor(bar_color, Graphics.COLOR_BLACK);
-						dc.fillRectangle(dc.getWidth() * streak_inc_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_inc_threshold), 7);
+						dc.fillRectangle(0, center_y - 3, dc.getWidth() * progress, 7);
+											
+						if (progress >= streak_reset_threshold) {
+							bar_color = Graphics.COLOR_YELLOW;
+							dc.setColor(bar_color, Graphics.COLOR_BLACK);
+							dc.fillRectangle(dc.getWidth() * streak_reset_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_reset_threshold), 7);
+						} 
+						
+						if (progress >= streak_inc_threshold) {
+							bar_color = Graphics.COLOR_GREEN;
+							dc.setColor(bar_color, Graphics.COLOR_BLACK);
+							dc.fillRectangle(dc.getWidth() * streak_inc_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_inc_threshold), 7);
+						}
+	                } else {
+						bar_color = Graphics.COLOR_DK_GREEN;
+	                    dc.setColor(bar_color, Graphics.COLOR_BLACK);
+	                    dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth(), 8);
+	                    
+	                    dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+	                	dc.fillRectangle(0, dc.getHeight() / 2 - 5, dc.getWidth() * (progress - 1.0), 12);
 					}
-                } else {
-					bar_color = Graphics.COLOR_DK_GREEN;
-                    dc.setColor(bar_color, Graphics.COLOR_BLACK);
-                    dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth(), 8);
-                    
-                    dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
-                	dc.fillRectangle(0, dc.getHeight() / 2 - 5, dc.getWidth() * (progress - 1.0), 12);
+				} else {
+					if (progress > 1.0) {
+						bar_color = Graphics.COLOR_DK_GREEN;
+					} else if (progress >= streak_inc_threshold) {
+						bar_color = Graphics.COLOR_GREEN;
+					} else if (progress >= streak_reset_threshold) {
+						bar_color = Graphics.COLOR_YELLOW;
+					} else {
+						bar_color = Graphics.COLOR_RED;
+					}
+				
+					dc.setColor(bar_color, Graphics.COLOR_BLACK);
+               		dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth() * progress, 8);
+                
+                	if (progress > 1.0) {
+                		dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+                		dc.fillRectangle(0, dc.getHeight() / 2 - 5, dc.getWidth() * (progress - 1.0), 12);
+               		}
 				}
                	
                 dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
@@ -141,6 +163,8 @@ class FastingGlanceView extends WatchUi.GlanceView {
         streak_data = Application.AppBase.getProperty("streak_data").toNumber();
         streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold");
         streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold");
+        single_color_progress = Application.AppBase.getProperty("single_color_progress");
+        
 
         is_active = Storage.getValue("is_active");
         if (is_active == null) {

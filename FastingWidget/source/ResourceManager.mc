@@ -35,6 +35,7 @@ class ResourceManager {
 	var custom_bmr;
 	var streak_reset_threshold;
 	var streak_inc_threshold;
+	var single_color_progress;
 	var time_format;
 	var show_days;
 	
@@ -148,6 +149,8 @@ class ResourceManager {
 		
 		streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold") / 100.0;
 		streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold") / 100.0;
+		single_color_progress = Application.AppBase.getProperty("single_color_progress");
+		
 		streak_data = Application.AppBase.getProperty("streak_data");
 		
 		var overwrite_date_format = Application.AppBase.getProperty("overwrite_date_format");
@@ -223,6 +226,7 @@ class ResourceManager {
 		}
 		
 		start_data = Storage.getValue("start_data");
+		start_data = 1591597780;
 		if (start_data == -1 || start_data == null) {
 			start_data = -1;
 		}

@@ -37,6 +37,7 @@
 
 	<string id="streak_reset_threshold_title">Serie zurücksetzen unter (% Fortschritt)</string>
 	<string id="streak_inc_threshold_title">Serie erhöhen (% Fortschritt)</string>
+	<string id="single_color_progress_title">Einfärbige Fortschrittsanzeige</string>
 	<string id="streak_title">Serie überschreiben</string>
 	<string id="overwrite_date_format_title">Datumsformat überschreiben</string>
 	<string id="time_format_title">Zeitdarstellung</string>
