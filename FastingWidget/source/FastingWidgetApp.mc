@@ -26,13 +26,7 @@ class FastingWidgetApp extends Application.AppBase {
         fast_manager = new FastManager();
         return [ new FastingView(), new FastingViewDelegate() ];
     }
-    
-    function onSettingsChanged() {
-    	resource_manager.loadResources();
-    	resource_manager.loadSettings();
-    	WatchUi.requestUpdate();
-    }
-    
+        
     (:glance)
     function getGlanceView() {
     	return [ new FastingGlanceView() ];
