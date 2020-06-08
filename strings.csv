@@ -22,6 +22,7 @@ bmr_formula_title,,within reason,,,,,BMR izračun na temelju,,,,BMR calculation 
 bmr_mifflin,,within reason,,,,,Mifflin-St Jeor jednadžba,,,,Mifflin-St Jeor Equation,,,,Mifflin-St Jeor Formel,,,,,,,,,,,,,,,,,,,,,,,
 bmr_harris,,within reason,,,,,Prerađen Harris-Benedict jednadžba,,,,Revised Harris-Benedict Equation,,,,Überarbeitete Harris-Benedict Formel,,,,,,,,,,,,,,,,,,,,,,,
 bmr_katch,,within reason,,,,,Katch-McArdle formula (zahtijeva postotak tjelesne masnoće),,,,Katch-McArdle Formula (requires body fat percentage),,,,Katch-McArdle Formel (benötigt Körperfettanteil in Prozent),,,,,,,,,,,,,,,,,,,,,,,
+custom_bmr_title,,within reason,,,,,Prilagođeni BMR (kcal),,,,Custom BMR (kcal),,,,Benutzerdefinierte BMR (kcal),,,,,,,,,,,,,,,,,,,,,,,
 body_fat_title,,within reason,,,,,Tjelesna masnoća (%),,,,Body fat (%),,,,Körperfettanteil (%),,,,,,,,,,,,,,,,,,,,,,,
 streak_reset_threshold_title,,within reason,,,,,Poništi red ispod (% završetka),,,,Reset streak below (percent of completion),,,,Serie zurücksetzen unter (% Fortschritt),,,,,,,,,,,,,,,,,,,,,,,
 streak_inc_threshold_title,,within reason,,,,,Povećajte red iznad (% završetka),,,,Increase streak above (percent of completion),,,,Serie erhöhen (% Fortschritt),,,,,,,,,,,,,,,,,,,,,,,

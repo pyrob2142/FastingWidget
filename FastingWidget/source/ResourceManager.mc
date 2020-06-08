@@ -32,6 +32,7 @@ class ResourceManager {
 	var custom_goal_3;
 	
 	var bmr_formula;
+	var custom_bmr;
 	var streak_reset_threshold;
 	var streak_inc_threshold;
 	var time_format;
@@ -189,6 +190,7 @@ class ResourceManager {
 		} 
 		
 		bmr_formula = Application.AppBase.getProperty("bmr_formula");
+		custom_bmr = Application.AppBase.getProperty("custom_bmr");
 		body_fat = Application.AppBase.getProperty("body_fat");
 	}
 	

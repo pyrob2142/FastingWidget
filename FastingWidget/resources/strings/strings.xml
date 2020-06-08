@@ -31,6 +31,7 @@
 	<string id="bmr_mifflin">Mifflin-St Jeor Equation</string>
 	<string id="bmr_harris">Revised Harris-Benedict Equation</string>
 	<string id="bmr_katch">Katch-McArdle Formula (requires body fat percentage)</string>
+	<string id="custom_bmr_title">Custom BMR (kcal)</string>
 	<string id="body_fat_title">Body fat (%)</string>
 
 	<string id="streak_reset_threshold_title">Reset streak below (percent of completion)</string>

@@ -31,6 +31,7 @@
 	<string id="bmr_mifflin">Mifflin-St Jeor Formel</string>
 	<string id="bmr_harris">Überarbeitete Harris-Benedict Formel</string>
 	<string id="bmr_katch">Katch-McArdle Formel (benötigt Körperfettanteil in Prozent)</string>
+	<string id="custom_bmr_title">Benutzerdefinierte BMR (kcal)</string>
 	<string id="body_fat_title">Körperfettanteil (%)</string>
 
 	<string id="streak_reset_threshold_title">Serie zurücksetzen unter (% Fortschritt)</string>

@@ -133,27 +133,29 @@ class Fast {
 	//! Katch-McArdle Formula (requires body fat in percent):
 	//! Unisex: BMR = 370 + 21.6 * (1 - F) * W
 	function calculateCalories() {
-		var bmr = 0;
+		var bmr = resource_manager.custom_bmr;
 		
-		if (resource_manager.bmr_formula == resource_manager.MIFFLIN) {
-			if (gender == 0) {
-				bmr = 10 * weight + 6.25 * height - 5 * age - 161;
-			} else {
-				bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+		if (bmr == 0) {
+			if (resource_manager.bmr_formula == resource_manager.MIFFLIN) {
+				if (gender == 0) {
+					bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+				} else {
+					bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+				}
 			}
-		}
-		
-		if (resource_manager.bmr_formula == resource_manager.HARRIS) {
-			if (gender == 0) {
-				bmr = 9.247 * weight + 3.098 * height - 4.330 * age + 447.593;
-			} else {
-				bmr = 13.397 * weight + 4.799 * height - 5.677 * age + 88.362;
+			
+			if (resource_manager.bmr_formula == resource_manager.HARRIS) {
+				if (gender == 0) {
+					bmr = 9.247 * weight + 3.098 * height - 4.330 * age + 447.593;
+				} else {
+					bmr = 13.397 * weight + 4.799 * height - 5.677 * age + 88.362;
+				}
 			}
-		}
-		
-		if (resource_manager.bmr_formula == resource_manager.KATCH) {
-			var body_fat = resource_manager.body_fat / 100.0;
-			bmr = 370 + 21.6 * (1 - body_fat) * weight;
+			
+			if (resource_manager.bmr_formula == resource_manager.KATCH) {
+				var body_fat = resource_manager.body_fat / 100.0;
+				bmr = 370 + 21.6 * (1 - body_fat) * weight;
+			}
 		}
 		
 		var calories_per_second = bmr * activity_level / 86400.0;

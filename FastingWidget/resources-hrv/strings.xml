@@ -31,6 +31,7 @@
 	<string id="bmr_mifflin">Mifflin-St Jeor jednadžba</string>
 	<string id="bmr_harris">Prerađen Harris-Benedict jednadžba</string>
 	<string id="bmr_katch">Katch-McArdle formula (zahtijeva postotak tjelesne masnoće)</string>
+	<string id="custom_bmr_title">Prilagođeni BMR (kcal)</string>
 	<string id="body_fat_title">Tjelesna masnoća (%)</string>
 
 	<string id="streak_reset_threshold_title">Poništi red ispod (% završetka)</string>

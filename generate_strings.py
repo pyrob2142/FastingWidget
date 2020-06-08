@@ -103,6 +103,7 @@ bmr_formula_title = column[inc_i()]
 bmr_mifflin = column[inc_i()]
 bmr_harris = column[inc_i()]
 bmr_katch = column[inc_i()]
+custom_bmr_title = column[inc_i()]
 body_fat_title = column[inc_i()]
 
 streak_reset_threshold_title = column[inc_i()]
@@ -191,6 +192,7 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\t<string id="bmr_mifflin">%s</string>\n' % (bmr_mifflin))
     f.write('\t<string id="bmr_harris">%s</string>\n' % (bmr_harris))
     f.write('\t<string id="bmr_katch">%s</string>\n' % (bmr_katch))
+    f.write('\t<string id="custom_bmr_title">%s</string>\n' % (custom_bmr_title))
     f.write('\t<string id="body_fat_title">%s</string>\n' % (body_fat_title))
     f.write('\n')
     f.write('\t<string id="streak_reset_threshold_title">%s</string>\n' % (streak_reset_threshold_title))

@@ -11,6 +11,7 @@
 		<property id="activity_level" type="number">2</property>
 		<property id="birthday" type="number">0</property>
 		<property id="bmr_formula" type="number">0</property>
+		<property id="custom_bmr" type="number">0</property>
 		<property id="body_fat" type="number">23</property>
 		<property id="streak_reset_threshold" type="number">50</property>
 		<property id="streak_inc_threshold" type="number">75</property>
@@ -82,6 +83,10 @@
 		<listEntry value="1">@Strings.bmr_harris</listEntry>
 		<listEntry value="2">@Strings.bmr_katch</listEntry>
 		</settingConfig>
+		</setting>
+		
+		<setting propertyKey="@Properties.custom_bmr" title="@Strings.custom_bmr_title">
+		<settingConfig type="numeric" min="0"></settingConfig>
 		</setting>
 		
 		<setting propertyKey="@Properties.body_fat" title="@Strings.body_fat_title">
