@@ -9,6 +9,8 @@ class Fast {
 
     //! Time.Moment of when the fast was started
     var m_start;
+    //! Time.Moment of the last fast finished
+    var last_fast;
 
     //! Time.Duration of the goal duration
     var d_goal;
@@ -29,7 +31,6 @@ class Fast {
     var bmi;
     var is_active;
     var timer;
-    var last_fast;
 
     function initialize() {
         resource_manager = Application.getApp().resource_manager;
@@ -106,7 +107,6 @@ class Fast {
         progress = 0.0;
         calories = 0;
         is_active = false;
-        last_fast = Time.now();
     }
 
     //! Calculates the current progress of the fast in percent of goal completion.

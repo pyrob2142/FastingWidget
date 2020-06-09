@@ -89,9 +89,9 @@ class FastManager {
     function endFast() {
         fast.end();
 
-        last_fast = Time.now();
         if (fast.is_complete == true || fast.progress >= streak_inc_threshold ) {
             streak++;
+            last_fast = Time.now();
         } else {
             if (fast.progress < streak_reset_threshold) {
                 streak_old = streak;
