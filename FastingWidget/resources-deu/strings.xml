@@ -52,6 +52,7 @@
 	<string id="fast_pl">Fasten</string>
 	<string id="nominalization">y</string>
 	<string id="fasting_title" scope="glance">Fasten</string>
+	<string id="fasted_title" scope="glance">Gefastet</string>
 	<string id="elapsed" scope="glance">Vergangen</string>
 	<string id="remaining" scope="glance">Verbleibend</string>
 	<string id="since">seit</string>
