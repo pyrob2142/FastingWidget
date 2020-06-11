@@ -51,7 +51,8 @@
 	<string id="fast_sg">Post</string>
 	<string id="fast_pl">Postovi</string>
 	<string id="nominalization">n</string>
-	<string id="fasting_title" scope="glance">Post</string>
+	<string id="fasting_title" scope="glance">Postili</string>
+	<string id="fasted_title" scope="glance">Post</string>
 	<string id="elapsed" scope="glance">Proteklo</string>
 	<string id="remaining" scope="glance">Ostalo</string>
 	<string id="since">Od</string>

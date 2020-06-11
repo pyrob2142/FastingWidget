@@ -33,6 +33,8 @@ class FastingGlanceView extends WatchUi.GlanceView {
     var timer;
     var show_seconds;
     var update_rate;
+    var last_fast;
+    var elapsed_since_last_fast;
 
     function initialize() {
         GlanceView.initialize();
@@ -47,17 +49,23 @@ class FastingGlanceView extends WatchUi.GlanceView {
     function onUpdate(dc) {
         var center_y = dc.getHeight() / 2;
         var bar_color;
-        
+
+        m_now = Time.now();
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 
         if (is_active == false) {
-            dc.drawText(0, center_y - Graphics.getFontHeight(Graphics.FONT_SMALL) / 2, Graphics.FONT_SMALL, string_streak + ": " + streak_data, Graphics.TEXT_JUSTIFY_LEFT);
-        } else {
-            m_now = Time.now();
-            elapsed = m_now.subtract(m_start);
-            
-            dc.drawText(0, -5, Graphics.FONT_SYSTEM_TINY, string_fasting.toUpper(), Graphics.TEXT_JUSTIFY_LEFT);
+            elapsed_since_last_fast = m_now.subtract(last_fast);
+            dc.drawText(0, -5, Graphics.FONT_SYSTEM_TINY, "FASTED", Graphics.TEXT_JUSTIFY_LEFT);
+            dc.drawText(dc.getWidth(), -5, Graphics.FONT_SYSTEM_TINY, streak_data, Graphics.TEXT_JUSTIFY_RIGHT);
+            dc.drawRectangle(0, dc.getHeight()/2 - 3, dc.getWidth(), 8 );
 
+            dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, string_elapsed + ":", Graphics.TEXT_JUSTIFY_LEFT);
+            dc.drawText(dc.getWidth(), dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(elapsed_since_last_fast.value()), Graphics.TEXT_JUSTIFY_RIGHT);
+
+        } else {
+
+            dc.drawText(0, -5, Graphics.FONT_SYSTEM_TINY, string_fasting.toUpper(), Graphics.TEXT_JUSTIFY_LEFT);
+            elapsed = m_now.subtract(m_start);
             if (goal_data != -1) {
                 remaining = d_goal.subtract(elapsed);
                 progress  = elapsed.value() / d_goal.value().toFloat();
@@ -74,54 +82,54 @@ class FastingGlanceView extends WatchUi.GlanceView {
 
                 dc.setColor(Graphics.COLOR_LT_GRAY  , Graphics.COLOR_BLACK);
                 dc.fillRectangle(0, dc.getHeight() / 2, dc.getWidth(), 2);
-                
-                
+
+
                 if (single_color_progress == false) {
-	                if (progress < 1.0) {
-						
-						bar_color = Graphics.COLOR_RED;
-						dc.setColor(bar_color, Graphics.COLOR_BLACK);
-						dc.fillRectangle(0, center_y - 3, dc.getWidth() * progress, 7);
-											
-						if (progress >= streak_reset_threshold) {
-							bar_color = Graphics.COLOR_YELLOW;
-							dc.setColor(bar_color, Graphics.COLOR_BLACK);
-							dc.fillRectangle(dc.getWidth() * streak_reset_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_reset_threshold), 7);
-						} 
-						
-						if (progress >= streak_inc_threshold) {
-							bar_color = Graphics.COLOR_GREEN;
-							dc.setColor(bar_color, Graphics.COLOR_BLACK);
-							dc.fillRectangle(dc.getWidth() * streak_inc_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_inc_threshold), 7);
-						}
-	                } else {
-						bar_color = Graphics.COLOR_DK_GREEN;
-	                    dc.setColor(bar_color, Graphics.COLOR_BLACK);
-	                    dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth(), 8);
-	                    
-	                    dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
-	                	dc.fillRectangle(0, dc.getHeight() / 2 - 5, dc.getWidth() * (progress - 1.0), 12);
-					}
-				} else {
-					if (progress > 1.0) {
-						bar_color = Graphics.COLOR_DK_GREEN;
-					} else if (progress >= streak_inc_threshold) {
-						bar_color = Graphics.COLOR_GREEN;
-					} else if (progress >= streak_reset_threshold) {
-						bar_color = Graphics.COLOR_YELLOW;
-					} else {
-						bar_color = Graphics.COLOR_RED;
-					}
-				
-					dc.setColor(bar_color, Graphics.COLOR_BLACK);
-               		dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth() * progress, 8);
-                
-                	if (progress > 1.0) {
-                		dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
-                		dc.fillRectangle(0, dc.getHeight() / 2 - 5, dc.getWidth() * (progress - 1.0), 12);
-               		}
-				}
-               	
+                    if (progress < 1.0) {
+
+                        bar_color = Graphics.COLOR_RED;
+                        dc.setColor(bar_color, Graphics.COLOR_BLACK);
+                        dc.fillRectangle(0, center_y - 3, dc.getWidth() * progress, 7);
+
+                        if (progress >= streak_reset_threshold) {
+                            bar_color = Graphics.COLOR_YELLOW;
+                            dc.setColor(bar_color, Graphics.COLOR_BLACK);
+                            dc.fillRectangle(dc.getWidth() * streak_reset_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_reset_threshold), 7);
+                        }
+
+                        if (progress >= streak_inc_threshold) {
+                            bar_color = Graphics.COLOR_GREEN;
+                            dc.setColor(bar_color, Graphics.COLOR_BLACK);
+                            dc.fillRectangle(dc.getWidth() * streak_inc_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_inc_threshold), 7);
+                        }
+                    } else {
+                        bar_color = Graphics.COLOR_DK_GREEN;
+                        dc.setColor(bar_color, Graphics.COLOR_BLACK);
+                        dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth(), 8);
+
+                        dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+                        dc.fillRectangle(0, dc.getHeight() / 2 - 5, dc.getWidth() * (progress - 1.0), 12);
+                    }
+                } else {
+                    if (progress > 1.0) {
+                        bar_color = Graphics.COLOR_DK_GREEN;
+                    } else if (progress >= streak_inc_threshold) {
+                        bar_color = Graphics.COLOR_GREEN;
+                    } else if (progress >= streak_reset_threshold) {
+                        bar_color = Graphics.COLOR_YELLOW;
+                    } else {
+                        bar_color = Graphics.COLOR_RED;
+                    }
+
+                    dc.setColor(bar_color, Graphics.COLOR_BLACK);
+                    dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth() * progress, 8);
+
+                    if (progress > 1.0) {
+                        dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+                        dc.fillRectangle(0, dc.getHeight() / 2 - 5, dc.getWidth() * (progress - 1.0), 12);
+                    }
+                }
+
                 dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
                 dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, mode_label + ": ", Graphics.TEXT_JUSTIFY_LEFT);
                 dc.drawText(dc.getWidth(), dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(remaining.value()), Graphics.TEXT_JUSTIFY_RIGHT);
@@ -136,35 +144,38 @@ class FastingGlanceView extends WatchUi.GlanceView {
     }
 
     function load() {
-  		// Lower the update rate and hide seconds due to hardware limitations
-    	var part_number = System.getDeviceSettings().partNumber;
-    	var unsupported_devices = [
-    		"006-B3289-00", // Fenix 6 
-    		"006-B3514-00", // Fenix 6 APAC
-    		"006-B3287-00", // Fenix 6S
-    		"006-B3512-00", // Fenix 6S APAC (not enough space)
-    		"006-B3288-00", // Fenix 6S Pro
-    		"006-B3513-00"  // Fenix 6S Pro APAC (not enough space)
-    	];
-    	
-    	if (unsupported_devices.indexOf(part_number) != -1) {
-    		show_seconds = false;
-    		update_rate = 60000;
-    	} else {
-	    	show_seconds = Application.AppBase.getProperty("show_seconds");
-			
-			if (show_seconds == true) {
-				update_rate = 1000;
-			} else {
-				update_rate = 60000;
-			}
-		}
-    
+        // Lower the update rate and hide seconds due to hardware limitations
+        var part_number = System.getDeviceSettings().partNumber;
+        var unsupported_devices = [
+            "006-B3289-00", // Fenix 6
+            "006-B3514-00", // Fenix 6 APAC
+            "006-B3287-00", // Fenix 6S
+            "006-B3512-00", // Fenix 6S APAC (not enough space)
+            "006-B3288-00", // Fenix 6S Pro
+            "006-B3513-00"  // Fenix 6S Pro APAC (not enough space)
+        ];
+
+        if (unsupported_devices.indexOf(part_number) != -1) {
+            show_seconds = false;
+            update_rate = 60000;
+        } else {
+            show_seconds = Application.AppBase.getProperty("show_seconds");
+
+            if (show_seconds == true) {
+                update_rate = 1000;
+            } else {
+                update_rate = 60000;
+            }
+        }
+
         streak_data = Application.AppBase.getProperty("streak_data").toNumber();
         streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold");
         streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold");
         single_color_progress = Application.AppBase.getProperty("single_color_progress");
-        
+        last_fast = Storage.getValue("last_fast");
+        if (last_fast == null || last_fast == -1) {
+           last_fast = Time.now();
+        } else { last_fast = new Time.Moment(last_fast); }
 
         is_active = Storage.getValue("is_active");
         if (is_active == null) {
@@ -186,8 +197,8 @@ class FastingGlanceView extends WatchUi.GlanceView {
             d_goal = new Time.Duration(goal_data);
         }
 
-		streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold") / 100.0;
-		streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold") / 100.0;
+        streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold") / 100.0;
+        streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold") / 100.0;
         string_streak = WatchUi.loadResource(Rez.Strings.streak);
         string_elapsed = WatchUi.loadResource(Rez.Strings.elapsed);
         string_remaining = WatchUi.loadResource(Rez.Strings.remaining);
@@ -214,10 +225,10 @@ class FastingGlanceView extends WatchUi.GlanceView {
 
                 var minutes = n / 60;
                 n = n % 60;
-				
-				
-	            return days.format("%d") + symbol_days + " " + hours.format("%d")
-	            	+ symbol_hours + " " + minutes.format("%02d") + symbol_minutes;
+
+
+                return days.format("%d") + symbol_days + " " + hours.format("%d")
+                    + symbol_hours + " " + minutes.format("%02d") + symbol_minutes;
             } else {
                 var hours = n / 3600;
                 n = n % 3600;
@@ -225,13 +236,13 @@ class FastingGlanceView extends WatchUi.GlanceView {
                 var minutes = n / 60;
                 n = n % 60;
 
-				if (show_seconds == true) {
-                	var seconds = n;
-                	return hours.format("%d") + symbol_hours + " " + minutes.format("%02d")
-                    	+ symbol_minutes + " " + seconds.format("%02d") + symbol_seconds;
+                if (show_seconds == true) {
+                    var seconds = n;
+                    return hours.format("%d") + symbol_hours + " " + minutes.format("%02d")
+                        + symbol_minutes + " " + seconds.format("%02d") + symbol_seconds;
                 } else {
-                	return hours.format("%d") + symbol_hours + " " + minutes.format("%02d")
-                    	+ symbol_minutes;
+                    return hours.format("%d") + symbol_hours + " " + minutes.format("%02d")
+                        + symbol_minutes;
                 }
             }
         } else {
@@ -253,12 +264,12 @@ class FastingGlanceView extends WatchUi.GlanceView {
                 var minutes = n / 60;
                 n = n % 60;
 
-				if (show_seconds == true) {
-                	var seconds = n;
-                	return hours.format("%02d") + ":" + minutes.format("%02d") + ":" + seconds.format("%02d");
-               	} else {
-               		return hours.format("%02d") + ":" + minutes.format("%02d");
-               	}
+                if (show_seconds == true) {
+                    var seconds = n;
+                    return hours.format("%02d") + ":" + minutes.format("%02d") + ":" + seconds.format("%02d");
+                } else {
+                    return hours.format("%02d") + ":" + minutes.format("%02d");
+                }
             }
         }
     }
