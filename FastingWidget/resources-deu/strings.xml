@@ -4,9 +4,10 @@
 	<string id="AppName">Fasten Widget</string>
 
 	<!-- USER SETTINGS -->
-	<string id="readme_string">Informationen zu diesen Einstellungen findest du in der README</string>
+	<string id="readme_string">Handbuch</string>
 	<string id="longpress_threshold_title">Langer Druck ab (ms)</string>
 	<string id="show_seconds_title">Sekunden anzeigen</string>
+	<string id="show_time_since_last_title">Seit letztem Fasten vergangene Zeit anzeigen</string>
 
 	<string id="default_page_goal_title">Startseite (mit Ziel)</string>
 	<string id="default_page_no_goal_title">Startseite (ohne Ziel)</string>
@@ -52,7 +53,7 @@
 	<string id="fast_pl">Fasten</string>
 	<string id="nominalization">y</string>
 	<string id="fasting_title" scope="glance">Fasten</string>
-	<string id="fasted_title" scope="glance">Gefastet</string>
+	<string id="last_fast_title" scope="glance">Zuletzt</string>
 	<string id="elapsed" scope="glance">Vergangen</string>
 	<string id="remaining" scope="glance">Verbleibend</string>
 	<string id="since">seit</string>

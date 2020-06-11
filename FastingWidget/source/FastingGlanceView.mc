@@ -22,6 +22,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
     var string_elapsed;
     var string_remaining;
     var string_overtime;
+    var string_last_fast;
     var string_fasting;
     var time_format;
     var show_days;
@@ -33,6 +34,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
     var timer;
     var show_seconds;
     var update_rate;
+    var show_time_since_last;
     var last_fast;
     var elapsed_since_last_fast;
 
@@ -40,7 +42,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
         GlanceView.initialize();
         load();
 
-        if (is_active == true) {
+        if (is_active == true || show_time_since_last == true) {
             timer = new Timer.Timer();
             timer.start(me.method(:update), update_rate, true);
         }
@@ -54,16 +56,20 @@ class FastingGlanceView extends WatchUi.GlanceView {
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 
         if (is_active == false) {
-            elapsed_since_last_fast = m_now.subtract(last_fast);
-            dc.drawText(0, -5, Graphics.FONT_SYSTEM_TINY, "FASTED", Graphics.TEXT_JUSTIFY_LEFT);
-            dc.drawText(dc.getWidth(), -5, Graphics.FONT_SYSTEM_TINY, streak_data, Graphics.TEXT_JUSTIFY_RIGHT);
-            dc.drawRectangle(0, dc.getHeight()/2 - 3, dc.getWidth(), 8 );
 
-            dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, string_elapsed + ":", Graphics.TEXT_JUSTIFY_LEFT);
-            dc.drawText(dc.getWidth(), dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(elapsed_since_last_fast.value()), Graphics.TEXT_JUSTIFY_RIGHT);
-
+			if (show_time_since_last == true) {
+				dc.drawText(0, -5, Graphics.FONT_SYSTEM_TINY, string_streak + ":", Graphics.TEXT_JUSTIFY_LEFT);
+           		dc.drawText(dc.getWidth(), -5, Graphics.FONT_SYSTEM_TINY, streak_data, Graphics.TEXT_JUSTIFY_RIGHT);
+            	dc.drawRectangle(0, dc.getHeight()/2 - 3, dc.getWidth(), 8 );
+			
+			 	elapsed_since_last_fast = m_now.subtract(last_fast);
+            	dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, string_last_fast + ":", Graphics.TEXT_JUSTIFY_LEFT);
+            	dc.drawText(dc.getWidth(), dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(elapsed_since_last_fast.value()), Graphics.TEXT_JUSTIFY_RIGHT);
+			} else {
+				dc.drawText(0, center_y - Graphics.getFontHeight(Graphics.FONT_SMALL) / 2, Graphics.FONT_SMALL, string_streak + ": " + streak_data, Graphics.TEXT_JUSTIFY_LEFT);
+				
+			}
         } else {
-
             dc.drawText(0, -5, Graphics.FONT_SYSTEM_TINY, string_fasting.toUpper(), Graphics.TEXT_JUSTIFY_LEFT);
             elapsed = m_now.subtract(m_start);
             if (goal_data != -1) {
@@ -172,10 +178,16 @@ class FastingGlanceView extends WatchUi.GlanceView {
         streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold");
         streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold");
         single_color_progress = Application.AppBase.getProperty("single_color_progress");
-        last_fast = Storage.getValue("last_fast");
-        if (last_fast == null || last_fast == -1) {
-           last_fast = Time.now();
-        } else { last_fast = new Time.Moment(last_fast); }
+        
+        show_time_since_last = Application.AppBase.getProperty("show_time_since_last");
+		if (show_time_since_last == true) {        
+	        last_fast = Storage.getValue("last_fast");
+	        if (last_fast == null) {
+	           last_fast = -1;
+	        } else { 
+	        	last_fast = new Time.Moment(last_fast); 
+	        }
+	    }
 
         is_active = Storage.getValue("is_active");
         if (is_active == null) {
@@ -203,6 +215,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
         string_elapsed = WatchUi.loadResource(Rez.Strings.elapsed);
         string_remaining = WatchUi.loadResource(Rez.Strings.remaining);
         string_fasting = WatchUi.loadResource(Rez.Strings.fasting_title);
+        string_last_fast = WatchUi.loadResource(Rez.Strings.last_fast_title);
         string_overtime = WatchUi.loadResource(Rez.Strings.overtime);
         time_format = Application.AppBase.getProperty("time_format");
         show_days = Application.AppBase.getProperty("show_days");

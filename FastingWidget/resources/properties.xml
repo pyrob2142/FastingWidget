@@ -3,6 +3,7 @@
 		<property id="help" type="string"></property>
 		<property id="longpress_threshold" type="number">2000</property>
 		<property id="show_seconds" type="boolean">true</property>
+		<property id="show_time_since_last" type="boolean">true</property>
 		<property id="default_page_goal" type="number">2</property>
 		<property id="default_page_no_goal" type="number">3</property>
 		<property id="default_goal" type="number">16</property>
@@ -33,6 +34,10 @@
 		</setting>
 		
 		<setting propertyKey="@Properties.show_seconds" title="@Strings.show_seconds_title">
+		<settingConfig type="boolean" />
+		</setting>
+		
+		<setting propertyKey="@Properties.show_time_since_last" title="@Strings.show_time_since_last_title">
 		<settingConfig type="boolean" />
 		</setting>
 		

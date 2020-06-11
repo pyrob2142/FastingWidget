@@ -81,6 +81,7 @@ app_name = column[inc_i()]
 readme_string = column[inc_i()]
 long_press_threshold_title = column[inc_i()]
 show_seconds_title = column[inc_i()]
+show_time_since_last_title = column[inc_i()]
 
 default_page_goal_title = column[inc_i()]
 default_page_no_goal_title = column[inc_i()]
@@ -123,6 +124,7 @@ fast_sg = column[inc_i()]
 fast_pl = column[inc_i()]
 nominalization = column[inc_i()]
 fasting_title = column[inc_i()]
+last_fast_title = column[inc_i()]
 elapsed = column[inc_i()]
 remaining = column[inc_i()]
 since = column[inc_i()]
@@ -170,6 +172,7 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\t<string id="readme_string">%s</string>\n' % (readme_string))
     f.write('\t<string id="longpress_threshold_title">%s</string>\n' % (long_press_threshold_title))
     f.write('\t<string id="show_seconds_title">%s</string>\n' % (show_seconds_title))
+    f.write('\t<string id="show_time_since_last_title">%s</string>\n' % (show_time_since_last_title))
     f.write('\n')
     f.write('\t<string id="default_page_goal_title">%s</string>\n' % (default_page_goal_title))
     f.write('\t<string id="default_page_no_goal_title">%s</string>\n' % (default_page_no_goal_title))
@@ -215,6 +218,7 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\t<string id="fast_pl">%s</string>\n' % (fast_pl))
     f.write('\t<string id="nominalization">%s</string>\n' % (nominalization))
     f.write('\t<string id="fasting_title" scope="glance">%s</string>\n' % (fasting_title))
+    f.write('\t<string id="last_fast_title" scope="glance">%s</string>\n' % (last_fast_title))
     f.write('\t<string id="elapsed" scope="glance">%s</string>\n' % (elapsed))
     f.write('\t<string id="remaining" scope="glance">%s</string>\n' % (remaining))
     f.write('\t<string id="since">%s</string>\n' % (since))

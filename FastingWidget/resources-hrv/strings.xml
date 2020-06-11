@@ -4,9 +4,10 @@
 	<string id="AppName">Widget za post</string>
 
 	<!-- USER SETTINGS -->
-	<string id="readme_string">Informacije o tim postavkama možete pronaći u README</string>
+	<string id="readme_string">Priručnik</string>
 	<string id="longpress_threshold_title">Prag dugog pritiska (ms)</string>
 	<string id="show_seconds_title">Pokaži sekunde</string>
+	<string id="show_time_since_last_title">Prikaži proteklo vrijeme od zadnjeg brzog</string>
 
 	<string id="default_page_goal_title">Početna stranica (s ciljem)</string>
 	<string id="default_page_no_goal_title">Početna stranica (bez cilja)</string>
@@ -52,7 +53,7 @@
 	<string id="fast_pl">Postovi</string>
 	<string id="nominalization">n</string>
 	<string id="fasting_title" scope="glance">Postili</string>
-	<string id="fasted_title" scope="glance">Post</string>
+	<string id="last_fast_title" scope="glance">Posljednji</string>
 	<string id="elapsed" scope="glance">Proteklo</string>
 	<string id="remaining" scope="glance">Ostalo</string>
 	<string id="since">Od</string>

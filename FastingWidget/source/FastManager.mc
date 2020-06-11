@@ -91,14 +91,15 @@ class FastManager {
 
         if (fast.is_complete == true || fast.progress >= streak_inc_threshold ) {
             streak++;
-            last_fast = Time.now();
         } else {
             if (fast.progress < streak_reset_threshold) {
                 streak_old = streak;
                 streak = 0;
             }
         }
-
+	
+		last_fast = Time.now();
+		
         resource_manager.save();
 
         current_page = SUMMARY;

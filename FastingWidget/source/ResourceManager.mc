@@ -221,7 +221,13 @@ class ResourceManager {
     //! Loads a previous fast and streak.
     function load() {
         streak_data = Application.AppBase.getProperty("streak_data").toNumber();
+        
         last_fast = Storage.getValue("last_fast");
+        if (last_fast == null) {
+        	last_fast = -1;
+        } else {
+        	last_fast = new Time.Moment(last_fast);
+        }
 
         is_active = Storage.getValue("is_active");
         if (is_active == null) {

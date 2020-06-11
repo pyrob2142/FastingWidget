@@ -4,9 +4,10 @@
 	<string id="AppName">Fasting Widget</string>
 
 	<!-- USER SETTINGS -->
-	<string id="readme_string">You can find information for these settings in the README</string>
+	<string id="readme_string">Manual</string>
 	<string id="longpress_threshold_title">Long Press Threshold (ms)</string>
 	<string id="show_seconds_title">Show seconds</string>
+	<string id="show_time_since_last_title">Show time since last fast</string>
 
 	<string id="default_page_goal_title">Initial Page (with goal)</string>
 	<string id="default_page_no_goal_title">Initial Page (without goal)</string>
@@ -52,7 +53,7 @@
 	<string id="fast_pl">Fasts</string>
 	<string id="nominalization">n</string>
 	<string id="fasting_title" scope="glance">Fasting</string>
-	<string id="fasted_title" scope="glance">Fasted</string>
+	<string id="last_fast_title" scope="glance">Last</string>
 	<string id="elapsed" scope="glance">Elapsed</string>
 	<string id="remaining" scope="glance">Remaining</string>
 	<string id="since">Since</string>
