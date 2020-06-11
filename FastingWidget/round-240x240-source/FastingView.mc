@@ -399,6 +399,9 @@ class FastingView extends WatchUi.View {
 		}
 	}
 	
+	//! Draws the progess arc according to the percentage of streak goal completion.
+	//! Once the goal is reached the arc turns green. 
+    //! @param [Object] dc Device Context
 	function drawStreakGoalProgress(dc) {
 		var progress = fast_manager.streak / resource_manager.streak_goal.toFloat();
 	
