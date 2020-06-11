@@ -26,7 +26,7 @@ class FastManager {
     var streak;
 
     //! Time when last fast ended.
-    var last_fast;
+    var m_last_fast;
 
     //! Backup of the current streak in case it gets reset.
     //! Used to display the "lost" streak in STREAKRES view.
@@ -42,8 +42,8 @@ class FastManager {
         toolbox.fast_manager = me;
         streak = resource_manager.streak_data;
         streak_old = streak;
-        last_fast = resource_manager.last_fast;
-
+        
+        
         streak_reset_threshold = resource_manager.streak_reset_threshold;
         streak_inc_threshold = resource_manager.streak_inc_threshold;
 
@@ -55,8 +55,12 @@ class FastManager {
             } else {
                 fast.resume(resource_manager.start_data, -1);
             }
+        } else {
+        	if (resource_manager.show_time_since_last == true) {
+        		m_last_fast = new Time.Moment(resource_manager.last_fast_data);
+        	}
         }
-
+       	
         initPageCounter();
     }
 
@@ -98,7 +102,7 @@ class FastManager {
             }
         }
 	
-		last_fast = Time.now();
+		m_last_fast = Time.now();
 		
         resource_manager.save();
 
@@ -213,6 +217,13 @@ class FastManager {
     function getGoalMoment() {
         var end = fast.m_start.add(fast.d_goal);
         return end;
+    }
+    
+    //! Returns the Time.Moment of when the last fast has ended.
+    //! @return [Time.Moment] Moment when the last fast has ended.
+    function getTimeSinceLastFast() {
+    	var elapsed = Time.now().subtract(m_last_fast);
+    	return toolbox.convertSeconds(elapsed.value());
     }
 
     //! Returns the current progress of the fast as a range from 0 to 1.

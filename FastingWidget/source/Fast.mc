@@ -35,6 +35,11 @@ class Fast {
     function initialize() {
         resource_manager = Application.getApp().resource_manager;
         timer = new Timer.Timer();
+        
+        if (resource_manager.show_time_since_last == true) {
+        	timer.stop();
+        	timer.start(me.method(:update), resource_manager.update_rate, true);
+        }
         reset();
     }
 
@@ -50,6 +55,8 @@ class Fast {
         }
 
         me.m_start = Time.now();
+        
+        timer.stop();
         timer.start(me.method(:update), resource_manager.update_rate, true);
         is_active = true;
         resource_manager.save();
@@ -78,6 +85,7 @@ class Fast {
         }
 
         m_start = new Time.Moment(start);
+        timer.stop();
         timer.start(me.method(:update), resource_manager.update_rate, true);
         is_active = true;
         update();
@@ -86,7 +94,9 @@ class Fast {
     //! Ends the current fast, by setting it inactive and stopping the auto-refresh.
     function end() {
         is_active = false;
-        timer.stop();
+        if (resource_manager.show_time_since_last == false) {
+       		timer.stop();
+       	}
     }
 
     //! Resets the fast object in order to begin a new fast.
@@ -168,15 +178,17 @@ class Fast {
     //! Updates the fast and requests a screen refresh.
     //! Target refresh: Once per second.
     function update() {
-        m_now = Time.now();
-        d_elapsed = m_now.subtract(m_start);
-
-        calculateCalories();
-
-        if (has_goal == true) {
-            calculateProgress();
-        }
-
+        if (is_active == true) {
+	        m_now = Time.now();
+	        d_elapsed = m_now.subtract(m_start);
+	
+	        calculateCalories();
+	
+	        if (has_goal == true) {
+	            calculateProgress();
+	        }
+		}
+		
         WatchUi.requestUpdate();
     }
 }

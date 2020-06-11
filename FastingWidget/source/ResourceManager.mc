@@ -30,6 +30,7 @@ class ResourceManager {
     var custom_goal_1;
     var custom_goal_2;
     var custom_goal_3;
+    var streak_goal;
 
     var bmr_formula;
     var custom_bmr;
@@ -38,6 +39,7 @@ class ResourceManager {
     var single_color_progress;
     var time_format;
     var show_days;
+    var show_time_since_last;
 
     //! User profile data
     var user;
@@ -54,7 +56,7 @@ class ResourceManager {
     var start_data;
     var goal_data;
     var streak_data;
-    var last_fast;
+    var last_fast_data;
 
     //! Resources
     var bitmap_burn;
@@ -63,6 +65,7 @@ class ResourceManager {
     var string_duration;
     var string_calories;
     var string_streak;
+    var string_last_fast;
     var string_fast_sg;
     var string_fast_pl;
     var string_elapsed;
@@ -137,17 +140,21 @@ class ResourceManager {
         custom_goal_3 = Application.AppBase.getProperty("custom_goal_3");
 
         if (custom_goal_1 != 0) {
-            goal_hours.add(custom_goal_1);
-        }
-        if (custom_goal_2 != 0) {
-            goal_hours.add(custom_goal_2);
-        }
-        if (custom_goal_3 != 0) {
-            goal_hours.add(custom_goal_3);
-        }
-
-        toolbox.sort(goal_hours, 0, goal_hours.size() - 1);
-
+       		goal_hours.add(custom_goal_1);
+	        
+	        if (custom_goal_2 != 0) {
+	            goal_hours.add(custom_goal_2);
+	        }
+	        
+	        if (custom_goal_3 != 0) {
+	            goal_hours.add(custom_goal_3);
+	        }
+	
+	        toolbox.sort(goal_hours, 0, goal_hours.size() - 1);
+		}
+		
+		streak_goal = Application.AppBase.getProperty("streak_goal").toNumber();
+        
         streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold") / 100.0;
         streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold") / 100.0;
         single_color_progress = Application.AppBase.getProperty("single_color_progress");
@@ -206,7 +213,7 @@ class ResourceManager {
             Storage.setValue("is_active", true);
             Storage.setValue("start_data", fast_manager.fast.m_start.value());
         } else {
-            Storage.setValue("last_fast", fast_manager.last_fast.value());
+            Storage.setValue("last_fast_data", fast_manager.m_last_fast.value());
             Storage.setValue("is_active", false);
             Storage.setValue("start_data", -1);
         }
@@ -222,12 +229,13 @@ class ResourceManager {
     function load() {
         streak_data = Application.AppBase.getProperty("streak_data").toNumber();
         
-        last_fast = Storage.getValue("last_fast");
-        if (last_fast == null) {
-        	last_fast = -1;
-        } else {
-        	last_fast = new Time.Moment(last_fast);
-        }
+        show_time_since_last = Application.AppBase.getProperty("show_time_since_last");
+		if (show_time_since_last == true) {        
+	        last_fast_data = Storage.getValue("last_fast_data");
+	        if (last_fast_data == null || last_fast_data < 1) {
+	           show_time_since_last = false;
+	        }
+	    }
 
         is_active = Storage.getValue("is_active");
         if (is_active == null) {
@@ -258,6 +266,7 @@ class ResourceManager {
         string_duration = WatchUi.loadResource(Rez.Strings.duration);
         string_calories = WatchUi.loadResource(Rez.Strings.calories);
         string_streak = WatchUi.loadResource(Rez.Strings.streak);
+        string_last_fast = WatchUi.loadResource(Rez.Strings.last_fast_title);
         string_fast_sg = WatchUi.loadResource(Rez.Strings.fast_sg);
         string_fast_pl = WatchUi.loadResource(Rez.Strings.fast_pl);
         string_elapsed = WatchUi.loadResource(Rez.Strings.elapsed);

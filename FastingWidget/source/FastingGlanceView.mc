@@ -216,7 +216,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
  
         show_time_since_last = Application.AppBase.getProperty("show_time_since_last");
 		if (show_time_since_last == true) {        
-	        last_fast_data = Storage.getValue("last_fast");
+	        last_fast_data = Storage.getValue("last_fast_data");
 	        if (last_fast_data == null || last_fast_data < 1) {
 	           show_time_since_last = false;
 	        } else { 
