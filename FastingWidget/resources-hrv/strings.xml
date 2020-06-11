@@ -20,6 +20,7 @@
 	<string id="custom_goal_title_1">Prilagođeni cilj (sati) 1</string>
 	<string id="custom_goal_title_2">Prilagođeni cilj (sati) 2</string>
 	<string id="custom_goal_title_3">Prilagođeni cilj (sati) 3</string>
+	<string id="streak_goal_title">Red cilj</string>
 
 	<string id="activity_level_title">Razina aktivnosti</string>
 	<string id="activity_level_0">Sjedeći (malo bez vježbanja)</string>

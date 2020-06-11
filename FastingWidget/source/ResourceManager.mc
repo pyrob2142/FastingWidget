@@ -240,6 +240,11 @@ class ResourceManager {
         }
 
         goal_data = Storage.getValue("goal_data");
+        
+        // Uncomment for 5 minute debug fasts
+        // COMMENT BEFORE COMMITTING!
+		//goal_data = 270;
+		
         if (goal_data == -1 || goal_data == null) {
             goal_data = -1;
         }

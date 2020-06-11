@@ -20,6 +20,7 @@
 	<string id="custom_goal_title_1">Custom Goal (hours) 1</string>
 	<string id="custom_goal_title_2">Custom Goal (hours) 2</string>
 	<string id="custom_goal_title_3">Custom Goal (hours) 3</string>
+	<string id="streak_goal_title">Streak Goal</string>
 
 	<string id="activity_level_title">Activity Level</string>
 	<string id="activity_level_0">Sedentary (little to no exercise)</string>

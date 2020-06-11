@@ -92,6 +92,7 @@ page_calories = column[inc_i()]
 
 default_goal_title = column[inc_i()]
 custom_goal_title = column[inc_i()]
+streak_goal_title = column[inc_i()]
 
 activity_level_title = column[inc_i()]
 activity_level_0 = column[inc_i()]
@@ -185,6 +186,7 @@ with open(file_name, "w+", encoding='utf-8') as f:
     f.write('\t<string id="custom_goal_title_1">%s</string>\n' % (custom_goal_title + " 1"))
     f.write('\t<string id="custom_goal_title_2">%s</string>\n' % (custom_goal_title + " 2"))
     f.write('\t<string id="custom_goal_title_3">%s</string>\n' % (custom_goal_title + " 3"))
+    f.write('\t<string id="streak_goal_title">%s</string>\n' % (streak_goal_title))
     f.write('\n')
     f.write('\t<string id="activity_level_title">%s</string>\n' % (activity_level_title))
     f.write('\t<string id="activity_level_0">%s</string>\n' % (activity_level_0))

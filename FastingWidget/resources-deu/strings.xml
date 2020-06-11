@@ -20,6 +20,7 @@
 	<string id="custom_goal_title_1">Benutzerdefiniertes Ziel (Stunden) 1</string>
 	<string id="custom_goal_title_2">Benutzerdefiniertes Ziel (Stunden) 2</string>
 	<string id="custom_goal_title_3">Benutzerdefiniertes Ziel (Stunden) 3</string>
+	<string id="streak_goal_title">Serienziel</string>
 
 	<string id="activity_level_title">Aktivität</string>
 	<string id="activity_level_0">Sitzend (wenig bis keine Bewegung)</string>

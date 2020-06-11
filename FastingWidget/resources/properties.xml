@@ -10,6 +10,7 @@
 		<property id="custom_goal_1" type="number">0</property>
 		<property id="custom_goal_2" type="number">0</property>
 		<property id="custom_goal_3" type="number">0</property>
+		<property id="streak_goal" type="number">0</property>
 		<property id="activity_level" type="number">2</property>
 		<property id="birthday" type="number">0</property>
 		<property id="bmr_formula" type="number">0</property>
@@ -63,15 +64,19 @@
 		</setting>
 		
 		<setting propertyKey="@Properties.custom_goal_1" title="@Strings.custom_goal_title_1">
-		<settingConfig type="numeric"></settingConfig>
+		<settingConfig type="numeric" min="0"></settingConfig>
 		</setting>
 		
 		<setting propertyKey="@Properties.custom_goal_2" title="@Strings.custom_goal_title_2">
-		<settingConfig type="numeric"></settingConfig>
+		<settingConfig type="numeric" min="0"></settingConfig>
 		</setting>
 		
 		<setting propertyKey="@Properties.custom_goal_3" title="@Strings.custom_goal_title_3">
-		<settingConfig type="numeric"></settingConfig>
+		<settingConfig type="numeric" min="0"></settingConfig>
+		</setting>
+		
+		<setting propertyKey="@Properties.streak_goal" title="@Strings.streak_goal_title">
+			<settingConfig type="numeric" min="0"></settingConfig>
 		</setting>
 		
 		<setting propertyKey="@Properties.activity_level" title="@Strings.activity_level_title">
