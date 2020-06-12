@@ -422,6 +422,7 @@ class FastingView extends WatchUi.View {
 		
 			if (progress >= 1.0) {
 				arc_color = Graphics.COLOR_GREEN;
+				arc_end = 90;
 			} else {
 				arc_color = Graphics.COLOR_WHITE;
 			}

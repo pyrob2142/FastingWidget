@@ -238,9 +238,11 @@ class FastingGlanceView extends WatchUi.GlanceView {
 
         goal_data = Storage.getValue("goal_data");
         
-        // Uncomment for 5 minute debug fasts
+       	// Uncomment for debug fasts
         // COMMENT BEFORE COMMITTING!
-		//goal_data = 270;
+        //goal_data = 108; // 2 min
+		//goal_data = 270; // 5 min
+		//goal_data = 540; // 10 min
 		
         if (goal_data == -1 || goal_data == null) {
             goal_data = -1;
