@@ -158,7 +158,7 @@ class FastingView extends WatchUi.View {
 			streak_label = streak_label + "/" + resource_manager.streak_goal;
 		}
 
-		if (streak_label.length() > 7) {
+		if (dc.getTextWidthInPixels(streak_label, streak_font) > dc.getWidth() - 15) {
 			streak_font = Graphics.FONT_LARGE;
 		}
 		
@@ -293,11 +293,11 @@ class FastingView extends WatchUi.View {
 					arc_end_overtime = 360 - (degrees_overtime - 90);
 				}
 				
-				dc.setPenWidth(6);
+				dc.setPenWidth(8);
 				dc.setColor(Graphics.COLOR_DK_GREEN, Graphics.COLOR_BLACK);
 				dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, 90);
 				
-				dc.setPenWidth(16);
+				dc.setPenWidth(18);
 				dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
 				dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end_overtime);	
 			} else {
@@ -315,7 +315,7 @@ class FastingView extends WatchUi.View {
 						arc_end = 360 - (degrees_progress - 90);
 					}
 					
-					dc.setPenWidth(6);
+					dc.setPenWidth(8);
 					dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_BLACK);
 					dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
 					
@@ -337,7 +337,7 @@ class FastingView extends WatchUi.View {
 							arc_end = 360 - (degrees_arc_start + degrees_progress - 90);
 						}
 						
-						dc.setPenWidth(6);
+						dc.setPenWidth(8);
 						dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
 						dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
 					}
@@ -360,7 +360,7 @@ class FastingView extends WatchUi.View {
 							arc_end = 360 - (degrees_arc_start + degrees_progress - 90);
 						}
 						
-						dc.setPenWidth(6);
+						dc.setPenWidth(8);
 						dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
 						dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
 					}
@@ -393,7 +393,7 @@ class FastingView extends WatchUi.View {
 				}
 			}
 		} else {
-			dc.setPenWidth(6);
+			dc.setPenWidth(8);
 			dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLACK);
 			dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, 90);
 		}
@@ -426,7 +426,7 @@ class FastingView extends WatchUi.View {
 				arc_color = Graphics.COLOR_WHITE;
 			}
 			
-			dc.setPenWidth(6);
+			dc.setPenWidth(8);
 			dc.setColor(arc_color, Graphics.COLOR_BLACK);
 			dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
 		}

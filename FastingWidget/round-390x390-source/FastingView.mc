@@ -158,21 +158,21 @@ class FastingView extends WatchUi.View {
 			streak_label = streak_label + "/" + resource_manager.streak_goal;
 		}
 
-		if (streak_label.length() > 7) {
+		if (dc.getTextWidthInPixels(streak_label, streak_font) > dc.getWidth() - 15) {
 			streak_font = Graphics.FONT_LARGE;
 		}
 		
 		dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
 		dc.clear();
 			
-		dc.drawText(center_x, center_y - 25 - dc.getFontHeight(Graphics.FONT_MEDIUM), Graphics.FONT_MEDIUM, resource_manager.string_streak.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(center_x, center_y - 40 - dc.getFontHeight(Graphics.FONT_MEDIUM), Graphics.FONT_MEDIUM, resource_manager.string_streak.toUpper(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(center_x, center_y, streak_font, streak_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		
 		if (fast_manager.fast.is_active == false && resource_manager.show_time_since_last == true) {
 			var last_fast = fast_manager.getTimeSinceLastFast().toUpper();
 			var last_fast_label = resource_manager.string_since.toUpper();
 				
-			dc.drawText(center_x, center_y + 80, Graphics.FONT_SMALL, last_fast, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);	
+			dc.drawText(center_x, center_y + 95, Graphics.FONT_SMALL, last_fast, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);	
 		} else {
 			var fast_label = resource_manager.string_fast_pl.toUpper();
 		
@@ -184,7 +184,7 @@ class FastingView extends WatchUi.View {
 					fast_label = "x " + fast_label;
 			}
 			
-			dc.drawText(center_x, center_y + 80, Graphics.FONT_MEDIUM, fast_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+			dc.drawText(center_x, center_y + 95, Graphics.FONT_MEDIUM, fast_label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		}
 		
 		if (streak_goal > 0) {

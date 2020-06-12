@@ -157,7 +157,7 @@ class FastingView extends WatchUi.View {
 			streak_label = streak_label + "/" + resource_manager.streak_goal;
 		}
 
-		if (streak_label.length() > 7) {
+		if (dc.getTextWidthInPixels(streak_label, streak_font) > dc.getWidth() - 15) {
 			streak_font = Graphics.FONT_LARGE;
 		}
 		
