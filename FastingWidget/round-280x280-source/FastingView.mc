@@ -176,7 +176,7 @@ class FastingView extends WatchUi.View {
 		} else {
 			var fast_label = resource_manager.string_fast_pl.toUpper();
 		
-			if (streak_label == 1) {
+			if (streak_label.equals("1")) {
 				fast_label = resource_manager.string_fast_sg.toUpper();
 			}
 			
