@@ -191,7 +191,21 @@ class FastingGlanceView extends WatchUi.GlanceView {
             "006-B3287-00", // Fenix 6S
             "006-B3512-00", // Fenix 6S APAC (not enough space)
             "006-B3288-00", // Fenix 6S Pro
-            "006-B3513-00"  // Fenix 6S Pro APAC (not enough space)
+            "006-B3513-00", // Fenix 6S Pro APAC (not enough space)
+            "006-B3624-00", // MARQ Adventurer
+            "006-B3648-00", // MARQ Adventurer APAC
+            "006-B3251-00", // MARQ Athlete
+            "006-B3451-00", // MARQ Athlete APAC
+            "006-B3247-00", // MARQ Aviator
+            "006-B3421-00", // MARQ Aviator APAC
+            "006-B3248-00", // MARQ Captain
+            "006-B3448-00", // MARQ Captain APAC
+            "006-B3249-00", // MARQ Commander
+            "006-B3449-00", // MARQ Commander APAC
+            "006-B3246-00", // MARQ Driver
+            "006-B3420-00", // MARQ Driver APAC
+            "006-B3250-00", // MARQ Expedition
+            "006-B3450-00"  // MARQ Expedition APAC
         ];
 
         if (unsupported_devices.indexOf(part_number) != -1) {
