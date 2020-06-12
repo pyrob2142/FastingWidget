@@ -94,7 +94,22 @@ class Toolbox {
 				var minutes = n / 60;
 				n = n % 60;
 				
-				return days.format("%02d") + ":" + hours.format("%02d") + ":" + minutes.format("%02d");
+				if (resource_manager.show_seconds == true && 
+						(fast_manager.current_page == fast_manager.ELAPSED ||
+						fast_manager.current_page == fast_manager.STREAK || 
+						fast_manager.current_page == fast_manager.REMAINING || 
+						fast_manager.current_page == fast_manager.OPEN)) {
+					
+					var seconds = n;
+					
+					if (n % 2 == 0) {
+						return days.format("%02d") + ":" + hours.format("%02d") + ":" + minutes.format("%02d");
+					} else {
+						return "- " + days.format("%02d") + ":" + hours.format("%02d") + ":" + minutes.format("%02d") + " -";
+					}
+				} else {
+					return days.format("%02d") + ":" + hours.format("%02d") + ":" + minutes.format("%02d");
+				}
 			} else {
 				var hours = n / 3600;
 				n = n % 3600;
