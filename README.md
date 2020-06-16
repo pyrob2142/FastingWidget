@@ -140,7 +140,7 @@ Your activity level is determined as follows:
 * Extra Active (very hard exercise/training or a physical job): 1.9
 
 ## Credits
-fire.png made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](www.flaticon.com).
+fire.png made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com).
 
 Oleksiy Mishchenko (axl13) for his amazing contributions to the glance view and stacking progress indicators. You're awesome!
 
