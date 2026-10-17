@@ -252,7 +252,7 @@ class GoalMenuDelegate extends WatchUi.Menu2InputDelegate {
 	}
 	
 	function onSelect(item) {
-		var id = item.getId();
+		var id = item.getId().toString();
 		
 		var split_index = id.find("_");
 		var hours = id.substring(split_index + 1, id.length()).toNumber();

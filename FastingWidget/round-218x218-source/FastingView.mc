@@ -323,7 +323,6 @@ class FastingView extends WatchUi.View {
 						degrees_progress = 360 * (percent - streak_reset_threshold);
 						
 						degrees_arc_start = 360 * streak_reset_threshold;
-						arc_start;
 						
 						if (degrees_arc_start < 90) {
 							arc_start = 90 - degrees_arc_start;
@@ -346,7 +345,6 @@ class FastingView extends WatchUi.View {
 						degrees_progress = 360 * (percent - streak_inc_threshold);
 						
 						degrees_arc_start = 360 * streak_inc_threshold;
-						arc_start;
 						
 						if (degrees_arc_start < 90) {
 							arc_start = 90 - degrees_arc_start;

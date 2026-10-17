@@ -112,7 +112,6 @@ class FastingGlanceView extends WatchUi.GlanceView {
 
                 var mode_label = string_remaining;
                 var m_goal = m_start.add(d_goal);
-                var bar_color;
 
                 if (m_now.greaterThan(m_goal)) {
                     mode_label = string_overtime;
@@ -212,7 +211,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
             show_seconds = false;
             update_rate = 60000;
         } else {
-            show_seconds = Application.AppBase.getProperty("show_seconds");
+            show_seconds = Application.Properties.getValue("show_seconds");
 
             if (show_seconds == true) {
                 update_rate = 1000;
@@ -221,14 +220,13 @@ class FastingGlanceView extends WatchUi.GlanceView {
             }
         }
 		
-        streak_data = Application.AppBase.getProperty("streak_data").toNumber();
-        streak_goal = Application.AppBase.getProperty("streak_goal").toNumber();
-        
-        streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold");
-        streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold");
-        single_color_progress = Application.AppBase.getProperty("single_color_progress");
+        streak_data = Application.Properties.getValue("streak_data").toNumber();
+        streak_goal = Application.Properties.getValue("streak_goal").toNumber();
+        streak_reset_threshold = Application.Properties.getValue("streak_reset_threshold");
+        streak_inc_threshold = Application.Properties.getValue("streak_inc_threshold");
+        single_color_progress = Application.Properties.getValue("single_color_progress");
  
-        show_time_since_last = Application.AppBase.getProperty("show_time_since_last");
+        show_time_since_last = Application.Properties.getValue("show_time_since_last");
 		if (show_time_since_last == true) {        
 	        last_fast_data = Storage.getValue("last_fast_data");
 	        if (last_fast_data == null || last_fast_data < 1) {
@@ -264,16 +262,16 @@ class FastingGlanceView extends WatchUi.GlanceView {
             d_goal = new Time.Duration(goal_data);
         }
 
-        streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold") / 100.0;
-        streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold") / 100.0;
+        streak_reset_threshold = Application.Properties.getValue("streak_reset_threshold") / 100.0;
+        streak_inc_threshold = Application.Properties.getValue("streak_inc_threshold") / 100.0;
         string_streak = WatchUi.loadResource(Rez.Strings.streak);
         string_elapsed = WatchUi.loadResource(Rez.Strings.elapsed);
         string_remaining = WatchUi.loadResource(Rez.Strings.remaining);
         string_fasting = WatchUi.loadResource(Rez.Strings.fasting_title);
         string_last_fast = WatchUi.loadResource(Rez.Strings.last_fast_title);
         string_overtime = WatchUi.loadResource(Rez.Strings.overtime);
-        time_format = Application.AppBase.getProperty("time_format");
-        show_days = Application.AppBase.getProperty("show_days");
+        time_format = Application.Properties.getValue("time_format");
+        show_days = Application.Properties.getValue("show_days");
         symbol_days = WatchUi.loadResource(Rez.Strings.symbol_days);
         symbol_hours = WatchUi.loadResource(Rez.Strings.symbol_hours);
         symbol_minutes = WatchUi.loadResource(Rez.Strings.symbol_minutes);
@@ -342,7 +340,7 @@ class FastingGlanceView extends WatchUi.GlanceView {
         }
     }
 
-    function update() {
+    function update() as Void {
         WatchUi.requestUpdate();
     }
 }

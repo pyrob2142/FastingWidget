@@ -122,22 +122,22 @@ class ResourceManager {
 
     //! Loads the user settings.
     function loadSettings() {
-        longpress_threshold = Application.AppBase.getProperty("longpress_threshold");
-        show_seconds = Application.AppBase.getProperty("show_seconds");
+        longpress_threshold = Application.Properties.getValue("longpress_threshold");
+        show_seconds = Application.Properties.getValue("show_seconds");
         if (show_seconds == true) {
             update_rate = 1000;
         } else {
             update_rate = 60000;
         }
 
-        default_page_goal = Application.AppBase.getProperty("default_page_goal");
-        default_page_no_goal = Application.AppBase.getProperty("default_page_no_goal");
+        default_page_goal = Application.Properties.getValue("default_page_goal");
+        default_page_no_goal = Application.Properties.getValue("default_page_no_goal");
 
-        default_goal = Application.AppBase.getProperty("default_goal");
+        default_goal = Application.Properties.getValue("default_goal");
 
-        custom_goal_1 = Application.AppBase.getProperty("custom_goal_1");
-        custom_goal_2 = Application.AppBase.getProperty("custom_goal_2");
-        custom_goal_3 = Application.AppBase.getProperty("custom_goal_3");
+        custom_goal_1 = Application.Properties.getValue("custom_goal_1");
+        custom_goal_2 = Application.Properties.getValue("custom_goal_2");
+        custom_goal_3 = Application.Properties.getValue("custom_goal_3");
 
         if (custom_goal_1 != 0) {
        		goal_hours.add(custom_goal_1);
@@ -153,24 +153,24 @@ class ResourceManager {
 	        toolbox.sort(goal_hours, 0, goal_hours.size() - 1);
 		}
 		
-		streak_goal = Application.AppBase.getProperty("streak_goal").toNumber();
+		streak_goal = Application.Properties.getValue("streak_goal").toNumber();
         
-        streak_reset_threshold = Application.AppBase.getProperty("streak_reset_threshold") / 100.0;
-        streak_inc_threshold = Application.AppBase.getProperty("streak_inc_threshold") / 100.0;
-        single_color_progress = Application.AppBase.getProperty("single_color_progress");
+        streak_reset_threshold = Application.Properties.getValue("streak_reset_threshold") / 100.0;
+        streak_inc_threshold = Application.Properties.getValue("streak_inc_threshold") / 100.0;
+        single_color_progress = Application.Properties.getValue("single_color_progress");
 
-        streak_data = Application.AppBase.getProperty("streak_data");
+        streak_data = Application.Properties.getValue("streak_data");
 
-        var overwrite_date_format = Application.AppBase.getProperty("overwrite_date_format");
+        var overwrite_date_format = Application.Properties.getValue("overwrite_date_format");
 
         if (overwrite_date_format != null && overwrite_date_format.length == 8) {
             string_date_format = overwrite_date_format;
         }
 
-        time_format = Application.AppBase.getProperty("time_format");
-        show_days = Application.AppBase.getProperty("show_days");
+        time_format = Application.Properties.getValue("time_format");
+        show_days = Application.Properties.getValue("show_days");
 
-        var raw_activity = Application.AppBase.getProperty("activity_level");
+        var raw_activity = Application.Properties.getValue("activity_level");
         if (raw_activity != null) {
             switch (raw_activity) {
                 case 0:
@@ -193,21 +193,21 @@ class ResourceManager {
             activity_level = 1.2;
         }
 
-        var birthday = Application.AppBase.getProperty("birthday");
+        var birthday = Application.Properties.getValue("birthday");
         if (birthday != null) {
             age = toolbox.calculateAge(birthday);
         } else {
             age = 30;
         }
 
-        bmr_formula = Application.AppBase.getProperty("bmr_formula");
-        custom_bmr = Application.AppBase.getProperty("custom_bmr");
-        body_fat = Application.AppBase.getProperty("body_fat");
+        bmr_formula = Application.Properties.getValue("bmr_formula");
+        custom_bmr = Application.Properties.getValue("custom_bmr");
+        body_fat = Application.Properties.getValue("body_fat");
     }
 
     //! Saves the current state of the fast, as well as the streak.
     function save() {
-        Application.AppBase.setProperty("streak_data", fast_manager.streak);
+        Application.Properties.setValue("streak_data", fast_manager.streak);
 
         if (fast_manager.fast.is_active == true) {
             Storage.setValue("is_active", true);
@@ -227,9 +227,9 @@ class ResourceManager {
 
     //! Loads a previous fast and streak.
     function load() {
-        streak_data = Application.AppBase.getProperty("streak_data").toNumber();
+        streak_data = Application.Properties.getValue("streak_data").toNumber();
         
-        show_time_since_last = Application.AppBase.getProperty("show_time_since_last");
+        show_time_since_last = Application.Properties.getValue("show_time_since_last");
 		if (show_time_since_last == true) {        
 	        last_fast_data = Storage.getValue("last_fast_data");
 	        if (last_fast_data == null || last_fast_data < 1) {
@@ -309,5 +309,4 @@ class ResourceManager {
         string_date_format = WatchUi.loadResource(Rez.Strings.default_date_format);
     }
 }
-
 

@@ -177,7 +177,7 @@ class Fast {
 
     //! Updates the fast and requests a screen refresh.
     //! Target refresh: Once per second.
-    function update() {
+    function update() as Void {
         if (is_active == true) {
 	        m_now = Time.now();
 	        d_elapsed = m_now.subtract(m_start);

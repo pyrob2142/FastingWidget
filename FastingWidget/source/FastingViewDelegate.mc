@@ -74,11 +74,13 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
 	
 	function onTap(evt) {
 		fast_manager.nextPage();
+		return true;
 	}
 	
 	
 	function onMenu() {
 		handleLongPress();
+		return true;
 	}
 	
 	//! Handles long press events.

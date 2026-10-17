@@ -201,14 +201,14 @@ class Toolbox {
 	function calculateEndDate(hours) {
 		var duration = new Time.Duration(hours * 3600);
 		var date = Time.now().add(duration);
-		var date_info = Gregorian.info(date, Gregorian.FORMAT_MEDIUM); 
+		var date_info = Gregorian.info(date, Time.FORMAT_MEDIUM);
 		return date_info.day_of_week + " " + momentToString(date, false);
 	}
 	
 	function calculateEndDateFromMoment(hours, start) {
 		var duration = new Time.Duration(hours * 3600);
 		var date = start.add(duration);
-		var date_info = Gregorian.info(date, Gregorian.FORMAT_MEDIUM); 
+		var date_info = Gregorian.info(date, Time.FORMAT_MEDIUM);
 		return date_info.day_of_week + " " + momentToString(date, false);
 	}
 	
