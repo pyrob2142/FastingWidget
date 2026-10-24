@@ -20,7 +20,7 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
     var streak_reset_threshold;
     var streak_inc_threshold;
     var single_color_progress;
-    var string_fast_streak;
+    var string_fast_pl;
     var string_elapsed;
     var string_remaining;
     var string_overtime;
@@ -112,14 +112,14 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
 
                 if (streak_goal != 0) {
                     var active_top_text = layout[:active_top_text];
-                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_fast_streak + ":");
+                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_fast_pl + ":");
                     drawRightText(dc, active_top_text[0], active_top_text[1], streak_data + "/" + streak_goal);
                     drawIdleGoalProgress(dc, center_y);
                     drawBottomTexts(dc, layout[:idle_last_bottom_padding], layout[:idle_last_bottom_font],
                         string_last_fast + ":", last_fast_text);
                 } else {
                     var active_top_text = layout[:active_top_text];
-                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_fast_streak + ":");
+                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_fast_pl + ":");
                     drawRightText(dc, active_top_text[0], active_top_text[1], streak_data);
                     drawBottomTexts(dc, layout[:idle_top_bottom_padding], layout[:idle_top_bottom_font],
                         string_last_fast + ":", last_fast_text);
@@ -127,12 +127,12 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
             } else {
                 if (streak_goal != 0) {
                     var active_top_text = layout[:active_top_text];
-                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_fast_streak + ":");
+                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_fast_pl + ":");
                     drawRightText(dc, active_top_text[0], active_top_text[1], streak_data + "/" + streak_goal);
                     drawIdleGoalProgress(dc, center_y);
                 } else {
                     var active_top_text = layout[:active_top_text];
-                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_fast_streak + ":");
+                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_fast_pl + ":");
                     drawRightText(dc, active_top_text[0], active_top_text[1], streak_data);
                 }
             }
@@ -352,7 +352,7 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
 
         streak_reset_threshold = Application.Properties.getValue("streak_reset_threshold") / 100.0;
         streak_inc_threshold = Application.Properties.getValue("streak_inc_threshold") / 100.0;
-        string_fast_streak = WatchUi.loadResource(Rez.Strings.fast_streak);
+        string_fast_pl = WatchUi.loadResource(Rez.Strings.fast_pl);
         string_elapsed = WatchUi.loadResource(Rez.Strings.elapsed);
         string_remaining = WatchUi.loadResource(Rez.Strings.remaining);
         string_fasting = WatchUi.loadResource(Rez.Strings.fasting_title);

@@ -49,9 +49,8 @@
 	<string id="duration">Trajanje</string>
 	<string id="calories">Kalorije</string>
 	<string id="streak" scope="glance">Red</string>
-	<string id="fast_streak" scope="glance">Niz postova</string>
 	<string id="fast_sg">Post</string>
-	<string id="fast_pl">Postovi</string>
+	<string id="fast_pl" scope="glance">Postovi</string>
 	<string id="nominalization">n</string>
 	<string id="fasting_title" scope="glance">Postili</string>
 	<string id="last_fast_title" scope="glance">Posljednji</string>

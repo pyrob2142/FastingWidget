@@ -49,9 +49,8 @@
 	<string id="duration">Duration</string>
 	<string id="calories">Calories</string>
 	<string id="streak" scope="glance">Streak</string>
-	<string id="fast_streak" scope="glance">Fast Streak</string>
 	<string id="fast_sg">Fast</string>
-	<string id="fast_pl">Fasts</string>
+	<string id="fast_pl" scope="glance">Fasts</string>
 	<string id="nominalization">n</string>
 	<string id="fasting_title" scope="glance">Fasting</string>
 	<string id="last_fast_title" scope="glance">Last</string>
