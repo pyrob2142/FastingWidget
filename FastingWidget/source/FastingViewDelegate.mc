@@ -27,7 +27,7 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
     
     // Triggered by Up button (Fenix) or Upward Swipe (Venu)
     function onPreviousPage() {
-        fast_manager.nextPage();
+        fast_manager.previousPage();
         return true;
     }
     
@@ -46,8 +46,12 @@ class FastingViewDelegate extends WatchUi.BehaviorDelegate {
     // Intercept low-level key events to stop CIQ 3.1 (fēnix 5) from passing unhandled key codes
     function onKey(evt) {
         var key = evt.getKey();
-        if (key == WatchUi.KEY_DOWN || key == WatchUi.KEY_UP) {
+        if (key == WatchUi.KEY_UP) {
             fast_manager.nextPage();
+            return true;
+        }
+        if (key == WatchUi.KEY_DOWN) {
+            fast_manager.previousPage();
             return true; // Return true to signal the key press was completely handled
         }
         return false;

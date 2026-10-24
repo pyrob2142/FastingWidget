@@ -181,6 +181,26 @@ class FastManager {
         WatchUi.requestUpdate();
     }
 
+    //! Moves the view to the previous appropriate page.
+    //! Active fast pages wrap from STREAK to CALORIES.
+    function previousPage() {
+        if (fast.is_active == true && current_page != SUMMARY) {
+            if (current_page == STREAK) {
+                current_page = CALORIES;
+            } else {
+                current_page--;
+
+                if (fast.has_goal == true && current_page == OPEN) {
+                    current_page = REMAINING;
+                } else if (fast.has_goal == false && current_page == REMAINING) {
+                    current_page = STREAK;
+                }
+            }
+        }
+
+        WatchUi.requestUpdate();
+    }
+
     //! Returns the current page for display.
     //! @return [number] The current page.
     function getPage() {
