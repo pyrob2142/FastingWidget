@@ -17,7 +17,6 @@ class FastingViewBase extends WatchUi.View {
 	var layout;
 	var pen_width_regular;
 	var pen_width_overtime;
-	var pen_width_streak_goal;
 	var calories_icon_offset_x;
 	var calories_icon_offset_y;
 	
@@ -63,7 +62,6 @@ class FastingViewBase extends WatchUi.View {
         };
         pen_width_regular = 8;
         pen_width_overtime = 18;
-        pen_width_streak_goal = 6;
         calories_icon_offset_x = -32;
         calories_icon_offset_y = -90;
     }
@@ -442,7 +440,7 @@ class FastingViewBase extends WatchUi.View {
 						arc_color = Graphics.COLOR_RED;
 					}
 					
-					dc.setPenWidth(pen_width_streak_goal);
+					dc.setPenWidth(pen_width_regular);
 					dc.setColor(arc_color, Graphics.COLOR_TRANSPARENT);
 					dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
 				}
@@ -458,32 +456,47 @@ class FastingViewBase extends WatchUi.View {
 	//! Once the goal is reached the arc turns green. 
     //! @param [Object] dc Device Context
 	function drawStreakGoalProgress(dc) {
-		var progress = fast_manager.streak / resource_manager.streak_goal.toFloat();
+		var streak_goal = resource_manager.streak_goal;
+		var progress = fast_manager.streak / streak_goal.toFloat();
 	
 		var degrees_progress;
 		var arc_end;
-		var arc_color;
 			
 		if (progress != 0) {
-		
-			degrees_progress = 360 * progress;
-			
-			if (degrees_progress < 90) {
-				arc_end = 90 - degrees_progress;
+			if (progress > 1.0) {
+				var overtime_progress = (fast_manager.streak - streak_goal).toFloat() / streak_goal.toFloat();
+				if (overtime_progress > 1.0) {
+					overtime_progress = 1.0;
+				}
+
+				degrees_progress = 360 * overtime_progress;
+				if (degrees_progress < 90) {
+					arc_end = 90 - degrees_progress;
+				} else {
+					arc_end = 360 - (degrees_progress - 90);
+				}
+
+				dc.setPenWidth(pen_width_regular);
+				dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+				dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, 90);
+
+				if (overtime_progress > 0) {
+					dc.setPenWidth(pen_width_overtime);
+					dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+					dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
+				}
 			} else {
-				arc_end = 360 - (degrees_progress - 90);
+				degrees_progress = 360 * progress;
+				if (degrees_progress < 90) {
+					arc_end = 90 - degrees_progress;
+				} else {
+					arc_end = 360 - (degrees_progress - 90);
+				}
+
+				dc.setPenWidth(pen_width_regular);
+				dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+				dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
 			}
-		
-			if (progress >= 1.0) {
-				arc_color = Graphics.COLOR_GREEN;
-				arc_end = 90;
-			} else {
-				arc_color = Graphics.COLOR_WHITE;
-			}
-			
-			dc.setPenWidth(pen_width_regular);
-			dc.setColor(arc_color, Graphics.COLOR_TRANSPARENT);
-			dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, 90, arc_end);
 		}
 	}
 }

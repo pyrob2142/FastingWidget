@@ -153,7 +153,12 @@ class ResourceManager {
 	        toolbox.sort(goal_hours, 0, goal_hours.size() - 1);
 		}
 		
-		streak_goal = Application.Properties.getValue("streak_goal").toNumber();
+		var streak_goal_value = Application.Properties.getValue("streak_goal");
+		if (streak_goal_value == null || streak_goal_value == "") {
+			streak_goal = 0;
+		} else {
+			streak_goal = streak_goal_value;
+		}
         
         streak_reset_threshold = Application.Properties.getValue("streak_reset_threshold") / 100.0;
         streak_inc_threshold = Application.Properties.getValue("streak_inc_threshold") / 100.0;
@@ -227,7 +232,10 @@ class ResourceManager {
 
     //! Loads a previous fast and streak.
     function load() {
-        streak_data = Application.Properties.getValue("streak_data").toNumber();
+        streak_data = Application.Properties.getValue("streak_data");
+        if (streak_data == null || streak_data == "") {
+            streak_data = 0;
+        }
         
         show_time_since_last = Application.Properties.getValue("show_time_since_last");
 		if (show_time_since_last == true) {        
@@ -309,4 +317,3 @@ class ResourceManager {
         string_date_format = WatchUi.loadResource(Rez.Strings.default_date_format);
     }
 }
-

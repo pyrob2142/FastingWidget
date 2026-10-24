@@ -33,7 +33,6 @@ class FastingView extends FastingViewBase {
         layout[:calories_units] = [115, Graphics.FONT_MEDIUM];
         pen_width_regular = 25;
         pen_width_overtime = 50;
-        pen_width_streak_goal = 25;
         calories_icon_offset_x = -64;
         calories_icon_offset_y = -174;
     }

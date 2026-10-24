@@ -5,7 +5,7 @@ using Toybox.Time;
 using Toybox.Timer;
 
 (:glance)
-class FastingGlanceView extends WatchUi.GlanceView {
+class FastingGlanceViewBase extends WatchUi.GlanceView {
     var streak_data;
     var is_active;
     var start_data;
@@ -40,19 +40,57 @@ class FastingGlanceView extends WatchUi.GlanceView {
     var m_last_fast;
     var elapsed_since_last_fast;
  	var streak_progress;
+ 	var layout;
 
     function initialize() {
         GlanceView.initialize();
         load();
 
+        streak_progress = 0.0;
+        if (streak_goal > 0) {
+            streak_progress = streak_data / (streak_goal * 1.0);
+        }
+    }
+
+    function startUpdates() {
         if (is_active == true || show_time_since_last == true) {
             timer = new Timer.Timer();
             timer.start(me.method(:update), update_rate, true);
         }
-        
-        if (streak_goal != 0) {
-        	streak_progress = streak_data / streak_goal.toFloat();
-        }
+    }
+
+    function configureLayout() {
+        layout = {
+            :active_top_text => [-5, Graphics.FONT_SYSTEM_TINY],
+            :idle_top_text_font => Graphics.FONT_SYSTEM_TINY,
+            :active_bottom_padding => 5,
+            :active_bottom_font => Graphics.FONT_SYSTEM_XTINY,
+            :idle_last_bottom_padding => 5,
+            :idle_last_bottom_font => Graphics.FONT_SYSTEM_XTINY,
+            :idle_top_bottom_padding => 10,
+            :idle_top_bottom_font => Graphics.FONT_SYSTEM_XTINY,
+            :regular_bar_height => 7,
+            :bar_offset => 3,
+            :overtime_bar_height => 8
+        };
+    }
+
+    function drawLeftText(dc, y, font, text) {
+        dc.drawText(0, y, font, text, Graphics.TEXT_JUSTIFY_LEFT);
+    }
+
+    function drawRightText(dc, y, font, text) {
+        dc.drawText(dc.getWidth(), y, font, text, Graphics.TEXT_JUSTIFY_RIGHT);
+    }
+
+    function drawBottomTexts(dc, padding, font, left_text, right_text) {
+        var y = getBottomTextY(dc, padding, font);
+        drawLeftText(dc, y, font, left_text);
+        drawRightText(dc, y, font, right_text);
+    }
+
+    function getBottomTextY(dc, padding, font) {
+        return dc.getHeight() - padding - Graphics.getFontHeight(font);
     }
 
     function onUpdate(dc) {
@@ -60,51 +98,43 @@ class FastingGlanceView extends WatchUi.GlanceView {
         var bar_color;
 
         m_now = Time.now();
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
 
         if (is_active == false) {
+            if (show_time_since_last == true) {
+                elapsed_since_last_fast = m_now.subtract(m_last_fast);
 
-			if (show_time_since_last == true) {
-				elapsed_since_last_fast = m_now.subtract(m_last_fast);
-				
-				if (streak_goal != 0) {
-					dc.drawText(0, -5, Graphics.FONT_SYSTEM_TINY, string_streak + ":", Graphics.TEXT_JUSTIFY_LEFT);
-           			dc.drawText(dc.getWidth(), -5, Graphics.FONT_SYSTEM_TINY, streak_data + "/" + streak_goal, Graphics.TEXT_JUSTIFY_RIGHT);
-            		dc.drawRectangle(0, center_y - 3, dc.getWidth(), 7);
-            		dc.fillRectangle(0, center_y - 3, dc.getWidth() * streak_progress, 7);
-            		if (streak_data >= streak_goal) {
-            			dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_BLACK);
-            			dc.fillRectangle(0, center_y - 3, dc.getWidth(), 7);
-            			dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
-            		}
-            		
-            		dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, string_last_fast + ":", Graphics.TEXT_JUSTIFY_LEFT);
-            		dc.drawText(dc.getWidth(), dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(elapsed_since_last_fast.value()), Graphics.TEXT_JUSTIFY_RIGHT);
-				} else {
-					dc.drawText(0, 3, Graphics.FONT_SYSTEM_TINY, string_streak + ":", Graphics.TEXT_JUSTIFY_LEFT);
-					dc.drawText(dc.getWidth(), 3, Graphics.FONT_SYSTEM_TINY, streak_data, Graphics.TEXT_JUSTIFY_RIGHT);
-					
-					dc.drawText(0, dc.getHeight() - 10 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, string_last_fast + ":", Graphics.TEXT_JUSTIFY_LEFT);
-            		dc.drawText(dc.getWidth(), dc.getHeight() - 10 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(elapsed_since_last_fast.value()), Graphics.TEXT_JUSTIFY_RIGHT);
-				}
-			} else {
-				if (streak_goal != 0) {
-					dc.drawText(0, 7, Graphics.FONT_SYSTEM_TINY, string_streak + ":", Graphics.TEXT_JUSTIFY_LEFT);
-           			dc.drawText(dc.getWidth(), 7, Graphics.FONT_SYSTEM_TINY, streak_data + "/" + streak_goal, Graphics.TEXT_JUSTIFY_RIGHT);
-            		dc.drawRectangle(0, center_y + 7, dc.getWidth(), 7);
-            		dc.fillRectangle(0, center_y + 7, dc.getWidth() * streak_progress, 7);
-            		if (streak_data >= streak_goal) {
-            			dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_BLACK);
-            			dc.fillRectangle(0, center_y + 7, dc.getWidth(), 7);
-            			dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
-            		}
-            	} else {
-					dc.drawText(0, center_y - Graphics.getFontHeight(Graphics.FONT_SMALL) / 2, Graphics.FONT_SMALL, string_streak + ":", Graphics.TEXT_JUSTIFY_LEFT);
-					dc.drawText(dc.getWidth(), center_y - Graphics.getFontHeight(Graphics.FONT_SMALL) / 2, Graphics.FONT_SMALL, streak_data, Graphics.TEXT_JUSTIFY_RIGHT);
-				}
-			}
+                if (streak_goal != 0) {
+                    var active_top_text = layout[:active_top_text];
+                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_streak + ":");
+                    drawRightText(dc, active_top_text[0], active_top_text[1], streak_data + "/" + streak_goal);
+                    drawIdleGoalProgress(dc, center_y);
+                    drawBottomTexts(dc, layout[:idle_last_bottom_padding], layout[:idle_last_bottom_font],
+                        string_last_fast + ":", convertSeconds(elapsed_since_last_fast.value()));
+                } else {
+                    var active_top_text = layout[:active_top_text];
+                    var idle_top_text_font = layout[:idle_top_text_font];
+                    drawLeftText(dc, active_top_text[0], idle_top_text_font, string_streak + ":");
+                    drawRightText(dc, active_top_text[0], idle_top_text_font, streak_data);
+                    drawBottomTexts(dc, layout[:idle_top_bottom_padding], layout[:idle_top_bottom_font],
+                        string_last_fast + ":", convertSeconds(elapsed_since_last_fast.value()));
+                }
+            } else {
+                if (streak_goal != 0) {
+                    var active_top_text = layout[:active_top_text];
+                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_streak + ":");
+                    drawRightText(dc, active_top_text[0], active_top_text[1], streak_data + "/" + streak_goal);
+                    drawIdleGoalProgress(dc, center_y);
+                } else {
+                    var active_top_text = layout[:active_top_text];
+                    var idle_top_text_font = layout[:idle_top_text_font];
+                    drawLeftText(dc, active_top_text[0], idle_top_text_font, string_streak + ":");
+                    drawRightText(dc, active_top_text[0], idle_top_text_font, streak_data);
+                }
+            }
         } else {
-            dc.drawText(0, -5, Graphics.FONT_SYSTEM_TINY, string_fasting.toUpper(), Graphics.TEXT_JUSTIFY_LEFT);
+            var active_top_text = layout[:active_top_text];
+            drawLeftText(dc, active_top_text[0], active_top_text[1], string_fasting.toUpper());
             elapsed = m_now.subtract(m_start);
             if (goal_data != -1) {
                 remaining = d_goal.subtract(elapsed);
@@ -117,40 +147,53 @@ class FastingGlanceView extends WatchUi.GlanceView {
                     mode_label = string_overtime;
                 }
 
-                dc.drawText(dc.getWidth(), -5, Graphics.FONT_SYSTEM_TINY, (progress * 100.0).format("%.1f") + "%", Graphics.TEXT_JUSTIFY_RIGHT);
+                drawRightText(dc, active_top_text[0], active_top_text[1], (progress * 100.0).format("%.1f") + "%");
 
-                dc.setColor(Graphics.COLOR_LT_GRAY  , Graphics.COLOR_BLACK);
-                dc.drawRectangle(0, center_y - 3, dc.getWidth(), 7);
+                dc.setColor(Graphics.COLOR_LT_GRAY  , Graphics.COLOR_TRANSPARENT);
+                var bar_y = center_y - layout[:bar_offset];
+                var regular_bar_height = layout[:regular_bar_height];
+                var overtime_bar_height = layout[:overtime_bar_height];
+                var overtime_bar_y = bar_y - (overtime_bar_height - regular_bar_height) / 2;
+                var overtime_progress = progress - 1.0;
+                if (overtime_progress > 1.0) {
+                    overtime_progress = 1.0;
+                }
+                dc.drawRectangle(0, bar_y, dc.getWidth(), regular_bar_height);
 
                 if (single_color_progress == false) {
                     if (progress < 1.0) {
 
                         bar_color = Graphics.COLOR_RED;
-                        dc.setColor(bar_color, Graphics.COLOR_BLACK);
-                        dc.fillRectangle(0, center_y - 3, dc.getWidth() * progress, 7);
+                        dc.setColor(bar_color, Graphics.COLOR_TRANSPARENT);
+                        dc.fillRectangle(0, bar_y, dc.getWidth() * progress, regular_bar_height);
 
                         if (progress >= streak_reset_threshold) {
                             bar_color = Graphics.COLOR_YELLOW;
-                            dc.setColor(bar_color, Graphics.COLOR_BLACK);
-                            dc.fillRectangle(dc.getWidth() * streak_reset_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_reset_threshold), 7);
+                            dc.setColor(bar_color, Graphics.COLOR_TRANSPARENT);
+                            dc.fillRectangle(dc.getWidth() * streak_reset_threshold + 1, bar_y, dc.getWidth() * (progress - streak_reset_threshold), regular_bar_height);
                         }
 
                         if (progress >= streak_inc_threshold) {
                             bar_color = Graphics.COLOR_GREEN;
-                            dc.setColor(bar_color, Graphics.COLOR_BLACK);
-                            dc.fillRectangle(dc.getWidth() * streak_inc_threshold + 1, center_y - 3, dc.getWidth() * (progress - streak_inc_threshold), 7);
+                            dc.setColor(bar_color, Graphics.COLOR_TRANSPARENT);
+                            dc.fillRectangle(dc.getWidth() * streak_inc_threshold + 1, bar_y, dc.getWidth() * (progress - streak_inc_threshold), regular_bar_height);
                         }
                     } else {
                         bar_color = Graphics.COLOR_DK_GREEN;
-                        dc.setColor(bar_color, Graphics.COLOR_BLACK);
-                        dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth(), 8);
+                        dc.setColor(bar_color, Graphics.COLOR_TRANSPARENT);
+                        dc.fillRectangle(0, overtime_bar_y, dc.getWidth(), regular_bar_height);
 
                         dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
-                        dc.fillRectangle(0, dc.getHeight() / 2 - 5, dc.getWidth() * (progress - 1.0), 12);
+                        dc.fillRectangle(0, bar_y, dc.getWidth() * overtime_progress, overtime_bar_height);
                     }
                 } else {
+                    var active_bar_height = regular_bar_height;
+                    var active_bar_y = bar_y;
+                    var active_bar_width = dc.getWidth() * progress;
+
                     if (progress > 1.0) {
                         bar_color = Graphics.COLOR_DK_GREEN;
+                        active_bar_width = dc.getWidth();
                     } else if (progress >= streak_inc_threshold) {
                         bar_color = Graphics.COLOR_GREEN;
                     } else if (progress >= streak_reset_threshold) {
@@ -159,26 +202,61 @@ class FastingGlanceView extends WatchUi.GlanceView {
                         bar_color = Graphics.COLOR_RED;
                     }
 
-                    dc.setColor(bar_color, Graphics.COLOR_BLACK);
-                    dc.fillRectangle(0, dc.getHeight() / 2 - 3, dc.getWidth() * progress, 8);
+                    dc.setColor(bar_color, Graphics.COLOR_TRANSPARENT);
+                    dc.fillRectangle(0, active_bar_y, active_bar_width, active_bar_height);
 
                     if (progress > 1.0) {
                         dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
-                        dc.fillRectangle(0, dc.getHeight() / 2 - 5, dc.getWidth() * (progress - 1.0), 12);
+                        dc.fillRectangle(0, overtime_bar_y, dc.getWidth() * overtime_progress, overtime_bar_height);
                     }
                 }
 
-                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
-                dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, mode_label + ": ", Graphics.TEXT_JUSTIFY_LEFT);
-                dc.drawText(dc.getWidth(), dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(remaining.value()), Graphics.TEXT_JUSTIFY_RIGHT);
+                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+                var active_bottom_font = layout[:active_bottom_font];
+                drawBottomTexts(dc, layout[:active_bottom_padding], active_bottom_font,
+                    mode_label + ": ", convertSeconds(remaining.value()));
             } else {
-                dc.drawText(0, dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, string_elapsed + ": ", Graphics.TEXT_JUSTIFY_LEFT);
-                dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLACK);
-                dc.fillRectangle(0, dc.getHeight()/2 - 3, dc.getWidth(), 8 );
-                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
-                dc.drawText(dc.getWidth(), dc.getHeight() - 5 - Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY), Graphics.FONT_SYSTEM_XTINY, convertSeconds(elapsed.value()), Graphics.TEXT_JUSTIFY_RIGHT);
+                var active_bottom_font_no_goal = layout[:active_bottom_font];
+                var active_bottom_y_no_goal = getBottomTextY(dc, layout[:active_bottom_padding], active_bottom_font_no_goal);
+                drawLeftText(dc, active_bottom_y_no_goal, active_bottom_font_no_goal, string_elapsed + ": ");
+                dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+                dc.fillRectangle(0, center_y - layout[:bar_offset],
+                    dc.getWidth(), layout[:regular_bar_height]);
+                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+                drawRightText(dc, active_bottom_y_no_goal, active_bottom_font_no_goal, convertSeconds(elapsed.value()));
             }
         }
+    }
+
+    function drawIdleGoalProgress(dc, center_y) {
+        var regular_bar_height = layout[:regular_bar_height];
+        var overtime_bar_height = layout[:overtime_bar_height];
+        var bar_y = center_y - layout[:bar_offset];
+
+        if (streak_data > streak_goal) {
+            var overtime_progress = streak_progress - 1.0;
+            if (overtime_progress > 1.0) {
+                overtime_progress = 1.0;
+            }
+
+            var overtime_bar_y = bar_y - (overtime_bar_height - regular_bar_height) / 2;
+            dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+            dc.fillRectangle(0, bar_y, dc.getWidth(), regular_bar_height);
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+            dc.fillRectangle(0, overtime_bar_y, dc.getWidth() * overtime_progress, overtime_bar_height);
+        } else {
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+            dc.drawRectangle(0, bar_y, dc.getWidth(), regular_bar_height);
+
+            if (streak_data >= streak_goal) {
+                dc.fillRectangle(0, bar_y, dc.getWidth(), regular_bar_height);
+            } else {
+                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+                dc.fillRectangle(0, bar_y, dc.getWidth() * streak_progress, regular_bar_height);
+            }
+        }
+
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
     }
 
     function load() {
@@ -219,20 +297,28 @@ class FastingGlanceView extends WatchUi.GlanceView {
                 update_rate = 60000;
             }
         }
-		
-        streak_data = Application.Properties.getValue("streak_data").toNumber();
-        streak_goal = Application.Properties.getValue("streak_goal").toNumber();
+
+        streak_data = Application.Properties.getValue("streak_data");
+        if (streak_data == null || streak_data == "") {
+            streak_data = 0;
+        }
+        var streak_goal_value = Application.Properties.getValue("streak_goal");
+        if (streak_goal_value == null || streak_goal_value == "") {
+            streak_goal = 0;
+        } else {
+            streak_goal = streak_goal_value;
+        }
         streak_reset_threshold = Application.Properties.getValue("streak_reset_threshold");
         streak_inc_threshold = Application.Properties.getValue("streak_inc_threshold");
         single_color_progress = Application.Properties.getValue("single_color_progress");
- 
+
         show_time_since_last = Application.Properties.getValue("show_time_since_last");
-		if (show_time_since_last == true) {        
+		if (show_time_since_last == true) {
 	        last_fast_data = Storage.getValue("last_fast_data");
 	        if (last_fast_data == null || last_fast_data < 1) {
 	           show_time_since_last = false;
-	        } else { 
-	        	m_last_fast = new Time.Moment(last_fast_data); 
+	        } else {
+	        	m_last_fast = new Time.Moment(last_fast_data);
 	        }
 	    }
 
@@ -249,13 +335,13 @@ class FastingGlanceView extends WatchUi.GlanceView {
         }
 
         goal_data = Storage.getValue("goal_data");
-        
+
        	// Uncomment for debug fasts
         // COMMENT BEFORE COMMITTING!
-        //goal_data = 108; // 2 min
+        // goal_data = 108; // 2 min
 		//goal_data = 270; // 5 min
 		//goal_data = 540; // 10 min
-		
+
         if (goal_data == -1 || goal_data == null) {
             goal_data = -1;
         } else {
