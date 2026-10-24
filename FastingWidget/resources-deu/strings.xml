@@ -49,6 +49,7 @@
 	<string id="duration">Zeit</string>
 	<string id="calories">Kalorien</string>
 	<string id="streak" scope="glance">Serie</string>
+	<string id="fast_streak" scope="glance">Fasten-Serie</string>
 	<string id="fast_sg">Fasten</string>
 	<string id="fast_pl">Fasten</string>
 	<string id="nominalization">y</string>
