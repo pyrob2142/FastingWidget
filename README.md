@@ -47,6 +47,7 @@ Due to the differences in display, memory and button configurations only the fol
 * fēnix® 6S Pro
 * fēnix® 6X Pro
 * fēnix® Chronos
+* fēnix® 9 Pro 51mm
 * First Avenger
 * Forerunner® 245
 * Forerunner® 245 Music

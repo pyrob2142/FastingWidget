@@ -19,4 +19,6 @@ round-280x280.sourcePath = $(base.sourcePath); round-280x280-source/FastingView.
 
 # round-390x390
 round-390x390.sourcePath = $(base.sourcePath); round-390x390-source/FastingView.mc
-  
+
+# round-466x466 (Fēnix 9 Pro 51mm)
+round-466x466.sourcePath = $(base.sourcePath); round-466x466-source/FastingView.mc
