@@ -358,11 +358,10 @@ class FastingViewBase extends WatchUi.View {
 			} else {
 				
 				if (resource_manager.single_color_progress == false) {
-					if (percent == 0.0) {
+					degrees_progress = 360 * percent;
+					if (degrees_progress < 1) {
 						degrees_progress = 1;
 					}
-					
-					degrees_progress = 360 * percent;
 					
 					if (degrees_progress < 90) {
 						arc_end = 90 - degrees_progress;
@@ -391,9 +390,11 @@ class FastingViewBase extends WatchUi.View {
 							arc_end = 360 - (degrees_arc_start + degrees_progress - 90);
 						}
 						
-						dc.setPenWidth(pen_width_regular);
-						dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
-						dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
+						if (degrees_progress > 0) {
+							dc.setPenWidth(pen_width_regular);
+							dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
+							dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
+						}
 					}
 					
 					if (percent >= streak_inc_threshold) {
@@ -413,16 +414,17 @@ class FastingViewBase extends WatchUi.View {
 							arc_end = 360 - (degrees_arc_start + degrees_progress - 90);
 						}
 						
-						dc.setPenWidth(pen_width_regular);
-						dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
-						dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
+						if (degrees_progress > 0) {
+							dc.setPenWidth(pen_width_regular);
+							dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+							dc.drawArc(center_x, center_y, dc.getHeight() / 2, dc.ARC_CLOCKWISE, arc_start, arc_end);
+						}
 					}
 				} else {
-					if (percent == 0.0) {
+					degrees_progress = 360 * percent;
+					if (degrees_progress < 1) {
 						degrees_progress = 1;
 					}
-					
-					degrees_progress = 360 * percent;
 					
 					if (degrees_progress < 90) {
 						arc_end = 90 - degrees_progress;

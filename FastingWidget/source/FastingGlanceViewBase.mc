@@ -185,10 +185,10 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
                     } else {
                         bar_color = Graphics.COLOR_DK_GREEN;
                         dc.setColor(bar_color, Graphics.COLOR_TRANSPARENT);
-                        dc.fillRectangle(0, overtime_bar_y, dc.getWidth(), regular_bar_height);
+                        dc.fillRectangle(0, bar_y, dc.getWidth(), regular_bar_height);
 
                         dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
-                        dc.fillRectangle(0, bar_y, dc.getWidth() * overtime_progress, overtime_bar_height);
+                        dc.fillRectangle(0, overtime_bar_y, dc.getWidth() * overtime_progress, overtime_bar_height);
                     }
                 } else {
                     var active_bar_height = regular_bar_height;
