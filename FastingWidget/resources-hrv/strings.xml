@@ -54,6 +54,7 @@
 	<string id="nominalization">n</string>
 	<string id="fasting_title" scope="glance">Postili</string>
 	<string id="last_fast_title" scope="glance">Posljednji</string>
+	<string id="not_available" scope="glance">N/A</string>
 	<string id="elapsed" scope="glance">Proteklo</string>
 	<string id="remaining" scope="glance">Ostalo</string>
 	<string id="since">Od</string>

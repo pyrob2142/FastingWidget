@@ -54,6 +54,7 @@
 	<string id="nominalization">y</string>
 	<string id="fasting_title" scope="glance">Fasten</string>
 	<string id="last_fast_title" scope="glance">Zuletzt</string>
+	<string id="not_available" scope="glance">N/A</string>
 	<string id="elapsed" scope="glance">Vergangen</string>
 	<string id="remaining" scope="glance">Verbleibend</string>
 	<string id="since">seit</string>

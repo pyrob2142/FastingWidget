@@ -66,6 +66,7 @@ class ResourceManager {
     var string_calories;
     var string_streak;
     var string_last_fast;
+    var string_not_available;
     var string_fast_sg;
     var string_fast_pl;
     var string_elapsed;
@@ -218,7 +219,9 @@ class ResourceManager {
             Storage.setValue("is_active", true);
             Storage.setValue("start_data", fast_manager.fast.m_start.value());
         } else {
-            Storage.setValue("last_fast_data", fast_manager.m_last_fast.value());
+            if (fast_manager.m_last_fast != null) {
+                Storage.setValue("last_fast_data", fast_manager.m_last_fast.value());
+            }
             Storage.setValue("is_active", false);
             Storage.setValue("start_data", -1);
         }
@@ -240,9 +243,6 @@ class ResourceManager {
         show_time_since_last = Application.Properties.getValue("show_time_since_last");
 		if (show_time_since_last == true) {        
 	        last_fast_data = Storage.getValue("last_fast_data");
-	        if (last_fast_data == null || last_fast_data < 1) {
-	           show_time_since_last = false;
-	        }
 	    }
 
         is_active = Storage.getValue("is_active");
@@ -277,6 +277,7 @@ class ResourceManager {
         string_calories = WatchUi.loadResource(Rez.Strings.calories);
         string_streak = WatchUi.loadResource(Rez.Strings.streak);
         string_last_fast = WatchUi.loadResource(Rez.Strings.last_fast_title);
+        string_not_available = WatchUi.loadResource(Rez.Strings.not_available);
         string_fast_sg = WatchUi.loadResource(Rez.Strings.fast_sg);
         string_fast_pl = WatchUi.loadResource(Rez.Strings.fast_pl);
         string_elapsed = WatchUi.loadResource(Rez.Strings.elapsed);

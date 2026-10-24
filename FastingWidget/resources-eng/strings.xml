@@ -54,6 +54,7 @@
 	<string id="nominalization">n</string>
 	<string id="fasting_title" scope="glance">Fasting</string>
 	<string id="last_fast_title" scope="glance">Last</string>
+	<string id="not_available" scope="glance">N/A</string>
 	<string id="elapsed" scope="glance">Elapsed</string>
 	<string id="remaining" scope="glance">Remaining</string>
 	<string id="since">Since</string>

@@ -25,6 +25,7 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
     var string_remaining;
     var string_overtime;
     var string_last_fast;
+    var string_not_available;
     var string_fasting;
     var time_format;
     var show_days;
@@ -62,7 +63,6 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
     function configureLayout() {
         layout = {
             :active_top_text => [-5, Graphics.FONT_SYSTEM_TINY],
-            :idle_top_text_font => Graphics.FONT_SYSTEM_TINY,
             :active_bottom_padding => 5,
             :active_bottom_font => Graphics.FONT_SYSTEM_XTINY,
             :idle_last_bottom_padding => 5,
@@ -102,7 +102,13 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
 
         if (is_active == false) {
             if (show_time_since_last == true) {
-                elapsed_since_last_fast = m_now.subtract(m_last_fast);
+                var last_fast_text;
+                if (last_fast_data == null || last_fast_data < 1) {
+                    last_fast_text = string_not_available;
+                } else {
+                    elapsed_since_last_fast = m_now.subtract(m_last_fast);
+                    last_fast_text = convertSeconds(elapsed_since_last_fast.value());
+                }
 
                 if (streak_goal != 0) {
                     var active_top_text = layout[:active_top_text];
@@ -110,14 +116,13 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
                     drawRightText(dc, active_top_text[0], active_top_text[1], streak_data + "/" + streak_goal);
                     drawIdleGoalProgress(dc, center_y);
                     drawBottomTexts(dc, layout[:idle_last_bottom_padding], layout[:idle_last_bottom_font],
-                        string_last_fast + ":", convertSeconds(elapsed_since_last_fast.value()));
+                        string_last_fast + ":", last_fast_text);
                 } else {
                     var active_top_text = layout[:active_top_text];
-                    var idle_top_text_font = layout[:idle_top_text_font];
-                    drawLeftText(dc, active_top_text[0], idle_top_text_font, string_streak + ":");
-                    drawRightText(dc, active_top_text[0], idle_top_text_font, streak_data);
+                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_streak + ":");
+                    drawRightText(dc, active_top_text[0], active_top_text[1], streak_data);
                     drawBottomTexts(dc, layout[:idle_top_bottom_padding], layout[:idle_top_bottom_font],
-                        string_last_fast + ":", convertSeconds(elapsed_since_last_fast.value()));
+                        string_last_fast + ":", last_fast_text);
                 }
             } else {
                 if (streak_goal != 0) {
@@ -127,9 +132,8 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
                     drawIdleGoalProgress(dc, center_y);
                 } else {
                     var active_top_text = layout[:active_top_text];
-                    var idle_top_text_font = layout[:idle_top_text_font];
-                    drawLeftText(dc, active_top_text[0], idle_top_text_font, string_streak + ":");
-                    drawRightText(dc, active_top_text[0], idle_top_text_font, streak_data);
+                    drawLeftText(dc, active_top_text[0], active_top_text[1], string_streak + ":");
+                    drawRightText(dc, active_top_text[0], active_top_text[1], streak_data);
                 }
             }
         } else {
@@ -315,9 +319,7 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
         show_time_since_last = Application.Properties.getValue("show_time_since_last");
 		if (show_time_since_last == true) {
 	        last_fast_data = Storage.getValue("last_fast_data");
-	        if (last_fast_data == null || last_fast_data < 1) {
-	           show_time_since_last = false;
-	        } else {
+	        if (last_fast_data != null && last_fast_data > 0) {
 	        	m_last_fast = new Time.Moment(last_fast_data);
 	        }
 	    }
@@ -355,6 +357,7 @@ class FastingGlanceViewBase extends WatchUi.GlanceView {
         string_remaining = WatchUi.loadResource(Rez.Strings.remaining);
         string_fasting = WatchUi.loadResource(Rez.Strings.fasting_title);
         string_last_fast = WatchUi.loadResource(Rez.Strings.last_fast_title);
+        string_not_available = WatchUi.loadResource(Rez.Strings.not_available);
         string_overtime = WatchUi.loadResource(Rez.Strings.overtime);
         time_format = Application.Properties.getValue("time_format");
         show_days = Application.Properties.getValue("show_days");

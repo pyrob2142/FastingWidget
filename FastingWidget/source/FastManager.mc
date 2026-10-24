@@ -56,7 +56,9 @@ class FastManager {
                 fast.resume(resource_manager.start_data, -1);
             }
         } else {
-        	if (resource_manager.show_time_since_last == true) {
+		if (resource_manager.show_time_since_last == true
+			&& resource_manager.last_fast_data != null
+			&& resource_manager.last_fast_data > 0) {
         		m_last_fast = new Time.Moment(resource_manager.last_fast_data);
         	}
         }
@@ -242,8 +244,11 @@ class FastManager {
     //! Returns the Time.Moment of when the last fast has ended.
     //! @return [Time.Moment] Moment when the last fast has ended.
     function getTimeSinceLastFast() {
-    	var elapsed = Time.now().subtract(m_last_fast);
-    	return toolbox.convertSeconds(elapsed.value());
+		if (m_last_fast == null) {
+			return resource_manager.string_not_available;
+		}
+		var elapsed = Time.now().subtract(m_last_fast);
+		return toolbox.convertSeconds(elapsed.value());
     }
 
     //! Returns the current progress of the fast as a range from 0 to 1.
