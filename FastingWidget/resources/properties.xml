@@ -30,10 +30,6 @@
 		<settingConfig type="alphaNumeric" readonly="true" />
 		</setting>
 		
-		<setting propertyKey="@Properties.longpress_threshold" title="@Strings.longpress_threshold_title">
-		<settingConfig type="numeric" min="1000" />
-		</setting>
-		
 		<setting propertyKey="@Properties.show_seconds" title="@Strings.show_seconds_title">
 		<settingConfig type="boolean" />
 		</setting>

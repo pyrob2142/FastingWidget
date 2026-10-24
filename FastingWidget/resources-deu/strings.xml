@@ -5,7 +5,6 @@
 
 	<!-- USER SETTINGS -->
 	<string id="readme_string">Handbuch</string>
-	<string id="longpress_threshold_title">Langer Druck ab (ms)</string>
 	<string id="show_seconds_title">Sekunden anzeigen</string>
 	<string id="show_time_since_last_title">Seit letztem Fasten vergangene Zeit anzeigen</string>
 

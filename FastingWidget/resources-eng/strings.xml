@@ -5,7 +5,6 @@
 
 	<!-- USER SETTINGS -->
 	<string id="readme_string">Manual</string>
-	<string id="longpress_threshold_title">Long Press Threshold (ms)</string>
 	<string id="show_seconds_title">Show seconds</string>
 	<string id="show_time_since_last_title">Show time since last fast</string>
 

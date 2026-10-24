@@ -5,7 +5,6 @@
 
 	<!-- USER SETTINGS -->
 	<string id="readme_string">Priručnik</string>
-	<string id="longpress_threshold_title">Prag dugog pritiska (ms)</string>
 	<string id="show_seconds_title">Pokaži sekunde</string>
 	<string id="show_time_since_last_title">Prikaži proteklo vrijeme od zadnjeg brzog</string>
 
